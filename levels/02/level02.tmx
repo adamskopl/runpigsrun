@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" nextobjectid="142">
+ <tileset firstgid="1" name="basictiles_2" tilewidth="16" tileheight="16" tilecount="120" columns="8">
+  <image source="../../assets/tileset/basictiles_2.png" width="128" height="240"/>
+ </tileset>
+ <tileset firstgid="121" name="characters_1" tilewidth="16" tileheight="16" tilecount="96" columns="12">
+  <image source="../../assets/tileset/characters_1.png" width="192" height="128"/>
+  <tile id="0">
+   <animation>
+    <frame tileid="48" duration="100"/>
+    <frame tileid="49" duration="100"/>
+    <frame tileid="50" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="48">
+   <animation>
+    <frame tileid="48" duration="100"/>
+    <frame tileid="49" duration="100"/>
+    <frame tileid="50" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="72">
+   <animation>
+    <frame tileid="72" duration="100"/>
+    <frame tileid="73" duration="100"/>
+    <frame tileid="74" duration="100"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="217" name="things_0" tilewidth="16" tileheight="16" tilecount="96" columns="12">
+  <image source="../../assets/tileset/things_0.png" width="192" height="128"/>
+ </tileset>
+ <layer name="map" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxzYmBg4EHCvEgYWYyHAHZCU+eERa8TiWYSwqSaga4el35kv2BTQw23o9tHyA5saqiJYXGOL46wxSkAAhYIuQ==
+  </data>
+ </layer>
+ <objectgroup name="objectsTerrain">
+  <object id="24" gid="11" x="64" y="64" width="16" height="16"/>
+  <object id="25" gid="11" x="48" y="64" width="16" height="16"/>
+  <object id="26" gid="11" x="80" y="64" width="16" height="16"/>
+  <object id="27" gid="11" x="96" y="80" width="16" height="16"/>
+  <object id="28" gid="11" x="96" y="64" width="16" height="16"/>
+  <object id="29" gid="11" x="96" y="112" width="16" height="16"/>
+  <object id="30" gid="11" x="96" y="144" width="16" height="16"/>
+  <object id="36" gid="14" x="48" y="128" width="16" height="16"/>
+  <object id="37" gid="14" x="64" y="128" width="16" height="16"/>
+  <object id="38" gid="14" x="96" y="128" width="16" height="16"/>
+  <object id="39" gid="14" x="80" y="128" width="16" height="16"/>
+  <object id="40" gid="14" x="112" y="128" width="16" height="16"/>
+  <object id="41" gid="14" x="128" y="128" width="16" height="16"/>
+  <object id="42" gid="14" x="144" y="128" width="16" height="16"/>
+  <object id="43" gid="14" x="160" y="128" width="16" height="16"/>
+  <object id="44" gid="14" x="176" y="128" width="16" height="16"/>
+  <object id="45" gid="14" x="32" y="128" width="16" height="16"/>
+  <object id="46" gid="14" x="16" y="128" width="16" height="16"/>
+  <object id="47" gid="14" x="0" y="128" width="16" height="16"/>
+  <object id="48" gid="14" x="16" y="160" width="16" height="16"/>
+  <object id="49" gid="14" x="112" y="160" width="16" height="16"/>
+  <object id="50" gid="14" x="144" y="160" width="16" height="16"/>
+  <object id="51" gid="14" x="160" y="160" width="16" height="16"/>
+  <object id="52" gid="14" x="128" y="160" width="16" height="16"/>
+  <object id="53" gid="14" x="80" y="160" width="16" height="16"/>
+  <object id="54" gid="14" x="48" y="160" width="16" height="16"/>
+  <object id="55" gid="14" x="32" y="160" width="16" height="16"/>
+  <object id="56" gid="14" x="64" y="160" width="16" height="16"/>
+  <object id="57" gid="14" x="0" y="160" width="16" height="16"/>
+  <object id="58" gid="14" x="176" y="160" width="16" height="16"/>
+  <object id="59" gid="14" x="96" y="160" width="16" height="16"/>
+  <object id="60" gid="11" x="96" y="176" width="16" height="16"/>
+  <object id="62" gid="11" x="96" y="192" width="16" height="16"/>
+  <object id="64" gid="77" x="144" y="48" width="16" height="16"/>
+  <object id="65" gid="77" x="160" y="112" width="16" height="16"/>
+  <object id="66" gid="77" x="16" y="192" width="16" height="16"/>
+  <object id="67" gid="77" x="32" y="48" width="16" height="16"/>
+  <object id="69" gid="77" x="176" y="16" width="16" height="16"/>
+  <object id="70" gid="21" x="64" y="112" width="16" height="16"/>
+  <object id="71" gid="21" x="160" y="192" width="16" height="16"/>
+  <object id="72" gid="78" x="32" y="16" width="16" height="16"/>
+  <object id="73" gid="78" x="48" y="32" width="16" height="16"/>
+  <object id="74" gid="78" x="144" y="176" width="16" height="16"/>
+  <object id="82" gid="109" x="96" y="16" width="16" height="16"/>
+  <object id="83" gid="108" x="80" y="16" width="16" height="16"/>
+  <object id="84" gid="116" x="80" y="32" width="16" height="16"/>
+  <object id="85" gid="117" x="96" y="32" width="16" height="16"/>
+  <object id="97" gid="14" x="0" y="96" width="16" height="16"/>
+  <object id="98" gid="14" x="16" y="96" width="16" height="16"/>
+  <object id="99" gid="14" x="32" y="96" width="16" height="16"/>
+  <object id="100" gid="14" x="48" y="96" width="16" height="16"/>
+  <object id="101" gid="14" x="64" y="96" width="16" height="16"/>
+  <object id="102" gid="14" x="80" y="96" width="16" height="16"/>
+  <object id="103" gid="14" x="112" y="96" width="16" height="16"/>
+  <object id="104" gid="14" x="96" y="96" width="16" height="16"/>
+  <object id="105" gid="14" x="128" y="96" width="16" height="16"/>
+  <object id="106" gid="14" x="144" y="96" width="16" height="16"/>
+  <object id="107" gid="14" x="176" y="96" width="16" height="16"/>
+  <object id="108" gid="14" x="160" y="96" width="16" height="16"/>
+  <object id="109" name="bridge" gid="89" x="96" y="96" width="16" height="16"/>
+  <object id="125" gid="31" x="128" y="80" width="16" height="16"/>
+  <object id="127" gid="31" x="32" y="176" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="objectsGame">
+  <object id="20" gid="49" x="48" y="64" width="16" height="16" rotation="-90"/>
+ </objectgroup>
+ <objectgroup name="objectsPLAYERTOOLS">
+  <object id="22" gid="28" x="96" y="112" width="16" height="16"/>
+  <object id="63" gid="28" x="96" y="144" width="16" height="16"/>
+  <object id="130" name="signpost" gid="68" x="96" y="64" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="characters">
+  <object id="140" gid="193" x="64" y="64" width="16" height="16"/>
+  <object id="137" gid="121" x="96" y="176" width="16" height="16"/>
+ </objectgroup>
+</map>
