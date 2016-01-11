@@ -1,0 +1,3 @@
+ScaleManager = function() {
+	// this
+}
