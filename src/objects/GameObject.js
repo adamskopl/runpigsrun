@@ -1,22 +1,30 @@
-function GameObject(game, group, tileObject) {
+/**
+ * @param {Object} game
+ * @param {Object} group
+ * @param {string} gameObjectParams.name
+ * @param {Array} gameObjectParams.gamePos
+ * @param {number} gameObjectParams.angle
+ */
+function GameObject(game, group, gameObjectParams) {
 	this.group = group;
-	this.gamePos = posTiledToGame(tileObject.x, tileObject.y);
+	this.gamePos = gameObjectParams.gamePos;
 	this.sprite = {};
 
-	var objectData = gameObjectsContants[tileObject.name];
+	var objectData = gameObjectsContants[gameObjectParams.name];
+	if (objectData === undefined) {
+		console.log("undefined " + gameObjectParams.name);
+		return;
+	}
 	this.sprite = this.group.create(0, 0,
-		objectData.spreadsheet, tileObject.gid - 1);
-	if (tileObject.properties.rot === undefined)
-		this.sprite.angle = 0;
-	else
-		this.sprite.angle = parseInt(tileObject.properties.rot);
+		objectData.spreadsheet, objectData.gid);
+	this.sprite.angle = gameObjectParams.angle;
 	this.sprite.anchor.x = this.sprite.anchor.y = 0.5;
 	this.sprite.scale.x = this.sprite.scale.y = scaleConstants.MAIN_SCALE;
 	this.updateScreenPos();
 }
 
 /**
- * Update sprite's screen pos. After this. object should be properly 
+ * Update sprite's screen position. After this. object should be properly
  * placed on the screen.
  */
 GameObject.prototype.updateScreenPos = function() {
@@ -36,6 +44,19 @@ GameObject.prototype.getScreenPos = function() {
 		this.gamePos[0] * scaleConstants.TILE_SIZE_SCALED,
 		this.gamePos[1] * scaleConstants.TILE_SIZE_SCALED
 	];
+}
+
+function tileObjectToGameObjectParams(tileObject) {
+	var angle = tileObject.properties.rot;
+	if (angle === undefined)
+		angle = 0;
+	else
+		angle = parseInt(angle);
+	return {
+		name: tileObject.name,
+		gamePos: posTiledToGame(tileObject.x, tileObject.y),
+		angle: angle
+	};
 }
 
 /**
