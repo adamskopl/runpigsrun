@@ -1,5 +1,6 @@
-function LevelsManager(game) {
+function LevelsManager(game, gameObjectsManager) {
 	this.game = game;
+	this.gameObjectsManager = gameObjectsManager;
 	this.levels = {};
 };
 
@@ -19,6 +20,7 @@ LevelsManager.prototype.loadLevel = function(levelId) {
 
 	var level = new Level(
 		this.game,
+		this.gameObjectsManager,
 		new LevelTileObjects(map, {
 				backgroundLayer,
 				backgroundLayer2

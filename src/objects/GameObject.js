@@ -1,3 +1,14 @@
+function GameObjectParams(name, gamePos, angle) {
+	this.name = name;
+	this.gamePos = gamePos;
+	this.angle = angle;
+};
+
+GameObjectParams.prototype.print = function() {
+	console.log(this.name + " [" + this.gamePos[0] + "," +
+		this.gamePos[1] + "] " + this.angle);
+};
+
 /**
  * @param {Object} game
  * @param {Object} group
@@ -5,7 +16,7 @@
  * @param {Array} gameObjectParams.gamePos
  * @param {number} gameObjectParams.angle
  */
-function GameObject(game, group, gameObjectParams) {
+function GameObject(group, gameObjectParams) {
 	this.group = group;
 	this.gamePos = gameObjectParams.gamePos;
 	this.sprite = {};
@@ -21,7 +32,7 @@ function GameObject(game, group, gameObjectParams) {
 	this.sprite.anchor.x = this.sprite.anchor.y = 0.5;
 	this.sprite.scale.x = this.sprite.scale.y = scaleConstants.MAIN_SCALE;
 	this.updateScreenPos();
-}
+};
 
 /**
  * Update sprite's screen position. After this. object should be properly
@@ -52,11 +63,10 @@ function tileObjectToGameObjectParams(tileObject) {
 		angle = 0;
 	else
 		angle = parseInt(angle);
-	return {
-		name: tileObject.name,
-		gamePos: posTiledToGame(tileObject.x, tileObject.y),
-		angle: angle
-	};
+	return new GameObjectParams(
+		tileObject.name,
+		posTiledToGame(tileObject.x, tileObject.y),
+		angle);
 }
 
 /**
