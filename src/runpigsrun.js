@@ -16,17 +16,19 @@ function startGame() {
 		false); // antialias OFF
 
 	var levelsManager;
-	var gameObjectsManager;
 	var assetsManager;
+	var gameplayManager;
 
 	function preload() {
 		assetsManager = new AssetsManager(game);
 	}
 
 	function create() {
-		gameObjectsManager = new GameObjectsManager(game);
-		levelsManager = new LevelsManager(game, gameObjectsManager);
+		gameplayManager = new GameplayManager(game);
+		levelsManager = new LevelsManager(game, gameplayManager.gameObjectsManager);
 		levelsManager.loadLevel('00');
+
+		gameplayManager.start();
 	}
 
 	function update() {}

@@ -1,5 +1,6 @@
-function GameObjectsManager(game) {
+function GameObjectsManager(game, tilesManager) {
 	this.game = game;
+	this.tilesManager = tilesManager;
 	this.objects = [];
 	// group will be created, when needed (if it'll be created after 
 	// loading Tiled maps, it will be covered)
@@ -10,7 +11,21 @@ GameObjectsManager.prototype.create = function(gameObjectParams) {
 	if (this.groupGeneral === undefined) {
 		this.groupGeneral = this.game.add.group();
 	}
-	var gameObject = new GameObject(this.groupGeneral,
+	gameObject = new GameObject(this.groupGeneral,
 		gameObjectParams);
 	this.objects.push(gameObject);
+	this.tilesManager.put(gameObject, gameObjectParams.gamePos[0], gameObjectParams.gamePos[1]);
+	this.check();
+	return gameObject;
+}
+
+GameObjectsManager.prototype.count = function() {
+	return this.objects.length;
+}
+
+GameObjectsManager.prototype.check = function() {
+	num1 = this.count();
+	num2 = this.tilesManager.count();
+	if (num1 != num2)
+		console.log("count error")
 }

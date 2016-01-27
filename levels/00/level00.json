@@ -164,22 +164,6 @@
                  "y":48
                 }, 
                 {
-                 "gid":49,
-                 "height":16,
-                 "id":31,
-                 "name":"hut",
-                 "properties":
-                    {
-                     "rot":"90"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":64,
-                 "y":128
-                }, 
-                {
                  "gid":11,
                  "height":16,
                  "id":38,
@@ -218,7 +202,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":68,
+ "nextobjectid":69,
  "orientation":"orthogonal",
  "properties":
     {

@@ -20,8 +20,10 @@ function GameObject(group, gameObjectParams) {
 	this.group = group;
 	this.gamePos = gameObjectParams.gamePos;
 	this.sprite = {};
+	this.movementDirection = MovementDirections.X;
+	this.name = gameObjectParams.name;
 
-	var objectData = gameObjectsContants[gameObjectParams.name];
+	var objectData = GOC[gameObjectParams.name];
 	if (objectData === undefined) {
 		console.log("undefined " + gameObjectParams.name);
 		return;
@@ -32,6 +34,10 @@ function GameObject(group, gameObjectParams) {
 	this.sprite.anchor.x = this.sprite.anchor.y = 0.5;
 	this.sprite.scale.x = this.sprite.scale.y = scaleConstants.MAIN_SCALE;
 	this.updateScreenPos();
+};
+
+GameObject.prototype.setDirection = function(dir) {
+	this.movementDirection = dir;
 };
 
 /**
