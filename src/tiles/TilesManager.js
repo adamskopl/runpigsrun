@@ -29,22 +29,23 @@ TilesManager.prototype.get = function(posX, posY) {
 	return this.tiles[posX][posY];
 };
 
-TilesManager.prototype.getAdjacent = function(posX, posY, direction) {
+TilesManager.prototype.getAdjacent = function(GAME_POS, direction) {
+	gamePos = cloneProperties(GAME_POS);
 	switch (direction) {
 		case MovementDirections.U:
-			posY--;
+			gamePos[1]--;
 			break;
 		case MovementDirections.R:
-			posX++;
+			gamePos[0]++;
 			break;
 		case MovementDirections.D:
-			posY++;
+			gamePos[1]++;
 			break;
 		case MovementDirections.L:
-			posX--;
+			gamePos[0]--;
 			break;
 	}
-	return this.get(posX, posY);
+	return this.get(gamePos[0], gamePos[1]);
 }
 
 /**

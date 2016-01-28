@@ -1,3 +1,7 @@
+function cloneProperties(TO_CLONE) {
+	return JSON.parse(JSON.stringify(TO_CLONE));
+}
+
 function startGame() {
 	// CANVAS chosen, so 'debug' functions likde debug.body(sprite) can work...
 	// change later maybe on Phaser.AUTO
