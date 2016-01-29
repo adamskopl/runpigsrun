@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" nextobjectid="71">
- <tileset firstgid="1" name="basictiles" tilewidth="16" tileheight="16" tilecount="120" columns="8">
+ <tileset firstgid="1" name="basictiles" tilewidth="16" tileheight="16" tilecount="120">
   <image source="../../assets/tileset/basictiles_2.png" width="128" height="240"/>
  </tileset>
- <tileset firstgid="121" name="characters" tilewidth="16" tileheight="16" tilecount="96" columns="12">
+ <tileset firstgid="121" name="characters" tilewidth="16" tileheight="16" tilecount="96">
   <image source="../../assets/tileset/characters_1.png" width="192" height="128"/>
  </tileset>
- <tileset firstgid="217" name="things" tilewidth="16" tileheight="16" tilecount="96" columns="12">
+ <tileset firstgid="217" name="things" tilewidth="16" tileheight="16" tilecount="96">
   <image source="../../assets/tileset/things_0.png" width="192" height="128"/>
  </tileset>
  <layer name="background0" width="12" height="12">
@@ -48,7 +48,6 @@
   <object id="16" name="road" gid="11" x="64" y="48" width="16" height="16"/>
   <object id="17" name="road" gid="11" x="80" y="48" width="16" height="16"/>
   <object id="18" name="road" gid="11" x="96" y="48" width="16" height="16"/>
-  <object id="19" name="road" gid="11" x="112" y="48" width="16" height="16"/>
   <object id="20" name="road" gid="11" x="128" y="48" width="16" height="16"/>
   <object id="21" name="road" gid="11" x="144" y="48" width="16" height="16"/>
   <object id="38" name="road" gid="11" x="32" y="48" width="16" height="16"/>

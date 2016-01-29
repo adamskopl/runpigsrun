@@ -14,8 +14,11 @@ GameObjectsManager.prototype.create = function(gameObjectParams) {
 	gameObject = new GameObject(this.groupGeneral,
 		gameObjectParams);
 	this.objects.push(gameObject);
-	this.tilesManager.put(gameObject, gameObjectParams.gamePos[0], gameObjectParams.gamePos[1]);
+	this.tilesManager.put(gameObject, gameObjectParams.gamePos.x, gameObjectParams.gamePos.y);
 	this.check();
+
+	this.game.physics.arcade.enable(gameObject.sprite, Phaser.Physics.ARCADE);
+
 	return gameObject;
 }
 

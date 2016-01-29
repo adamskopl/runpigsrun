@@ -244,7 +244,6 @@
  "tileheight":16,
  "tilesets":[
         {
-         "columns":8,
          "firstgid":1,
          "image":"..\/..\/assets\/tileset\/basictiles_2.png",
          "imageheight":240,
@@ -261,7 +260,6 @@
          "tilewidth":16
         }, 
         {
-         "columns":12,
          "firstgid":121,
          "image":"..\/..\/assets\/tileset\/characters_1.png",
          "imageheight":128,
@@ -278,7 +276,6 @@
          "tilewidth":16
         }, 
         {
-         "columns":12,
          "firstgid":217,
          "image":"..\/..\/assets\/tileset\/things_0.png",
          "imageheight":128,

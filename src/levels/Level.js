@@ -17,6 +17,13 @@ Level.prototype.loadObjects = function() {
 		this.gameObjectsManager.create(
 			tileObjectToGameObjectParams(objectsLevel[i]));
 	}
-	temp = this.gameObjectsManager.create(new GameObjectParams("hero", [7, 1], 0));
-	temp.setDirection(MovementDirections.U);
+
+	temp = this.gameObjectsManager.create(
+		new GameObjectParams("hero", {
+			x: 4,
+			y: 2
+		}, {
+			x: 1,
+			y: 0
+		}, 0));
 };
