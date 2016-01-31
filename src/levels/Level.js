@@ -20,10 +20,26 @@ Level.prototype.loadObjects = function() {
 
 	temp = this.gameObjectsManager.create(
 		new GameObjectParams("hero", {
-			x: 4,
+			x: 3,
 			y: 2
+		}, {
+			x: -1,
+			y: 0
+		}, 0));
+	temp = this.gameObjectsManager.create(
+		new GameObjectParams("hero", {
+			x: 3,
+			y: 3
 		}, {
 			x: 1,
 			y: 0
+		}, 0));
+	temp = this.gameObjectsManager.create(
+		new GameObjectParams("hero", {
+			x: 7,
+			y: 2
+		}, {
+			x: 0,
+			y: -1
 		}, 0));
 };

@@ -118,22 +118,6 @@
                 {
                  "gid":11,
                  "height":16,
-                 "id":19,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":112,
-                 "y":48
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
                  "id":20,
                  "name":"road",
                  "properties":
@@ -226,6 +210,70 @@
                  "width":16,
                  "x":112,
                  "y":32
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":71,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":48
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":72,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":64
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":73,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":64
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":74,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -234,7 +282,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":71,
+ "nextobjectid":75,
  "orientation":"orthogonal",
  "properties":
     {

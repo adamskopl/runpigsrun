@@ -19,8 +19,8 @@ function movementDirectionOpposite(DIRECTION) {
 	return direction;
 };
 
-function canMove(gamePos, direction, movementManager) {
-	adjacentObjects = movementManager.tilesManager.getAdjacent(
+function canMove(gamePos, direction, TILES_MANAGER) {
+	adjacentObjects = TILES_MANAGER.getAdjacent(
 		gamePos, direction);
 	if (adjacentObjects !== undefined)
 		if (objectsContainMainType(adjacentObjects, GameObjectMainType.PASSAGE))
