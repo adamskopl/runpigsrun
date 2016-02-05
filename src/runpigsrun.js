@@ -32,7 +32,7 @@ function startGame() {
 		levelsManager = new LevelsManager(game, gameplayManager.gameObjectsManager);
 		levelsManager.loadLevel('00');
 
-		gameplayManager.start();
+		gameplayManager.startIter();
 	}
 
 	function update() {}

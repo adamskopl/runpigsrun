@@ -9,12 +9,14 @@ function GameObject(group, GAME_OBJECT_PARAMS) {
 	this.group = group;
 	this.gamePos = cloneProperties(GAME_OBJECT_PARAMS.gamePos);
 	this.direction = cloneProperties(GAME_OBJECT_PARAMS.direction);
+	this.angle = GAME_OBJECT_PARAMS.angle; // could be replaced by direction?
+	this.properties = GAME_OBJECT_PARAMS.properties;
 	this.sprite = {};
-	this.name = GAME_OBJECT_PARAMS.name;
+	this.type = GAME_OBJECT_PARAMS.type;
 
-	var objectData = GOC[GAME_OBJECT_PARAMS.name];
+	var objectData = GOC[GAME_OBJECT_PARAMS.type];
 	if (objectData === undefined) {
-		console.log("undefined " + GAME_OBJECT_PARAMS.name);
+		console.log("undefined " + GAME_OBJECT_PARAMS.type);
 		return;
 	}
 	this.sprite = this.group.create(0, 0,
@@ -26,7 +28,7 @@ function GameObject(group, GAME_OBJECT_PARAMS) {
 };
 
 GameObjectParams.prototype.print = function() {
-	console.log(this.name + " [" + this.gamePos.x + "," +
+	console.log(this.type + " [" + this.gamePos.x + "," +
 		this.gamePos.y + "] " + this.angle);
 };
 

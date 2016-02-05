@@ -1,8 +1,9 @@
-function GameObjectParams(name, gamePos, direction, angle) {
-	this.name = name;
+function GameObjectParams(type, gamePos, direction, angle, properties) {
+	this.type = type;
 	this.gamePos = gamePos; // {x,y }
 	this.direction = direction; // {x, y}
 	this.angle = angle;
+	this.properties = properties;
 };
 
 function tileObjectToGameObjectParams(tileObject) {
@@ -17,7 +18,8 @@ function tileObjectToGameObjectParams(tileObject) {
 			x: 0,
 			y: 0
 		},
-		angle);
+		angle,
+		tileObject.properties);
 };
 
 function gamePosToScreenPos(GAME_POS) {

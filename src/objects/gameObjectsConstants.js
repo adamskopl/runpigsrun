@@ -3,6 +3,7 @@ GameObjectType = {
 	ROAD: "road",
 	HERO: "hero"
 };
+GOT = GameObjectType; // alias
 
 // TODO: change 'main type' on something else
 GameObjectMainType = {
@@ -29,7 +30,7 @@ GameObjectsConstants[GameObjectType.HERO] =
 
 function objectsContainMainType(objects, mainType) {
 	for (i = 0; i < objects.length; i++)
-		if (GOC[objects[i].name].mainType == mainType)
+		if (GOC[objects[i].type].mainType == mainType)
 			return true;
 	return false;
 }
