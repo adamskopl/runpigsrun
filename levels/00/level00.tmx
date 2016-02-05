@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" nextobjectid="87">
- <tileset firstgid="1" name="basictiles" tilewidth="16" tileheight="16" tilecount="120" columns="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" nextobjectid="104">
+ <tileset firstgid="1" name="basictiles" tilewidth="16" tileheight="16" tilecount="120">
   <image source="../../assets/tileset/basictiles_2.png" width="128" height="240"/>
  </tileset>
- <tileset firstgid="121" name="characters" tilewidth="16" tileheight="16" tilecount="96" columns="12">
+ <tileset firstgid="121" name="characters" tilewidth="16" tileheight="16" tilecount="96">
   <image source="../../assets/tileset/characters_1.png" width="192" height="128"/>
  </tileset>
- <tileset firstgid="217" name="things" tilewidth="16" tileheight="16" tilecount="96" columns="12">
+ <tileset firstgid="217" name="things" tilewidth="16" tileheight="16" tilecount="96">
   <image source="../../assets/tileset/things_0.png" width="192" height="128"/>
  </tileset>
  <layer name="background0" width="12" height="12">
@@ -43,28 +43,49 @@
  </layer>
  <objectgroup name="objectsPlayerTools"/>
  <objectgroup name="objectsLevel">
-  <object id="17" name="road" gid="11" x="96" y="144" width="16" height="16"/>
-  <object id="18" name="road" gid="11" x="96" y="112" width="16" height="16"/>
-  <object id="20" name="road" gid="11" x="96" y="80" width="16" height="16"/>
-  <object id="69" name="road" gid="11" x="96" y="128" width="16" height="16"/>
-  <object id="71" name="road" gid="11" x="96" y="96" width="16" height="16"/>
-  <object id="72" name="road" gid="11" x="96" y="192" width="16" height="16"/>
-  <object id="73" name="road" gid="11" x="96" y="176" width="16" height="16"/>
-  <object id="74" name="road" gid="11" x="96" y="160" width="16" height="16"/>
-  <object id="81" name="hut" gid="49" x="96" y="64" width="16" height="16">
+  <object id="17" name="road" gid="11" x="48" y="96" width="16" height="16"/>
+  <object id="73" name="road" gid="11" x="48" y="128" width="16" height="16"/>
+  <object id="74" name="road" gid="11" x="48" y="112" width="16" height="16"/>
+  <object id="81" name="hut" gid="49" x="48" y="80" width="16" height="16">
    <properties>
-    <property name="capacity" value="2"/>
+    <property name="capacity" value="1"/>
     <property name="rot" value="0"/>
    </properties>
   </object>
-  <object id="84" name="road" gid="11" x="144" y="112" width="16" height="16"/>
-  <object id="85" name="road" gid="11" x="160" y="112" width="16" height="16"/>
-  <object id="86" name="hut" gid="49" x="176" y="112" width="16" height="16">
+  <object id="84" name="road" gid="11" x="128" y="80" width="16" height="16"/>
+  <object id="85" name="road" gid="11" x="144" y="80" width="16" height="16"/>
+  <object id="86" name="hut" gid="49" x="176" y="80" width="16" height="16">
    <properties>
-    <property name="capacity" value="2"/>
+    <property name="capacity" value="3"/>
     <property name="rot" value="90"/>
    </properties>
   </object>
+  <object id="87" name="road" gid="11" x="80" y="80" width="16" height="16"/>
+  <object id="88" name="hut" gid="49" x="80" y="160" width="16" height="16">
+   <properties>
+    <property name="capacity" value="2"/>
+    <property name="rot" value="180"/>
+   </properties>
+  </object>
+  <object id="89" name="road" gid="11" x="80" y="112" width="16" height="16"/>
+  <object id="90" name="road" gid="11" x="80" y="96" width="16" height="16"/>
+  <object id="92" name="road" gid="11" x="128" y="128" width="16" height="16"/>
+  <object id="93" name="hut" gid="49" x="112" y="128" width="16" height="16">
+   <properties>
+    <property name="capacity" value="1"/>
+    <property name="rot" value="-90"/>
+   </properties>
+  </object>
+  <object id="94" name="road" gid="11" x="144" y="128" width="16" height="16"/>
+  <object id="95" name="road" gid="11" x="112" y="80" width="16" height="16"/>
+  <object id="96" name="road" gid="11" x="160" y="128" width="16" height="16"/>
+  <object id="97" name="road" gid="11" x="96" y="80" width="16" height="16"/>
+  <object id="98" name="road" gid="11" x="64" y="128" width="16" height="16"/>
+  <object id="99" name="road" gid="11" x="80" y="128" width="16" height="16"/>
+  <object id="100" name="road" gid="11" x="80" y="144" width="16" height="16"/>
+  <object id="101" name="road" gid="11" x="144" y="112" width="16" height="16"/>
+  <object id="102" name="road" gid="11" x="144" y="96" width="16" height="16"/>
+  <object id="103" name="road" gid="11" x="160" y="80" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="objectsCharacters"/>
 </map>
