@@ -17,14 +17,34 @@ Level.prototype.loadObjects = function() {
 		this.gameObjectsManager.create(
 			tileObjectToGameObjectParams(objectsLevel[i]));
 	}
+	this.addSurroundingRoads();
 	this.gameObjectsManager.onLevelLoaded();
+};
 
-	// temp = this.gameObjectsManager.create(
-	// 	new GameObjectParams(GOT.HERO, {
-	// 		x: 6,
-	// 		y: 5
-	// 	}, {
-	// 		x: 0,
-	// 		y: -1
-	// 	}, 0));
+/**
+ * Add roads outside the level to easily allow objects to exit
+ * and to remove them from the game.
+ */
+Level.prototype.addSurroundingRoads = function() {
+	for (var i = 0; i < scaleConstants.MAP_TILES_X; i++) {
+		var params = [];
+		for (var p = 0; p < 4; p++) {
+			params.push(new GameObjectParams(GOT.ROAD));
+		}
+		//top
+		params[0].gamePos.x = i;
+		params[0].gamePos.y = -1;
+		//left
+		params[1].gamePos.x = -1;
+		params[1].gamePos.y = i;
+		//right
+		params[2].gamePos.x = scaleConstants.MAP_TILES_X;
+		params[2].gamePos.y = i;
+		//bottom
+		params[3].gamePos.x = i;
+		params[3].gamePos.y = scaleConstants.MAP_TILES_X;
+		for (var p in params) {
+			this.gameObjectsManager.create(params[p]);
+		}
+	}
 };

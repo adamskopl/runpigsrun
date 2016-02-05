@@ -4,6 +4,25 @@ function GameObjectParams(type, gamePos, direction, angle, properties) {
 	this.direction = direction; // {x, y}
 	this.angle = angle;
 	this.properties = properties;
+
+	if (this.gamePos === undefined) {
+		this.gamePos = {
+			x: 0,
+			y: 0
+		};
+	}
+	if (this.direction === undefined) {
+		this.direction = {
+			x: 0,
+			y: 0
+		};
+	}
+	if (this.angle === undefined) {
+		this.angle = 0;
+	}
+	if (this.properties === undefined) {
+		this.properties = {}
+	}
 };
 
 function tileObjectToGameObjectParams(tileObject) {

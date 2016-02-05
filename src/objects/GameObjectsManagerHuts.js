@@ -4,11 +4,16 @@ function GameObjectsManagerHuts(objects) {
 
 GameObjectsManagerHuts.prototype.onLevelLoaded = function() {
 	for (var index in this.objects) {
-		this.objects[index].pause = false;
+		convertToHut(this.objects[index]);
 	}
 };
 
-GameObjectsManagerHuts.prototype.onIter = function(GAME_OBJECTS_MANAGER) {
+function convertToHut(gameObject) {
+	gameObject.pause = false;
+}
+
+GameObjectsManagerHuts.prototype.onIter = function(
+	GAME_OBJECTS_MANAGER) {
 	for (var index in this.objects) {
 		var HUT = this.objects[index];
 		if (HUT.properties.capacity == 0)
@@ -19,13 +24,14 @@ GameObjectsManagerHuts.prototype.onIter = function(GAME_OBJECTS_MANAGER) {
 		}
 		var GAME_POS = HUT.gamePos;
 		var DIRECTION = angleToDirection(HUT.angle);
-		GAME_OBJECTS_MANAGER.create(new GameObjectParams(GOT.HERO, {
-			x: GAME_POS.x,
-			y: GAME_POS.y
-		}, {
-			x: DIRECTION.x,
-			y: DIRECTION.y
-		}));
+		GAME_OBJECTS_MANAGER.create(
+			new GameObjectParams(GOT.HERO, {
+				x: GAME_POS.x,
+				y: GAME_POS.y
+			}, {
+				x: DIRECTION.x,
+				y: DIRECTION.y
+			}));
 		HUT.properties.capacity--;
 		HUT.pause = true;
 	}
