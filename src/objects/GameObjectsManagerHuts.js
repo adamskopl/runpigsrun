@@ -1,19 +1,32 @@
 function GameObjectsManagerHuts(objects) {
 	this.objects = objects;
-	this.test = false;
-}
+};
 
-GameObjectsManagerHuts.prototype.onIter = function(gameObjectsManager) {
-	if (!this.test) {
-		console.log(this.objects[0].angle);
-		gameObjectsManager.create(new GameObjectParams(GOT.HERO, {
-			x: 6,
-			y: 3
-		}, {
-			x: 0,
-			y: -1
-		}));
-		this.test = true;
-		console.log(this.objects[0].properties);
+GameObjectsManagerHuts.prototype.onLevelLoaded = function() {
+	for (var index in this.objects) {
+		this.objects[index].pause = false;
 	}
-}
+};
+
+GameObjectsManagerHuts.prototype.onIter = function(GAME_OBJECTS_MANAGER) {
+	for (var index in this.objects) {
+		var HUT = this.objects[index];
+		if (HUT.properties.capacity == 0)
+			continue;
+		if (HUT.pause) {
+			HUT.pause = false;
+			continue;
+		}
+		var GAME_POS = HUT.gamePos;
+		var DIRECTION = angleToDirection(HUT.angle);
+		GAME_OBJECTS_MANAGER.create(new GameObjectParams(GOT.HERO, {
+			x: GAME_POS.x,
+			y: GAME_POS.y
+		}, {
+			x: DIRECTION.x,
+			y: DIRECTION.y
+		}));
+		HUT.properties.capacity--;
+		HUT.pause = true;
+	}
+};

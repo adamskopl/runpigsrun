@@ -49,3 +49,26 @@ function posTiledToGame(tiledPosX, tiledPosY) {
 	};
 	return gamePos;
 }
+
+function angleToDirection(ANGLE) {
+	var dir = {
+		x: 0,
+		y: 0
+	};
+	switch (ANGLE) {
+		case 0:
+			dir.y = 1;
+			break;
+		case 90:
+			dir.x = -1;
+			break;
+		case 180:
+			dir.y = -1;
+			break;
+		case -90:
+			dir.x = 1;
+			break;
+		default:
+	}
+	return dir;
+};

@@ -11,7 +11,8 @@ function GameObjectsManager(game, tilesManager) {
 
 GameObjectsManager.prototype.initManagers = function() {
 	this.objects[GOT.HUT] = [];
-	this.managers[GOT.HUT] = new GameObjectsManagerHuts(this.objects[GOT.HUT]);
+	this.managers[GOT.HUT] = new GameObjectsManagerHuts(
+		this.objects[GOT.HUT]);
 };
 
 GameObjectsManager.prototype.create = function(gameObjectParams) {
@@ -52,6 +53,12 @@ GameObjectsManager.prototype.push = function(GAME_OBJECT) {
 		this.objects[type] = [];
 	}
 	this.objects[type].push(GAME_OBJECT);
+};
+
+GameObjectsManager.prototype.onLevelLoaded = function() {
+	for (var manager in this.managers) {
+		this.managers[manager].onLevelLoaded();
+	}
 };
 
 GameObjectsManager.prototype.onIter = function() {
