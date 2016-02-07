@@ -1,7 +1,7 @@
-function MovementManager(game, tilesManager, movementManager) {
+function MovementManager(game, tilesManager, gameplayManager) {
 	this.tilesManager = tilesManager;
 	this.game = game;
-	this.movementManager = movementManager;
+	this.gameplayManager = gameplayManager;
 	this.counters = {
 		movingObjects: 0
 	};
@@ -37,22 +37,27 @@ function updateDirection(TILES_MANAGER) {
 
 function moveObject(GAME, movementManager) {
 	if (!emptyDirection(this.direction)) {
-		nextPos = gamePosAdd(this.gamePos, this.direction);
-		nextScreenPos = gamePosToScreenPos(nextPos);
-		speed = gameplayConstants.OBJECT_SPEED;
-		tween = GAME.add.tween(this.sprite).to({
+		var oldPos = cloneProperties(this.gamePos);
+		var nextPos = gamePosAdd(this.gamePos, this.direction);
+		var nextScreenPos = gamePosToScreenPos(nextPos);
+		var speed = gameplayConstants.OBJECT_SPEED;
+		var tween = GAME.add.tween(this.sprite).to({
 			x: nextScreenPos.x,
 			y: nextScreenPos.y
 		}, speed, Phaser.Easing.Linear.In, true, 0, 0, 0);
 		movementManager.counters.movingObjects++;
-		tween.onComplete.add(movementFinished, movementManager);
+		tween.onComplete.add(movementFinished, movementManager, 0, {
+			gameObj: this,
+			oldPos: oldPos
+		});
 		this.gamePos = nextPos;
 	}
 };
 
-function movementFinished() {
+function movementFinished(SPRITE, TWEEN, ARG) {
 	this.counters.movingObjects--;
+	this.tilesManager.positionChanged(ARG.gameObj, ARG.oldPos);
 	if (this.counters.movingObjects == 0) {
-		this.movementManager.onMovementIterFinished();
+		this.gameplayManager.onMovementIterFinished();
 	}
 };
