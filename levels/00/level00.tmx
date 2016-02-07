@@ -43,18 +43,14 @@
  </layer>
  <objectgroup name="objectsPlayerTools"/>
  <objectgroup name="objectsLevel">
-  <object id="88" name="hut" gid="49" x="80" y="96" width="16" height="16">
+  <object id="88" name="hut" gid="49" x="144" y="96" width="16" height="16">
    <properties>
-    <property name="capacity" value="2"/>
+    <property name="capacity" value="1"/>
     <property name="rot" value="-90"/>
    </properties>
   </object>
-  <object id="89" name="road" gid="11" x="96" y="96" width="16" height="16"/>
-  <object id="99" name="road" gid="11" x="112" y="96" width="16" height="16"/>
-  <object id="100" name="road" gid="11" x="128" y="96" width="16" height="16"/>
-  <object id="104" name="road" gid="11" x="144" y="96" width="16" height="16"/>
-  <object id="105" name="road" gid="11" x="160" y="96" width="16" height="16"/>
-  <object id="108" name="road" gid="11" x="176" y="96" width="16" height="16"/>
+  <object id="89" name="road" gid="11" x="160" y="96" width="16" height="16"/>
+  <object id="99" name="road" gid="11" x="176" y="96" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="objectsCharacters"/>
 </map>

@@ -46,14 +46,14 @@
                  "name":"hut",
                  "properties":
                     {
-                     "capacity":"2",
+                     "capacity":"1",
                      "rot":"-90"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":80,
+                 "x":144,
                  "y":96
                 }, 
                 {
@@ -69,77 +69,13 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":96,
-                 "y":96
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":99,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":112,
-                 "y":96
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":100,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":128,
-                 "y":96
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":104,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":144,
-                 "y":96
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":105,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
                  "x":160,
                  "y":96
                 }, 
                 {
                  "gid":11,
                  "height":16,
-                 "id":108,
+                 "id":99,
                  "name":"road",
                  "properties":
                     {
