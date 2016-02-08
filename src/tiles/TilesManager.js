@@ -66,6 +66,14 @@ TilesManager.prototype.put = function(gameObject, posX, posY) {
 	this.tiles[posX][posY].push(gameObject);
 };
 
+TilesManager.prototype.remove = function(GAME_OBJECT, POS_X, POS_Y) {
+	var TILE = this.get(POS_X, POSY)
+	var INDEX = this.contains(TILE, GAME_OBJECT);
+	if (INDEX === -1) {
+		console.log("remove() error. INDEX === -1");
+	}
+};
+
 TilesManager.prototype.preparePos = function(posX, posY) {
 	if (this.tiles[posX] === undefined)
 		this.tiles[posX] = [];
@@ -76,12 +84,19 @@ TilesManager.prototype.preparePos = function(posX, posY) {
 TilesManager.prototype.exists = function(posX, posY) {
 	return this.tiles[posX] !== undefined &&
 		this.tiles[posX][posY] !== undefined;
-}
-
-TilesManager.prototype.get = function(posX, posY) {
-	if (!this.exists(posX, posY)) return undefined;
-	return this.tiles[posX][posY];
 };
+
+TilesManager.prototype.get = function(POS_X, POS_Y) {
+	if (!this.exists(POS_X, POS_Y)) return undefined;
+	return this.tiles[POS_X][POS_Y];
+};
+
+TilesManager.prototype.contains = function(TILE, OBJECT) {
+	for (var O in TILE) {
+		if (t[O] === OBJECT) return O;
+	}
+	return -1;
+}
 
 /**
  * TODO: static function
@@ -91,7 +106,7 @@ TilesManager.prototype.getAdjacent = function(GAME_POS, DIRECTION) {
 	gamePos.x += DIRECTION.x;
 	gamePos.y += DIRECTION.y;
 	return this.get(gamePos.x, gamePos.y);
-}
+};
 
 /**
  * Callback call on every object from tiles array.

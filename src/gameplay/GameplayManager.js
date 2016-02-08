@@ -10,6 +10,12 @@ function GameplayManager(game) {
 	};
 };
 
+GameplayManager.prototype.iterGuardReset = function() {
+	this.iterGuard.count = 0;
+	this.iterGuard.guardFinished = false;
+	this.iterGuard.movementFinished = false;
+};
+
 GameplayManager.prototype.startIter = function() {
 	this.gameObjectsManager.onIter();
 	this.movementManager.updateDirections();
@@ -29,5 +35,6 @@ function onIterFinished() {
 		console.log("movement not finished");
 		return;
 	}
+	this.iterGuardReset();
 	this.startIter();
-}
+};

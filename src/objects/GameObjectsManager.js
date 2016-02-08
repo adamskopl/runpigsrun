@@ -27,6 +27,10 @@ GameObjectsManager.prototype.create = function(gameObjectParams) {
 	return gameObject;
 };
 
+GameObjectsManager.prototype.remove = function(GAME_OBJECT) {
+
+}
+
 GameObjectsManager.prototype.count = function() {
 	var count = 0;
 	for (var type in this.objects) {
