@@ -2,7 +2,8 @@ function GameplayManager(game) {
 	this.game = game;
 	this.tilesManager = new TilesManager();
 	this.gameObjectsManager = new GameObjectsManager(game, this.tilesManager);
-	this.movementManager = new MovementManager(game, this.tilesManager, this);
+	this.movementManager = new MovementManager(game, this.gameObjectsManager,
+		this.tilesManager, this);
 	this.iterGuard = {
 		count: 0,
 		guardFinished: false,
@@ -30,10 +31,19 @@ GameplayManager.prototype.onMovementIterFinished = function() {
 	this.iterGuard.movementFinished = true;
 };
 
+GameplayManager.prototype.checkVictory = function() {
+	if (this.gameObjectsManager.count(GOT.HERO) == 0)
+		return true;
+	return false;
+};
+
 function onIterFinished() {
 	if (!this.iterGuard.movementFinished) {
-		console.log("movement not finished");
+		console.error("movement not finished");
 		return;
+	}
+	if (this.checkVictory()) {
+		console.log("VICTORY");
 	}
 	this.iterGuardReset();
 	this.startIter();

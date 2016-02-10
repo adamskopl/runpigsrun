@@ -28,15 +28,33 @@ GameObjectsManager.prototype.create = function(gameObjectParams) {
 };
 
 GameObjectsManager.prototype.remove = function(GAME_OBJECT) {
-
-}
-
-GameObjectsManager.prototype.count = function() {
-	var count = 0;
-	for (var type in this.objects) {
-		for (var objI = 0; objI < this.objects[type].length; objI++) {
-			count++;
+	var objectsType = this.objects[GAME_OBJECT.type];
+	for (var I in objectsType) {
+		if (objectsType[I]) {
+			objectsType.splice(I, 1);
+			break;
 		}
+	}
+	this.tilesManager.remove(GAME_OBJECT);
+	this.check();
+};
+
+/**
+ * Count objects of a given type.
+ * @param  {String} GAME_OBJECT_TYPE Type from GameObjectType alias GOT. If
+ *                                   undefined, count all objects.
+ * @return {Number} Number of counted objects.
+ */
+GameObjectsManager.prototype.count = function(GAME_OBJECT_TYPE) {
+	var count = 0;
+	if (GAME_OBJECT_TYPE === undefined)
+		for (var type in this.objects)
+			for (var objI = 0; objI < this.objects[type].length; objI++)
+				count++;
+	else {
+		var OBJECTS_TYPE = this.objects[GAME_OBJECT_TYPE];
+		if (OBJECTS_TYPE !== undefined)
+			count = OBJECTS_TYPE.length;
 	}
 	return count;
 };
@@ -45,7 +63,7 @@ GameObjectsManager.prototype.check = function() {
 	var num1 = this.count();
 	var num2 = this.tilesManager.count();
 	if (num1 != num2)
-		console.log("count error")
+		console.error("check " + num1 + " " + num2);
 };
 
 GameObjectsManager.prototype.push = function(GAME_OBJECT) {
@@ -66,4 +84,4 @@ GameObjectsManager.prototype.onIter = function() {
 	for (var manager in this.managers) {
 		this.managers[manager].onIter(this);
 	}
-}
+};

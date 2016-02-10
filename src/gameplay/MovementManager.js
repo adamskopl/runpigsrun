@@ -1,6 +1,7 @@
-function MovementManager(game, tilesManager, gameplayManager) {
-	this.tilesManager = tilesManager;
+function MovementManager(game, gameObjectsManager, tilesManager, gameplayManager) {
 	this.game = game;
+	this.gameObjectsManager = gameObjectsManager;
+	this.tilesManager = tilesManager;
 	this.gameplayManager = gameplayManager;
 	this.counters = {
 		movingObjects: 0
@@ -22,10 +23,10 @@ MovementManager.prototype.updateDirections = function() {
 function updateDirection(TILES_MANAGER) {
 	if (!emptyDirection(this.direction)) {
 		if (!canMove(this.gamePos,
-				this.direction, TILES_MANAGER)) {
+			this.direction, TILES_MANAGER)) {
 			opposite = movementDirectionOpposite(this.direction);
 			if (canMove(this.gamePos,
-					opposite, TILES_MANAGER)) {
+				opposite, TILES_MANAGER)) {
 				this.setDirection(opposite);
 			} else {
 				// blocked
@@ -59,8 +60,7 @@ function movementFinished(SPRITE, TWEEN, ARG) {
 	this.tilesManager.positionChanged(ARG.gameObj, ARG.oldPos);
 	// check if object is outside of the level
 	if (!posInLevel(ARG.gameObj.gamePos)) {
-
-		console.log("OUTSIDE");
+		this.gameObjectsManager.remove(ARG.gameObj);
 	}
 	if (this.counters.movingObjects == 0) {
 		this.gameplayManager.onMovementIterFinished();

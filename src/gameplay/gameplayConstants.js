@@ -1,3 +1,3 @@
 gameplayConstants = {
-	OBJECT_SPEED: 500
+	OBJECT_SPEED: 300
 };
