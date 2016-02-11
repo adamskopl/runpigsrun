@@ -4,6 +4,8 @@ function GameplayManager(game) {
 	this.gameObjectsManager = new GameObjectsManager(game, this.tilesManager);
 	this.movementManager = new MovementManager(game, this.gameObjectsManager,
 		this.tilesManager, this);
+	this.collisionsHandler = new CollisionsHandler(
+		this.gameObjectsManager, this.tilesManager);
 	this.iterGuard = {
 		count: 0,
 		guardFinished: false,
@@ -42,6 +44,7 @@ function onIterFinished() {
 		console.error("movement not finished");
 		return;
 	}
+	this.collisionsHandler.handleCollisions();
 	if (this.checkVictory()) {
 		console.log("VICTORY");
 	}

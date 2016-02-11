@@ -27,6 +27,9 @@ GameObjectsManager.prototype.create = function(gameObjectParams) {
 	return gameObject;
 };
 
+/**
+ * Remove object from collecion, remove from TilesManager.
+ */
 GameObjectsManager.prototype.remove = function(GAME_OBJECT) {
 	var objectsType = this.objects[GAME_OBJECT.type];
 	for (var I in objectsType) {

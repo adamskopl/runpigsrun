@@ -58,10 +58,6 @@ function moveObject(GAME, movementManager) {
 function movementFinished(SPRITE, TWEEN, ARG) {
 	this.counters.movingObjects--;
 	this.tilesManager.positionChanged(ARG.gameObj, ARG.oldPos);
-	// check if object is outside of the level
-	if (!posInLevel(ARG.gameObj.gamePos)) {
-		this.gameObjectsManager.remove(ARG.gameObj);
-	}
 	if (this.counters.movingObjects == 0) {
 		this.gameplayManager.onMovementIterFinished();
 	}
