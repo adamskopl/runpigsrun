@@ -16,7 +16,10 @@ function GameObject(group, GAME_OBJECT_PARAMS) {
 
 	var objectData = GOC[GAME_OBJECT_PARAMS.type];
 	if (objectData === undefined) {
-		console.error("undefined " + GAME_OBJECT_PARAMS.type);
+		if (GAME_OBJECT_PARAMS.type === "") {
+			GAME_OBJECT_PARAMS.type = "empty type";
+		}
+		console.error("objectData undefined " + GAME_OBJECT_PARAMS.type);
 		return;
 	}
 	this.sprite = this.group.create(0, 0,

@@ -30,7 +30,8 @@ function startGame() {
 	function create() {
 		gameplayManager = new GameplayManager(game);
 		levelsManager = new LevelsManager(game, gameplayManager.gameObjectsManager);
-		levelsManager.loadLevel('00');
+		// levelsManager.loadLevel('00');
+		levelsManager.loadLevel('01');
 
 		gameplayManager.startIter();
 	}
