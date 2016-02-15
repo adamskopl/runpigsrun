@@ -11,7 +11,6 @@ function GameObject(group, GAME_OBJECT_PARAMS) {
 	this.direction = cloneProperties(GAME_OBJECT_PARAMS.direction);
 	this.angle = GAME_OBJECT_PARAMS.angle; // could be replaced by direction?
 	this.properties = GAME_OBJECT_PARAMS.properties;
-	this.sprite = {};
 	this.type = GAME_OBJECT_PARAMS.type;
 
 	var objectData = GOC[GAME_OBJECT_PARAMS.type];

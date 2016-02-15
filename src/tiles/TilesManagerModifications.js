@@ -1,5 +1,5 @@
 TilesManager.prototype.put = function(gameObject, posX, posY) {
-	this.preparePos(posX, posY);
+	prepareArray(this.tiles, posX, posY);
 	this.tiles[posX][posY].push(gameObject);
 };
 

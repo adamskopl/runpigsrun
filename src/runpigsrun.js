@@ -1,6 +1,16 @@
 function cloneProperties(TO_CLONE) {
 	return JSON.parse(JSON.stringify(TO_CLONE));
-}
+};
+
+/**
+ * Prepare indexes for two dimensional array.
+ */
+function prepareArray(array, X, Y) {
+	if (array[X] === undefined)
+		array[X] = [];
+	if (array[X][Y] === undefined)
+		array[X][Y] = [];
+};
 
 function startGame() {
 	// CANVAS chosen, so 'debug' functions likde debug.body(sprite) can work...
@@ -39,4 +49,4 @@ function startGame() {
 	function update() {}
 
 	function render() {}
-}
+};

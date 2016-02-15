@@ -57,8 +57,8 @@ function moveObject(GAME, movementManager) {
 
 function movementFinished(SPRITE, TWEEN, ARG) {
 	this.counters.movingObjects--;
-	this.tilesManager.positionChanged(ARG.gameObj, ARG.oldPos);
+	this.gameplayManager.onMovementIter(ARG.gameObj, ARG.oldPos);
 	if (this.counters.movingObjects == 0) {
-		this.gameplayManager.onMovementIterFinished();
+		this.gameplayManager.onMovementIterLast();
 	}
 };
