@@ -29,6 +29,10 @@ function GameObject(group, GAME_OBJECT_PARAMS) {
 	this.updateScreenPos();
 };
 
+GameObject.prototype.destroy = function() {
+	this.sprite.destroy();
+};
+
 GameObjectParams.prototype.print = function() {
 	console.log(this.type + " [" + this.gamePos.x + "," +
 		this.gamePos.y + "] " + this.angle);

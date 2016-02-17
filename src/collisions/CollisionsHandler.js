@@ -7,7 +7,6 @@ function CollisionsHandler(gameObjectsManager, tilesManager) {
 CollisionsHandler.prototype.handleCollisions = function() {
 	this.removeLivingObjectsOutsideLevel();
 	this.handleEveryVsEvery();
-	console.log("---------------");
 	this.tilesToHandle = [];
 };
 
@@ -38,12 +37,26 @@ CollisionsHandler.prototype.handleEveryVsEvery = function() {
 };
 
 CollisionsHandler.prototype.handleTileCollisions = function(TILE) {
-	for (var I = 0; I < TILE.length; I++) {
+	for (var I = 0; I < TILE.length; I++)
 		for (var J = I + 1; J < TILE.length; J++) {
-			console.log(TILE[I].type + ", " + TILE[J].type);
+			// unique pair (no two objects compared more than once)
+			RESULTS = handleCollisionPair(TILE[I], TILE[J]);
+			if (RESULTS === undefined) {
+				console.error("RESULTS === undefined");
+				continue;
+			}
+			for (var R in RESULTS)
+				this.handleCollisionResult(RESULTS[R]);
 		}
-	}
 };
+
+CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
+	switch (RESULT.operation) {
+		case COLLISION_OPERATION.REMOVE:
+			this.gameObjectsManager.remove(RESULT.object);
+			break;
+	}
+}
 
 /**
  * @param  {Object} GAME_OBJECT Object which has changed its position.

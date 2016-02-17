@@ -39,6 +39,7 @@ GameObjectsManager.prototype.remove = function(GAME_OBJECT) {
 		}
 	}
 	this.tilesManager.remove(GAME_OBJECT);
+	GAME_OBJECT.destroy();
 	this.check();
 };
 
