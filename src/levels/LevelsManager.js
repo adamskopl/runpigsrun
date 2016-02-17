@@ -8,23 +8,25 @@ LevelsManager.prototype.loadLevel = function(levelId) {
 	var map = this.game.add.
 	map = this.game.add.tilemap('level' + levelId);
 	map.addTilesetImage('basictiles', assetsConstants.SPREADSHEET_BASIC);
-	backgroundLayer = map.createLayer('background0',
-		scaleConstants.GAME_W, scaleConstants.GAME_H);
-	backgroundLayer2 = map.createLayer('background1',
-		scaleConstants.GAME_W, scaleConstants.GAME_H);
 
-	backgroundLayer.scale.x = scaleConstants.MAIN_SCALE;
-	backgroundLayer.scale.y = scaleConstants.MAIN_SCALE;
-	backgroundLayer2.scale.x = scaleConstants.MAIN_SCALE;
-	backgroundLayer2.scale.y = scaleConstants.MAIN_SCALE;
+	var backgroundLayers = [];
+	backgroundLayers.push(map.createLayer('background0',
+		scaleConstants.GAME_W, scaleConstants.GAME_H));
+	backgroundLayers.push(map.createLayer('background1',
+		scaleConstants.GAME_W, scaleConstants.GAME_H));
+	for (var i in backgroundLayers) {
+		backgroundLayers[i].scale.x = scaleConstants.MAIN_SCALE;
+		backgroundLayers[i].scale.y = scaleConstants.MAIN_SCALE;
+		backgroundLayers[i].x =
+			scaleConstants.GAME_OFFSET_X * scaleConstants.TILE_SIZE_SCALED;
+		backgroundLayers[i].y =
+			scaleConstants.GAME_OFFSET_Y * scaleConstants.TILE_SIZE_SCALED;
+		backgroundLayers[i].fixedToCamera = false;
+	}
 
 	var level = new Level(
 		this.game,
 		this.gameObjectsManager,
-		new LevelTileObjects(map, {
-				backgroundLayer,
-				backgroundLayer2
-			},
-			map.objects));
+		new LevelTileObjects(map, backgroundLayers, map.objects));
 	this.levels[levelId] = level;
 }

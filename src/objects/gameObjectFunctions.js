@@ -43,9 +43,9 @@ function tileObjectToGameObjectParams(tileObject) {
 
 function gamePosToScreenPos(GAME_POS) {
 	return {
-		x: GAME_POS.x * scaleConstants.TILE_SIZE_SCALED +
+		x: (GAME_POS.x + scaleConstants.GAME_OFFSET_X) * scaleConstants.TILE_SIZE_SCALED +
 			scaleConstants.TILE_SIZE_SCALED / 2,
-		y: GAME_POS.y * scaleConstants.TILE_SIZE_SCALED +
+		y: (GAME_POS.y + scaleConstants.GAME_OFFSET_Y) * scaleConstants.TILE_SIZE_SCALED +
 			scaleConstants.TILE_SIZE_SCALED / 2
 	};
 };

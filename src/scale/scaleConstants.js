@@ -8,12 +8,16 @@ scaleConstants = {
 	MAP_TILES_X: 12, // tiles number horizontally
 	MAP_TILES_Y: 12, // tiles number vertically
 	GAME_W: 0,
-	GAME_H: 0
+	GAME_H: 0,
+	GAME_OFFSET_X: 0,
+	GAME_OFFSET_Y: 1
 };
 
 scaleConstants.TILE_SIZE_SCALED =
 	scaleConstants.TILE_SIZE * scaleConstants.MAIN_SCALE;
 scaleConstants.GAME_W =
-	scaleConstants.TILE_SIZE_SCALED * scaleConstants.MAP_TILES_X;
+	scaleConstants.TILE_SIZE_SCALED *
+	(scaleConstants.MAP_TILES_X + scaleConstants.GAME_OFFSET_X);
 scaleConstants.GAME_H =
-	scaleConstants.TILE_SIZE_SCALED * scaleConstants.MAP_TILES_Y;
+	scaleConstants.TILE_SIZE_SCALED *
+	(scaleConstants.MAP_TILES_Y + scaleConstants.GAME_OFFSET_Y);
