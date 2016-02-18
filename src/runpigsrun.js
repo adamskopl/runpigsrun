@@ -32,6 +32,7 @@ function startGame() {
 	var levelsManager;
 	var assetsManager;
 	var gameplayManager;
+	var guiManager;
 
 	function preload() {
 		assetsManager = new AssetsManager(game);
@@ -42,6 +43,7 @@ function startGame() {
 		levelsManager = new LevelsManager(game, gameplayManager.gameObjectsManager);
 		// levelsManager.loadLevel('00');
 		levelsManager.loadLevel('01');
+		guiManager = new GuiManager(game, levelsManager);
 
 		gameplayManager.startIter();
 	}

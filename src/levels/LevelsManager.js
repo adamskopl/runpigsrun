@@ -27,6 +27,20 @@ LevelsManager.prototype.loadLevel = function(levelId) {
 	var level = new Level(
 		this.game,
 		this.gameObjectsManager,
-		new LevelTileObjects(map, backgroundLayers, map.objects));
+		new LevelTileObjects(map, backgroundLayers, map.objects),
+		LevelsDescriptions[levelId]);
 	this.levels[levelId] = level;
-}
+};
+
+LevelsManager.prototype.getCurrentLevel = function() {
+	return this.levels['01'];
+};
+
+LevelsDescriptions = Object.freeze({
+	'00': {
+		tools: []
+	},
+	'01': {
+		tools: [GOT.TOOL_BOUNCER, GOT.TOOL_DUMMY]
+	}
+});

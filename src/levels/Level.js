@@ -4,10 +4,11 @@ function LevelTileObjects(map, backgroundLayers, objectsLayers) {
 	this.objectsLayers = objectsLayers;
 };
 
-function Level(game, gameObjectsManager, tileObjects) {
+function Level(game, gameObjectsManager, tileObjects, description) {
 	this.game = game;
 	this.gameObjectsManager = gameObjectsManager;
 	this.tileObjects = tileObjects;
+	this.description = description;
 	this.loadObjects();
 };
 
