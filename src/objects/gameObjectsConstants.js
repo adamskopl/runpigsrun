@@ -3,14 +3,17 @@ GameObjectType = Object.freeze({
 	HERO: "hero",
 	ROAD: "road",
 	BRIDGE: "bridge",
-	WATER: "water"
+	WATER: "water",
+	TOOL_BOUNCER: "t_bouncer",
+	TOOL_DUMMY: "t_dummy"
 });
 GOT = GameObjectType; // alias
 
 // TODO: change 'main type' on something else
 GameObjectMainType = Object.freeze({
 	PASSAGE: "PASSAGE", // objects are moving through it
-	LIVING: "LIVING" // object is moving
+	LIVING: "LIVING", // object is moving
+	TOOL: "TOOL"
 });
 
 function GameObjectDesc(spreadsheet, gid, mainType) {
@@ -38,6 +41,15 @@ GameObjectsConstants[GameObjectType.BRIDGE] =
 GameObjectsConstants[GameObjectType.WATER] =
 	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 13,
 		GameObjectMainType.PASSAGE);
+
+GameObjectsConstants[GameObjectType.TOOL_BOUNCER] =
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 27,
+		GameObjectMainType.TOOL);
+GameObjectsConstants[GameObjectType.TOOL_DUMMY] =
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 28,
+		GameObjectMainType.TOOL);
+
+
 
 function objectsContainMainType(OBJECTS, mainType) {
 	for (i = 0; i < OBJECTS.length; i++)
