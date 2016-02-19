@@ -16,4 +16,7 @@ function AssetsManager(game) {
 	this.game.load.spritesheet(assetsConstants.SPREADSHEET_THINGS,
 		'assets/tileset/things_0.png',
 		scaleConstants.TILE_SIZE, scaleConstants.TILE_SIZE);
+	this.game.load.spritesheet(assetsConstants.SPREADSHEET_GUI,
+		'assets/tileset/gui.png',
+		scaleConstants.TILE_SIZE, scaleConstants.TILE_SIZE);
 };
