@@ -571,7 +571,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":299,
+ "nextobjectid":323,
  "orientation":"orthogonal",
  "properties":
     {
@@ -581,7 +581,6 @@
  "tileheight":16,
  "tilesets":[
         {
-         "columns":8,
          "firstgid":1,
          "image":"..\/..\/assets\/tileset\/basictiles_2.png",
          "imageheight":240,
@@ -598,7 +597,6 @@
          "tilewidth":16
         }, 
         {
-         "columns":12,
          "firstgid":121,
          "image":"..\/..\/assets\/tileset\/characters_1.png",
          "imageheight":128,
@@ -615,7 +613,6 @@
          "tilewidth":16
         }, 
         {
-         "columns":12,
          "firstgid":217,
          "image":"..\/..\/assets\/tileset\/things_0.png",
          "imageheight":128,
@@ -628,6 +625,22 @@
             },
          "spacing":0,
          "tilecount":96,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "firstgid":313,
+         "image":"..\/..\/assets\/tileset\/gui.png",
+         "imageheight":240,
+         "imagewidth":128,
+         "margin":0,
+         "name":"gui",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":120,
          "tileheight":16,
          "tilewidth":16
         }],

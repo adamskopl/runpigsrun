@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" nextobjectid="314">
- <tileset firstgid="1" name="basictiles" tilewidth="16" tileheight="16" tilecount="120" columns="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" nextobjectid="323">
+ <tileset firstgid="1" name="basictiles" tilewidth="16" tileheight="16" tilecount="120">
   <image source="../../assets/tileset/basictiles_2.png" width="128" height="240"/>
  </tileset>
- <tileset firstgid="121" name="characters" tilewidth="16" tileheight="16" tilecount="96" columns="12">
+ <tileset firstgid="121" name="characters" tilewidth="16" tileheight="16" tilecount="96">
   <image source="../../assets/tileset/characters_1.png" width="192" height="128"/>
  </tileset>
- <tileset firstgid="217" name="things" tilewidth="16" tileheight="16" tilecount="96" columns="12">
+ <tileset firstgid="217" name="things" tilewidth="16" tileheight="16" tilecount="96">
   <image source="../../assets/tileset/things_0.png" width="192" height="128"/>
+ </tileset>
+ <tileset firstgid="313" name="gui" tilewidth="16" tileheight="16" tilecount="120">
+  <image source="../../assets/tileset/gui.png" width="128" height="240"/>
  </tileset>
  <layer name="background0" width="12" height="12">
   <data encoding="csv">
