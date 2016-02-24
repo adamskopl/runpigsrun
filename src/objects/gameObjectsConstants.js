@@ -22,7 +22,7 @@ function GameObjectDesc(spreadsheet, gid, mainType) {
 		gid: gid,
 		mainType: mainType
 	};
-}
+};
 
 GameObjectsConstants = [];
 GOC = GameObjectsConstants; // alias
@@ -56,4 +56,4 @@ function objectsContainMainType(OBJECTS, mainType) {
 		if (GOC[OBJECTS[i].type].mainType == mainType)
 			return true;
 	return false;
-}
+};

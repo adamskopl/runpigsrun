@@ -6,6 +6,8 @@ function GameplayManager(game) {
 		this.tilesManager, this);
 	this.collisionsHandler = new CollisionsHandler(
 		this.gameObjectsManager, this.tilesManager);
+	this.toolsManager = new ToolsManager(this.tilesManager,
+		this.gameObjectsManager);
 	this.iterGuard = {
 		count: 0,
 		guardFinished: false,

@@ -40,12 +40,12 @@ function startGame() {
 
 	function create() {
 		gameplayManager = new GameplayManager(game);
-		levelsManager = new LevelsManager(game, gameplayManager.gameObjectsManager);
-		// levelsManager.loadLevel('00');
+		levelsManager = new LevelsManager(game,
+			gameplayManager.gameObjectsManager);
+		gameplayManager.toolsManager.setLevelsManager(levelsManager)
 		levelsManager.loadLevel('01');
-		guiManager = new GuiManager(game, levelsManager);
-
-		gameplayManager.startIter();
+		guiManager = new GuiManager(game, levelsManager,
+			gameplayManager.toolsManager);
 	}
 
 	function update() {}
