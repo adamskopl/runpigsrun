@@ -1,8 +1,9 @@
 /**
  * Main class for managing gui.
  */
-function GuiManager(game, levelsManager, toolsManager) {
+function GuiManager(game, gameplayManager, levelsManager, toolsManager) {
 	this.game = game;
+	this.gameplayManager = gameplayManager;
 	this.levelsManager = levelsManager;
 	this.tilesButtonsManager = new TilesButtonsManager(game, this);
 	this.toolsManager = toolsManager;
@@ -10,10 +11,12 @@ function GuiManager(game, levelsManager, toolsManager) {
 	this.graphics = game.add.graphics(0, 0);
 
 	this.buttonsCurrentLevel = [];
+	this.buttonStartLevel = {};
 
 	this.createToolbar();
 	this.cursorSpritesManager.createCursorSprites();
-	this.createbuttonsCurrentLevel();
+	this.createButtonsCurrentLevel();
+	this.createButtonStartLevel();
 	this.tilesButtonsManager.createTilesButtons();
 };
 
@@ -25,13 +28,26 @@ GuiManager.prototype.createToolbar = function() {
 		scaleConstants.TILE_SIZE_SCALED);
 };
 
-GuiManager.prototype.createbuttonsCurrentLevel = function() {
+GuiManager.prototype.createButtonsCurrentLevel = function() {
 	var currentTools =
 		this.levelsManager.getCurrentLevel().description.tools;
 	for (var i in currentTools) {
 		this.buttonsCurrentLevel.push(
 			new ButtonTool(currentTools[i], i, this.game, this));
 	}
+};
+
+GuiManager.prototype.createButtonStartLevel = function() {
+	var sName = assetsConstants.SPREADSHEET_BASIC;
+	this.buttonStartLevel = this.game.add.button(
+		scaleConstants.GAME_W - scaleConstants.TILE_SIZE_SCALED,
+		0, sName,
+		function() {
+			this.gameplayManager.onButtonStart();
+		}, this, 22, 17, 17, 17
+	);
+	this.buttonStartLevel.scale.x = this.buttonStartLevel.scale.y =
+		scaleConstants.MAIN_SCALE;
 };
 
 /**

@@ -44,7 +44,10 @@ function startGame() {
 			gameplayManager.gameObjectsManager);
 		gameplayManager.toolsManager.setLevelsManager(levelsManager)
 		levelsManager.loadLevel('01');
-		guiManager = new GuiManager(game, levelsManager,
+		guiManager = new GuiManager(
+			game,
+			gameplayManager,
+			levelsManager,
 			gameplayManager.toolsManager);
 	}
 

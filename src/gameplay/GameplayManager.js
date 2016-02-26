@@ -13,6 +13,8 @@ function GameplayManager(game) {
 		guardFinished: false,
 		movementFinished: false
 	};
+	// true means 'game movement phase'
+	this.movementRunning = false;
 };
 
 GameplayManager.prototype.iterGuardReset = function() {
@@ -30,11 +32,25 @@ GameplayManager.prototype.startIter = function() {
 	}, gameplayConstants.OBJECT_SPEED, Phaser.Easing.Linear.In, true, 0, 0, 0).
 	onComplete.add(onIterFinished, this);
 };
+
+GameplayManager.prototype.onButtonStart = function() {
+	if (this.movementRunning === false)
+		this.movementRunning = true;
+	else return;
+	this.startIter();
+};
+
+/**
+ * Invoked by MovementManager. An object has reached its destiny.
+ */
 GameplayManager.prototype.onMovementIter = function(GAME_OBJECT, GAME_POS_PREV) {
 	this.tilesManager.positionChanged(GAME_OBJECT, GAME_POS_PREV);
 	this.collisionsHandler.positionChanged(GAME_OBJECT);
 };
 
+/**
+ * Invoked by MovementManager. Alle movements are finished.
+ */
 GameplayManager.prototype.onMovementIterLast = function() {
 	this.iterGuard.movementFinished = true;
 };
