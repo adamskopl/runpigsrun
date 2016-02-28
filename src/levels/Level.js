@@ -1,19 +1,47 @@
-function LevelTileObjects(map, backgroundLayers, objectsLayers) {
-	this.map = map;
-	this.backgroundLayers = backgroundLayers;
-	this.objectsLayers = objectsLayers;
-};
-
-function Level(game, gameObjectsManager, tileObjects, description) {
+function Level(levelId, game, gameObjectsManager, description) {
+	this.levelId = levelId;
 	this.game = game;
 	this.gameObjectsManager = gameObjectsManager;
-	this.tileObjects = tileObjects;
 	this.description = description;
+	this.map = {};
+	this.tilemapLayers = [];
+	this.loadMap();
 	this.loadObjects();
 };
 
+Level.prototype.unload = function() {
+	this.map.destroy();
+	for (var i in this.tilemapLayers) {
+		console.log("des");
+		this.tilemapLayers[i].destroy();
+	}
+	this.map = {};
+	this.tilemapLayers = [];
+	this.gameObjectsManager.clear();
+};
+
+Level.prototype.loadMap = function() {
+	this.map = this.game.add.tilemap('level' + this.levelId);
+	return;
+	this.map.addTilesetImage('basictiles', assetsConstants.SPREADSHEET_BASIC);
+	this.tilemapLayers.push(this.map.createLayer('background0',
+		scaleConstants.GAME_W, scaleConstants.GAME_H));
+	this.tilemapLayers.push(this.map.createLayer('background1',
+		scaleConstants.GAME_W, scaleConstants.GAME_H));
+
+	for (var i in this.tilemapLayers) {
+		this.tilemapLayers[i].scale.x = scaleConstants.MAIN_SCALE;
+		this.tilemapLayers[i].scale.y = scaleConstants.MAIN_SCALE;
+		this.tilemapLayers[i].x =
+			scaleConstants.GAME_OFFSET_X * scaleConstants.TILE_SIZE_SCALED;
+		this.tilemapLayers[i].y =
+			scaleConstants.GAME_OFFSET_Y * scaleConstants.TILE_SIZE_SCALED;
+		this.tilemapLayers[i].fixedToCamera = false;
+	}
+};
+
 Level.prototype.loadObjects = function() {
-	var objectsLevel = this.tileObjects.objectsLayers.objectsLevel;
+	var objectsLevel = this.map.objects.objectsLevel;
 	for (var i = 0; i < objectsLevel.length; i++) {
 		this.gameObjectsManager.create(
 			tileObjectToGameObjectParams(objectsLevel[i]));

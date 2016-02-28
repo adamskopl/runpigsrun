@@ -8,6 +8,7 @@ function GameplayManager(game) {
 		this.gameObjectsManager, this.tilesManager);
 	this.toolsManager = new ToolsManager(this.tilesManager,
 		this.gameObjectsManager);
+	this.levelsManager = {};
 	this.iterGuard = {
 		count: 0,
 		guardFinished: false,
@@ -15,6 +16,11 @@ function GameplayManager(game) {
 	};
 	// true means 'game movement phase'
 	this.movementRunning = false;
+};
+
+GameplayManager.prototype.setLevelsManager = function(levelsManager) {
+	this.levelsManager = levelsManager;
+	this.toolsManager.setLevelsManager(levelsManager);
 };
 
 GameplayManager.prototype.iterGuardReset = function() {
@@ -34,9 +40,14 @@ GameplayManager.prototype.startIter = function() {
 };
 
 GameplayManager.prototype.onButtonStart = function() {
-	if (this.movementRunning === false)
+	if (!this.movementRunning) {
 		this.movementRunning = true;
-	else return;
+		this.iterGuardReset();
+		console.log("start");
+	} else {
+		console.log("can't start");
+		return;
+	}
 	this.startIter();
 };
 
@@ -49,7 +60,7 @@ GameplayManager.prototype.onMovementIter = function(GAME_OBJECT, GAME_POS_PREV) 
 };
 
 /**
- * Invoked by MovementManager. Alle movements are finished.
+ * Invoked by MovementManager. All movements are finished.
  */
 GameplayManager.prototype.onMovementIterLast = function() {
 	this.iterGuard.movementFinished = true;
@@ -69,7 +80,10 @@ function onIterFinished() {
 	this.collisionsHandler.handleCollisions();
 	if (this.checkVictory()) {
 		console.log("VICTORY");
+		this.levelsManager.reloadLevel();
+		this.movementRunning = false;
+	} else {
+		this.iterGuardReset();
+		this.startIter();
 	}
-	this.iterGuardReset();
-	this.startIter();
 };

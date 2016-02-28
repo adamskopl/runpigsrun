@@ -9,11 +9,12 @@ GameObjectsManagerHuts.prototype.onLevelLoaded = function() {
 };
 
 function convertToHut(gameObject) {
-	gameObject.pause = false;
-}
+	gameObject.pause = false; // pause == hut is not generating objects
+};
 
 GameObjectsManagerHuts.prototype.onIter = function(
 	GAME_OBJECTS_MANAGER) {
+	console.log("on uter");
 	for (var index in this.objects) {
 		var HUT = this.objects[index];
 		if (HUT.properties.capacity == 0)

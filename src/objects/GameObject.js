@@ -6,7 +6,6 @@
  * @param {number} gameObjectParams.angle
  */
 function GameObject(group, GAME_OBJECT_PARAMS) {
-	this.group = group;
 	this.gamePos = cloneProperties(GAME_OBJECT_PARAMS.gamePos);
 	this.direction = cloneProperties(GAME_OBJECT_PARAMS.direction);
 	this.angle = GAME_OBJECT_PARAMS.angle; // could be replaced by direction?
@@ -21,7 +20,7 @@ function GameObject(group, GAME_OBJECT_PARAMS) {
 		console.error("objectData undefined " + GAME_OBJECT_PARAMS.type);
 		return;
 	}
-	this.sprite = this.group.create(0, 0,
+	this.sprite = group.create(0, 0,
 		objectData.spreadsheet, objectData.gid);
 	this.sprite.angle = GAME_OBJECT_PARAMS.angle;
 	this.sprite.anchor.x = this.sprite.anchor.y = 0.5;
@@ -30,7 +29,14 @@ function GameObject(group, GAME_OBJECT_PARAMS) {
 };
 
 GameObject.prototype.destroy = function() {
+	console.log("DESS");
 	this.sprite.destroy();
+	this.gamePos = {};
+	this.direction = {};
+	this.angle = {};
+	this.properties = {};
+	this.type = {};
+	this.sprite = {};
 };
 
 GameObjectParams.prototype.print = function() {

@@ -7,8 +7,12 @@ function TilesManager() {
 	this.tiles = [];
 };
 
+TilesManager.prototype.clear = function() {
+	this.tiles = [];
+};
+
 TilesManager.prototype.print = function() {
-	for (var i in this.tiles) {
+	for (var i in this.tiles)
 		for (var j in this.tiles[i]) {
 			var TILE = this.tiles[i][j];
 			for (var o in TILE) {
@@ -19,7 +23,6 @@ TilesManager.prototype.print = function() {
 					i + ", " + j);
 			}
 		}
-	}
 };
 
 TilesManager.prototype.printTile = function(ARGS) {

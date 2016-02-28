@@ -15,7 +15,22 @@ GameObjectsManager.prototype.initManagers = function() {
 		this.objects[GOT.HUT]);
 };
 
+GameObjectsManager.prototype.clear = function() {
+	for (var i in this.objects)
+		for (var j in this.objects[i])
+			this.objects[i][j].destroy();
+	for (var i in this.objects)
+		this.objects[i] = [];
+	this.tilesManager.clear();
+	this.groupGeneral = undefined;
+};
+
 GameObjectsManager.prototype.create = function(gameObjectParams) {
+	if (gameObjectParams.type === GOT.HERO)
+		console.log("create HERO");
+	else
+		console.log("create");
+
 	if (this.groupGeneral === undefined) {
 		this.groupGeneral = this.game.add.group();
 	}
@@ -32,12 +47,12 @@ GameObjectsManager.prototype.create = function(gameObjectParams) {
  */
 GameObjectsManager.prototype.remove = function(GAME_OBJECT) {
 	var objectsType = this.objects[GAME_OBJECT.type];
-	for (var I in objectsType) {
-		if (objectsType[I]) {
+	var first = true;
+	for (var I in objectsType)
+		if (objectsType[I] === GAME_OBJECT) {
 			objectsType.splice(I, 1);
 			break;
 		}
-	}
 	this.tilesManager.remove(GAME_OBJECT);
 	GAME_OBJECT.destroy();
 	this.check();
@@ -85,7 +100,6 @@ GameObjectsManager.prototype.onLevelLoaded = function() {
 };
 
 GameObjectsManager.prototype.onIter = function() {
-	for (var manager in this.managers) {
+	for (var manager in this.managers)
 		this.managers[manager].onIter(this);
-	}
 };

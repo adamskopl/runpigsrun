@@ -23,10 +23,10 @@ MovementManager.prototype.updateDirections = function() {
 function updateDirection(TILES_MANAGER) {
 	if (!emptyDirection(this.direction)) {
 		if (!canMove(this.gamePos,
-			this.direction, TILES_MANAGER)) {
+				this.direction, TILES_MANAGER)) {
 			opposite = movementDirectionOpposite(this.direction);
 			if (canMove(this.gamePos,
-				opposite, TILES_MANAGER)) {
+					opposite, TILES_MANAGER)) {
 				this.setDirection(opposite);
 			} else {
 				// blocked
@@ -38,6 +38,7 @@ function updateDirection(TILES_MANAGER) {
 
 function moveObject(GAME, movementManager) {
 	if (!emptyDirection(this.direction)) {
+		console.log("MOVE");
 		var oldPos = cloneProperties(this.gamePos);
 		var nextPos = gamePosAdd(this.gamePos, this.direction);
 		var nextScreenPos = gamePosToScreenPos(nextPos);
