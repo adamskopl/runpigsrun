@@ -54,7 +54,7 @@
                  "visible":true,
                  "width":16,
                  "x":96,
-                 "y":48
+                 "y":32
                 }, 
                 {
                  "gid":11,
@@ -117,7 +117,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":80,
+                 "x":96,
                  "y":64
                 }, 
                 {
@@ -405,8 +405,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":96,
-                 "y":64
+                 "x":112,
+                 "y":80
                 }, 
                 {
                  "gid":14,
@@ -551,6 +551,22 @@
                  "width":16,
                  "x":96,
                  "y":144
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":337,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":48
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -571,7 +587,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":324,
+ "nextobjectid":338,
  "orientation":"orthogonal",
  "properties":
     {
@@ -581,6 +597,7 @@
  "tileheight":16,
  "tilesets":[
         {
+         "columns":8,
          "firstgid":1,
          "image":"..\/..\/assets\/tileset\/basictiles_2.png",
          "imageheight":240,
@@ -597,6 +614,7 @@
          "tilewidth":16
         }, 
         {
+         "columns":12,
          "firstgid":121,
          "image":"..\/..\/assets\/tileset\/characters_1.png",
          "imageheight":128,
@@ -613,6 +631,7 @@
          "tilewidth":16
         }, 
         {
+         "columns":12,
          "firstgid":217,
          "image":"..\/..\/assets\/tileset\/things_0.png",
          "imageheight":128,
@@ -629,6 +648,7 @@
          "tilewidth":16
         }, 
         {
+         "columns":8,
          "firstgid":313,
          "image":"..\/..\/assets\/tileset\/gui.png",
          "imageheight":240,
