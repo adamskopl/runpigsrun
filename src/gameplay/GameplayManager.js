@@ -8,7 +8,11 @@ function GameplayManager(game) {
 		this.gameObjectsManager, this.tilesManager);
 	this.toolsManager = new ToolsManager(this.tilesManager,
 		this.gameObjectsManager);
+
+	// members needed to be reloaded when necessary
 	this.levelsManager = {};
+	this.guiManager = {};
+
 	this.iterGuard = {
 		count: 0,
 		guardFinished: false,
@@ -18,9 +22,9 @@ function GameplayManager(game) {
 	this.movementRunning = false;
 };
 
-GameplayManager.prototype.setLevelsManager = function(levelsManager) {
+GameplayManager.prototype.setMembers = function(levelsManager, guiManager) {
 	this.levelsManager = levelsManager;
-	this.toolsManager.setLevelsManager(levelsManager);
+	this.guiManager = guiManager;
 };
 
 GameplayManager.prototype.iterGuardReset = function() {
@@ -72,6 +76,13 @@ GameplayManager.prototype.checkVictory = function() {
 	return false;
 };
 
+GameplayManager.prototype.onVictory = function() {
+	console.log("VICTORY");
+	this.levelsManager.reloadLevel();
+	this.guiManager.reload();
+	this.movementRunning = false;
+};
+
 function onIterFinished() {
 	if (!this.iterGuard.movementFinished) {
 		console.error("movement not finished");
@@ -79,9 +90,7 @@ function onIterFinished() {
 	}
 	this.collisionsHandler.handleCollisions();
 	if (this.checkVictory()) {
-		console.log("VICTORY");
-		this.levelsManager.reloadLevel();
-		this.movementRunning = false;
+		this.onVictory();
 	} else {
 		this.iterGuardReset();
 		this.startIter();

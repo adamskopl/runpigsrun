@@ -20,6 +20,10 @@ function GuiManager(game, gameplayManager, levelsManager, toolsManager) {
 	this.tilesButtonsManager.createTilesButtons();
 };
 
+GuiManager.prototype.reload = function() {
+	this.tilesButtonsManager.reload();
+};
+
 GuiManager.prototype.createToolbar = function() {
 	this.graphics.beginFill(0x39469E);
 	this.graphics.lineStyle(1, 0x000000, 1);

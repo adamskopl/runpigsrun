@@ -42,14 +42,13 @@ function startGame() {
 		gameplayManager = new GameplayManager(game);
 		levelsManager = new LevelsManager(game,
 			gameplayManager.gameObjectsManager);
-		gameplayManager.setLevelsManager(levelsManager)
-
 		levelsManager.loadLevel('01');
 		guiManager = new GuiManager(
 			game,
 			gameplayManager,
 			levelsManager,
 			gameplayManager.toolsManager);
+		gameplayManager.setMembers(levelsManager, guiManager);
 	}
 
 	function update() {}

@@ -4,6 +4,11 @@ function TilesButtonsManager(game, guiManager) {
 	this.guiManager = guiManager;
 };
 
+TilesButtonsManager.prototype.reload = function() {
+	for (var i in this.buttons)
+		this.buttons[i].buttonPhaser.bringToTop();
+};
+
 function ButtonTile(game, gamePos, manager) {
 	this.gamePos = gamePos;
 	this.manager = manager;
