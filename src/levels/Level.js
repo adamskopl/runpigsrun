@@ -22,7 +22,7 @@ Level.prototype.unload = function() {
 
 Level.prototype.loadMap = function() {
 	this.map = this.game.add.tilemap('level' + this.levelId);
-	return;
+
 	this.map.addTilesetImage('basictiles', assetsConstants.SPREADSHEET_BASIC);
 	this.tilemapLayers.push(this.map.createLayer('background0',
 		scaleConstants.GAME_W, scaleConstants.GAME_H));
@@ -73,7 +73,8 @@ Level.prototype.addSurroundingRoads = function() {
 		params[3].gamePos.x = i;
 		params[3].gamePos.y = scaleConstants.MAP_TILES_X;
 		for (var p in params) {
-			this.gameObjectsManager.create(params[p]);
+			var road = this.gameObjectsManager.create(params[p]);
+			road.sprite.visible = false;
 		}
 	}
 };

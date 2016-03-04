@@ -29,7 +29,6 @@ function GameObject(group, GAME_OBJECT_PARAMS) {
 };
 
 GameObject.prototype.destroy = function() {
-	console.log("DESS");
 	this.sprite.destroy();
 	this.gamePos = {};
 	this.direction = {};

@@ -3,9 +3,8 @@ function GameObjectsManagerHuts(objects) {
 };
 
 GameObjectsManagerHuts.prototype.onLevelLoaded = function() {
-	for (var index in this.objects) {
+	for (var index in this.objects)
 		convertToHut(this.objects[index]);
-	}
 };
 
 function convertToHut(gameObject) {
@@ -14,7 +13,6 @@ function convertToHut(gameObject) {
 
 GameObjectsManagerHuts.prototype.onIter = function(
 	GAME_OBJECTS_MANAGER) {
-	console.log("on uter");
 	for (var index in this.objects) {
 		var HUT = this.objects[index];
 		if (HUT.properties.capacity == 0)

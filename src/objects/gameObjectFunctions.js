@@ -38,7 +38,7 @@ function tileObjectToGameObjectParams(tileObject) {
 			y: 0
 		},
 		angle,
-		tileObject.properties);
+		cloneProperties(tileObject.properties));
 };
 
 function gamePosToScreenPos(GAME_POS) {

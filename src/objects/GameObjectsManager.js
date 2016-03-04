@@ -20,24 +20,20 @@ GameObjectsManager.prototype.clear = function() {
 		for (var j in this.objects[i])
 			this.objects[i][j].destroy();
 	for (var i in this.objects)
-		this.objects[i] = [];
+		this.objects[i].length = 0; // warning: reference in concrete managers
 	this.tilesManager.clear();
 	this.groupGeneral = undefined;
 };
 
 GameObjectsManager.prototype.create = function(gameObjectParams) {
-	if (gameObjectParams.type === GOT.HERO)
-		console.log("create HERO");
-	else
-		console.log("create");
-
 	if (this.groupGeneral === undefined) {
 		this.groupGeneral = this.game.add.group();
 	}
 	gameObject = new GameObject(this.groupGeneral,
 		gameObjectParams);
 	this.push(gameObject);
-	this.tilesManager.put(gameObject, gameObjectParams.gamePos.x, gameObjectParams.gamePos.y);
+	this.tilesManager.put(gameObject, gameObjectParams.gamePos.x,
+		gameObjectParams.gamePos.y);
 	this.check();
 	return gameObject;
 };
