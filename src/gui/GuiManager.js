@@ -5,9 +5,13 @@ function GuiManager(game, gameplayManager, levelsManager, toolsManager) {
 	this.game = game;
 	this.gameplayManager = gameplayManager;
 	this.levelsManager = levelsManager;
-	this.tilesButtonsManager = new TilesButtonsManager(game, this);
+
+	this.tilesButtonsManager = new TilesButtonsManager(game);
+	this.tilesButtonsManager.signalButtonTile.add(this.slotButtonTile, this);
+	this.tilesButtonsManager.signalButtonTileOver.add(this.slotButtonTileOver, this);
+
 	this.toolsManager = toolsManager;
-	this.cursorSpritesManager = new CursorSpritesManager(game, toolsManager);
+	this.cursorSpritesManager = new CursorSpritesManager(game);
 	this.graphics = game.add.graphics(0, 0);
 
 	this.buttonsCurrentLevel = [];
@@ -59,16 +63,16 @@ GuiManager.prototype.createButtonStartLevel = function() {
  */
 GuiManager.prototype.onButtonTool = function(type) {
 	this.toolsManager.onCurrentToolChange(type);
-	this.cursorSpritesManager.onCurrentToolChange();
+	this.cursorSpritesManager.onCurrentToolChange(type);
 };
 
 /**
  * Tile (tile's button) clicked.
  */
-GuiManager.prototype.onButtonTile = function(gamePos) {
+GuiManager.prototype.slotButtonTile = function(gamePos) {
 	this.toolsManager.onToolChoice(gamePos);
 };
 
-GuiManager.prototype.onButtonTileOver = function(gamePos) {
+GuiManager.prototype.slotButtonTileOver = function(gamePos) {
 	this.cursorSpritesManager.onButtonTileOver(gamePos);
 };

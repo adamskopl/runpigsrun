@@ -1,8 +1,8 @@
-function CursorSpritesManager(game, toolsManager) {
+function CursorSpritesManager(game) {
 	this.game = game;
 	this.groupGuiSprites = this.game.add.group();
 	this.sprites = {};
-	this.toolsManager = toolsManager;
+	this.currentTool = undefined;
 };
 
 CursorSpritesManager.prototype.createCursorSprites = function() {
@@ -27,15 +27,15 @@ CursorSpritesManager.prototype.resetSprites = function() {
 		this.sprites[i].x = this.sprites[i].y = -100;
 };
 
-CursorSpritesManager.prototype.onCurrentToolChange = function() {
+CursorSpritesManager.prototype.onCurrentToolChange = function(currentTool) {
+	this.currentTool = currentTool;
 	this.resetSprites();
 };
 
 CursorSpritesManager.prototype.onButtonTileOver = function(gamePos) {
 	var screenPos = gamePosToScreenPos(gamePos);
-	var tool = this.toolsManager.currentTool;
-	if (tool !== undefined) {
-		this.sprites[tool].x = screenPos.x;
-		this.sprites[tool].y = screenPos.y;
+	if (this.currentTool !== undefined) {
+		this.sprites[this.currentTool].x = screenPos.x;
+		this.sprites[this.currentTool].y = screenPos.y;
 	}
 };

@@ -1,16 +1,13 @@
 function ToolsManager(tilesManager, gameObjectsManager) {
 	this.tilesManager = tilesManager;
 	this.gameObjectsManager = gameObjectsManager;
-	this.levelsManager = {};
 	this.currentTool = undefined;
-};
-
-ToolsManager.prototype.setLevelsManager = function(levelsManager) {
-	this.levelsManager = levelsManager;
+	this.signalCurrentToolChange = new Phaser.Signal();
 };
 
 ToolsManager.prototype.onCurrentToolChange = function(TOOL_TYPE) {
 	this.currentTool = TOOL_TYPE;
+	this.signalCurrentToolChange.dispatch();
 };
 
 ToolsManager.prototype.onToolChoice = function(GAME_POS) {

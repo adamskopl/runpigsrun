@@ -1,7 +1,8 @@
-function TilesButtonsManager(game, guiManager) {
+function TilesButtonsManager(game) {
 	this.game = game;
 	this.buttons = [];
-	this.guiManager = guiManager;
+	this.signalButtonTile = new Phaser.Signal();
+	this.signalButtonTileOver = new Phaser.Signal();
 };
 
 TilesButtonsManager.prototype.reload = function() {
@@ -44,9 +45,9 @@ TilesButtonsManager.prototype.createTilesButtons = function() {
 };
 
 TilesButtonsManager.prototype.onButton = function(gamePos) {
-	this.guiManager.onButtonTile(gamePos);
+	this.signalButtonTile.dispatch(gamePos);
 };
 
 TilesButtonsManager.prototype.onButtonOver = function(gamePos) {
-	this.guiManager.onButtonTileOver(gamePos);
+	this.signalButtonTileOver.dispatch(gamePos);
 };
