@@ -1,6 +1,7 @@
 function LevelsManager(game, gameObjectsManager) {
 	this.game = game;
 	this.gameObjectsManager = gameObjectsManager;
+	this.groupLevels = this.game.add.group();
 	this.level = undefined;
 	this.currentLevelId = undefined;
 };
@@ -16,6 +17,7 @@ LevelsManager.prototype.loadLevel = function(levelId) {
 	this.level = new Level(
 		levelId,
 		this.game,
+		this.groupLevels,
 		this.gameObjectsManager,
 		this.getDescription(levelId));
 };

@@ -1,6 +1,7 @@
-function Level(levelId, game, gameObjectsManager, description) {
+function Level(levelId, game, groupLevels, gameObjectsManager, description) {
 	this.levelId = levelId;
 	this.game = game;
+	this.groupLevels = groupLevels;
 	this.gameObjectsManager = gameObjectsManager;
 	this.description = description;
 	this.map = {};
@@ -12,22 +13,23 @@ function Level(levelId, game, gameObjectsManager, description) {
 Level.prototype.unload = function() {
 	this.map.destroy();
 	for (var i in this.tilemapLayers) {
-		console.log("des");
 		this.tilemapLayers[i].destroy();
 	}
 	this.map = {};
 	this.tilemapLayers = [];
 	this.gameObjectsManager.clear();
+	this.groupLevels.removeAll();
 };
 
 Level.prototype.loadMap = function() {
 	this.map = this.game.add.tilemap('level' + this.levelId);
 
 	this.map.addTilesetImage('basictiles', assetsConstants.SPREADSHEET_BASIC);
+
 	this.tilemapLayers.push(this.map.createLayer('background0',
-		scaleConstants.GAME_W, scaleConstants.GAME_H));
+		scaleConstants.GAME_W, scaleConstants.GAME_H, this.groupLevels));
 	this.tilemapLayers.push(this.map.createLayer('background1',
-		scaleConstants.GAME_W, scaleConstants.GAME_H));
+		scaleConstants.GAME_W, scaleConstants.GAME_H, this.groupLevels));
 
 	for (var i in this.tilemapLayers) {
 		this.tilemapLayers[i].scale.x = scaleConstants.MAIN_SCALE;

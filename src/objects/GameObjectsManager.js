@@ -2,9 +2,7 @@ function GameObjectsManager(game, tilesManager) {
 	this.game = game;
 	this.tilesManager = tilesManager;
 	this.objects = {};
-	// group will be created, when needed (if it'll be created before 
-	// loading Tiled maps, it will be covered)
-	this.groupGeneral = undefined;
+	this.groupGeneral = this.game.add.group();
 	this.managers = {}; // concrete managers
 	this.initManagers();
 };
@@ -22,13 +20,10 @@ GameObjectsManager.prototype.clear = function() {
 	for (var i in this.objects)
 		this.objects[i].length = 0; // warning: reference in concrete managers
 	this.tilesManager.clear();
-	this.groupGeneral = undefined;
+	this.groupGeneral.removeAll();
 };
 
 GameObjectsManager.prototype.create = function(gameObjectParams) {
-	if (this.groupGeneral === undefined) {
-		this.groupGeneral = this.game.add.group();
-	}
 	gameObject = new GameObject(this.groupGeneral,
 		gameObjectParams);
 	this.push(gameObject);
