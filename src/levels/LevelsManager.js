@@ -4,11 +4,22 @@ function LevelsManager(game, gameObjectsManager) {
 	this.groupLevels = this.game.add.group();
 	this.level = undefined;
 	this.levelId = 1;
+	this.levelIdMax = 1; // I'm soooooo lazy.
 	this.loadLevel(this.levelId);
 };
 
 LevelsManager.prototype.reloadLevel = function() {
 	this.loadLevel(this.levelId);
+};
+
+LevelsManager.prototype.setLevelPrev = function() {
+	if (this.levelId === 0) return;
+	this.levelId--;
+};
+
+LevelsManager.prototype.setLevelNext = function() {
+	if (this.levelId === this.levelIdMax) return;
+	this.levelId++;
 };
 
 LevelsManager.prototype.loadLevel = function(levelId) {

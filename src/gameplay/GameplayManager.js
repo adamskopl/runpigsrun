@@ -59,11 +59,13 @@ GameplayManager.prototype.slotButtonStartLevel = function() {
 };
 
 GameplayManager.prototype.slotButtonLevelPrev = function() {
-	console.log("PREV");
+	this.levelsManager.setLevelPrev();
+	this.reloadAll();
 };
 
 GameplayManager.prototype.slotButtonLevelNext = function() {
-	console.log("NEXT");
+	this.levelsManager.setLevelNext();
+	this.reloadAll();
 };
 
 /**
@@ -88,7 +90,11 @@ GameplayManager.prototype.checkVictory = function() {
 };
 
 GameplayManager.prototype.onVictory = function() {
-	console.log("VICTORY");
+	console.log("victory");
+	this.reloadAll();
+};
+
+GameplayManager.prototype.reloadAll = function() {
 	this.levelsManager.reloadLevel();
 	this.guiManager.reload();
 	this.movementRunning = false;
