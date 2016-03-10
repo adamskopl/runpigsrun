@@ -16,7 +16,7 @@ function GuiManager(game, levelsManager, toolsManager) {
 
 	this.graphics = game.add.graphics(0, 0);
 
-	this.buttonsCurrentLevel = [];
+	this.buttonsToolsLevel = [];
 	this.buttonStartLevel = {};
 	this.buttonLevelPrev = {};
 	this.buttonLevelNext = {};
@@ -28,9 +28,9 @@ function GuiManager(game, levelsManager, toolsManager) {
 
 	this.createToolbar();
 	this.cursorSpritesManager.createCursorSprites();
-	this.createButtonsCurrentLevel();
-	this.createButtonsLevels();
+	this.createButtonsLevelModification();
 	this.tilesButtonsManager.createTilesButtons();
+	this.reload();
 };
 
 GuiManager.prototype.dispatch = function(signalName) {
@@ -38,6 +38,10 @@ GuiManager.prototype.dispatch = function(signalName) {
 }
 
 GuiManager.prototype.reload = function() {
+	for (var i in this.buttonsToolsLevel)
+		this.buttonsToolsLevel[i].destroy();
+	this.buttonsToolsLevel.length = 0;
+	this.createButtonsToolsLevel();
 	this.game.world.bringToTop(this.groupGui);
 };
 
@@ -49,16 +53,16 @@ GuiManager.prototype.createToolbar = function() {
 		scaleConstants.TILE_SIZE_SCALED);
 };
 
-GuiManager.prototype.createButtonsCurrentLevel = function() {
+GuiManager.prototype.createButtonsToolsLevel = function() {
 	var currentTools =
 		this.levelsManager.getCurrentLevel().description.tools;
 	for (var i in currentTools) {
-		this.buttonsCurrentLevel.push(
+		this.buttonsToolsLevel.push(
 			new ButtonTool(currentTools[i], i, this.game, this));
 	}
 };
 
-GuiManager.prototype.createButtonsLevels = function() {
+GuiManager.prototype.createButtonsLevelModification = function() {
 	var sName = assetsConstants.SPREADSHEET_BASIC;
 	var sName2 = assetsConstants.SPREADSHEET_THINGS;
 	var buttons = [];

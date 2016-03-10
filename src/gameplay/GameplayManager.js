@@ -59,11 +59,13 @@ GameplayManager.prototype.slotButtonStartLevel = function() {
 };
 
 GameplayManager.prototype.slotButtonLevelPrev = function() {
+	if (this.movementRunning) return;
 	this.levelsManager.setLevelPrev();
 	this.reloadAll();
 };
 
 GameplayManager.prototype.slotButtonLevelNext = function() {
+	if (this.movementRunning) return;
 	this.levelsManager.setLevelNext();
 	this.reloadAll();
 };

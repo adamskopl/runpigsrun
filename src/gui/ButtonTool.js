@@ -18,3 +18,7 @@ function ButtonTool(type, orderNumber, game, guiManager) {
 
 	this.buttonPhaser.onInputOver.add(function() {}, this, 0, {});
 };
+
+ButtonTool.prototype.destroy = function() {
+	this.buttonPhaser.destroy();
+};
