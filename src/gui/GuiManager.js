@@ -1,9 +1,8 @@
 /**
  * Main class for managing gui.
  */
-function GuiManager(game, gameplayManager, levelsManager, toolsManager) {
+function GuiManager(game, levelsManager, toolsManager) {
 	this.game = game;
-	this.gameplayManager = gameplayManager;
 	this.levelsManager = levelsManager;
 	this.toolsManager = toolsManager;
 
@@ -19,13 +18,24 @@ function GuiManager(game, gameplayManager, levelsManager, toolsManager) {
 
 	this.buttonsCurrentLevel = [];
 	this.buttonStartLevel = {};
+	this.buttonLevelPrev = {};
+	this.buttonLevelNext = {};
+	this.signals = {
+		"startLevel": new Phaser.Signal(),
+		"levelPrev": new Phaser.Signal(),
+		"levelNext": new Phaser.Signal()
+	};
 
 	this.createToolbar();
 	this.cursorSpritesManager.createCursorSprites();
 	this.createButtonsCurrentLevel();
-	this.createButtonStartLevel();
+	this.createButtonsLevels();
 	this.tilesButtonsManager.createTilesButtons();
 };
+
+GuiManager.prototype.dispatch = function(signalName) {
+	this.signals[signalName].dispatch();
+}
 
 GuiManager.prototype.reload = function() {
 	this.game.world.bringToTop(this.groupGui);
@@ -48,17 +58,28 @@ GuiManager.prototype.createButtonsCurrentLevel = function() {
 	}
 };
 
-GuiManager.prototype.createButtonStartLevel = function() {
+GuiManager.prototype.createButtonsLevels = function() {
 	var sName = assetsConstants.SPREADSHEET_BASIC;
-	this.buttonStartLevel = this.game.add.button(
-		scaleConstants.GAME_W - scaleConstants.TILE_SIZE_SCALED,
-		0, sName,
-		function() {
-			this.gameplayManager.onButtonStart();
-		}, this, 22, 17, 17, 17
-	);
-	this.buttonStartLevel.scale.x = this.buttonStartLevel.scale.y =
-		scaleConstants.MAIN_SCALE;
+	var sName2 = assetsConstants.SPREADSHEET_THINGS;
+	var buttons = [];
+	var buttonsParams = [
+		[sName, 16, 17, "startLevel"],
+		[sName2, 52, 53, "levelNext"],
+		[sName2, 52, 51, "levelPrev"]
+	];
+	for (var i = 0; i < 3; i++) {
+		buttons.push(this.game.add.button(
+			scaleConstants.GAME_W - scaleConstants.TILE_SIZE_SCALED * (i + 1),
+			0, buttonsParams[i][0],
+			this.dispatch.bind(this, buttonsParams[i][3]),
+			this, buttonsParams[i][1],
+			buttonsParams[i][2], buttonsParams[i][2], buttonsParams[i][2]
+		));
+		buttons[i].scale.x = buttons[i].scale.y = scaleConstants.MAIN_SCALE;
+	}
+	this.buttonStartLevel = buttons[0];
+	this.buttonLevelPrev = buttons[1];
+	this.buttonLevelNext = buttons[2];
 };
 
 /**

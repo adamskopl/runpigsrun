@@ -25,6 +25,9 @@ function GameplayManager(game) {
 GameplayManager.prototype.setMembers = function(levelsManager, guiManager) {
 	this.levelsManager = levelsManager;
 	this.guiManager = guiManager;
+	this.guiManager.signals["startLevel"].add(this.slotButtonStartLevel, this);
+	this.guiManager.signals["levelPrev"].add(this.slotButtonLevelPrev, this);
+	this.guiManager.signals["levelNext"].add(this.slotButtonLevelNext, this);
 };
 
 GameplayManager.prototype.iterGuardReset = function() {
@@ -43,7 +46,7 @@ GameplayManager.prototype.startIter = function() {
 	onComplete.add(onIterFinished, this);
 };
 
-GameplayManager.prototype.onButtonStart = function() {
+GameplayManager.prototype.slotButtonStartLevel = function() {
 	if (!this.movementRunning) {
 		this.movementRunning = true;
 		this.iterGuardReset();
@@ -53,6 +56,14 @@ GameplayManager.prototype.onButtonStart = function() {
 		return;
 	}
 	this.startIter();
+};
+
+GameplayManager.prototype.slotButtonLevelPrev = function() {
+	console.log("PREV");
+};
+
+GameplayManager.prototype.slotButtonLevelNext = function() {
+	console.log("NEXT");
 };
 
 /**

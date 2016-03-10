@@ -3,23 +3,29 @@ function LevelsManager(game, gameObjectsManager) {
 	this.gameObjectsManager = gameObjectsManager;
 	this.groupLevels = this.game.add.group();
 	this.level = undefined;
-	this.currentLevelId = undefined;
+	this.levelId = 1;
+	this.loadLevel(this.levelId);
 };
 
 LevelsManager.prototype.reloadLevel = function() {
-	this.loadLevel(this.currentLevelId);
+	this.loadLevel(this.levelId);
 };
 
 LevelsManager.prototype.loadLevel = function(levelId) {
+	this.levelId = levelId;
+
+	var levelIdString = this.levelId.toString();
+	if (levelIdString.length === 1)
+		levelIdString = '0' + levelIdString;
+
 	if (this.level !== undefined)
 		this.level.unload(); // also objects from GameObjectsManager
-	this.currentLevelId = levelId;
 	this.level = new Level(
-		levelId,
+		levelIdString,
 		this.game,
 		this.groupLevels,
 		this.gameObjectsManager,
-		this.getDescription(levelId));
+		this.getDescription(levelIdString));
 };
 
 LevelsManager.prototype.getCurrentLevel = function() {
