@@ -90,7 +90,8 @@ GameObjectsManager.prototype.onLevelLoaded = function() {
 	}
 };
 
-GameObjectsManager.prototype.onIter = function() {
+GameObjectsManager.prototype.onMovementIter = function() {
+	// movement iteration
 	for (var manager in this.managers)
 		this.managers[manager].onIter(this);
 };

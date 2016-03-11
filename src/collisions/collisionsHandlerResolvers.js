@@ -1,5 +1,6 @@
 function handleCollisionPair(OBJ_A, OBJ_B) {
 	var fname = getCollisionFunctionName(OBJ_A, OBJ_B);
+	console.log("FNAME " + fname);
 	if (OBJ_A.type < OBJ_B.type)
 		return window[fname](OBJ_A, OBJ_B);
 	else
@@ -29,5 +30,13 @@ function collisionherohero(HERO, HERO) {
 };
 
 function collisionheroroad(HERO, ROAD) {
+	return [];
+};
+
+function collisionroadt_bouncer(ROAD, T_BOUNCER) {
+	return [];
+}
+
+function collisionherot_bouncer(HERO, TOOL_BOUNCER) {
 	return [];
 };

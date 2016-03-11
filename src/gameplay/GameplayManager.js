@@ -36,10 +36,13 @@ GameplayManager.prototype.iterGuardReset = function() {
 	this.iterGuard.movementFinished = false;
 };
 
-GameplayManager.prototype.startIter = function() {
-	this.gameObjectsManager.onIter();
+GameplayManager.prototype.startMovementIter = function() {
+	this.gameObjectsManager.onMovementIter();
 	this.movementManager.updateDirections();
 	this.movementManager.moveAll();
+
+	// after adding movement tweens, add guard tween 
+	// (which should end right after movement tweens)
 	this.game.add.tween(this.iterGuard).to({
 		count: scaleConstants.TILE_SIZE_SCALED
 	}, gameplayConstants.OBJECT_SPEED, Phaser.Easing.Linear.In, true, 0, 0, 0).
@@ -50,12 +53,11 @@ GameplayManager.prototype.slotButtonStartLevel = function() {
 	if (!this.movementRunning) {
 		this.movementRunning = true;
 		this.iterGuardReset();
-		console.log("start");
 	} else {
 		console.log("can't start");
 		return;
 	}
-	this.startIter();
+	this.startMovementIter();
 };
 
 GameplayManager.prototype.slotButtonLevelPrev = function() {
@@ -112,6 +114,6 @@ function onIterFinished() {
 		this.onVictory();
 	} else {
 		this.iterGuardReset();
-		this.startIter();
+		this.startMovementIter();
 	}
 };

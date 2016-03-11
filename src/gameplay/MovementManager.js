@@ -8,19 +8,18 @@ function MovementManager(game, gameObjectsManager, tilesManager, gameplayManager
 	};
 };
 
-MovementManager.prototype.moveAll = function() {
-	this.tilesManager.callAll(moveObject, [this.game, this]);
+MovementManager.prototype.updateDirections = function() {
+	this.tilesManager.callAll(updateGameObjectDirection, [this.tilesManager]);
 };
 
-MovementManager.prototype.updateDirections = function() {
-	this.tilesManager.callAll(updateDirection, [this.tilesManager]);
+MovementManager.prototype.moveAll = function() {
+	this.tilesManager.callAll(moveGameObject, [this.game, this]);
 };
 
 /**
  * Called on GameObject
- * @return {[type]}                 [description]
  */
-function updateDirection(TILES_MANAGER) {
+function updateGameObjectDirection(TILES_MANAGER) {
 	if (!emptyDirection(this.direction)) {
 		if (!canMove(this.gamePos,
 			this.direction, TILES_MANAGER)) {
@@ -36,7 +35,10 @@ function updateDirection(TILES_MANAGER) {
 	}
 };
 
-function moveObject(GAME, movementManager) {
+/**
+ * Called on GameObject
+ */
+function moveGameObject(GAME, movementManager) {
 	if (!emptyDirection(this.direction)) {
 		var oldPos = cloneProperties(this.gamePos);
 		var nextPos = gamePosAdd(this.gamePos, this.direction);

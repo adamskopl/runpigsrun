@@ -70,7 +70,7 @@ TilesManager.prototype.contains = function(TILE, OBJECT) {
  * TODO: static function
  */
 TilesManager.prototype.getAdjacent = function(GAME_POS, DIRECTION) {
-	gamePos = cloneProperties(GAME_POS);
+	var gamePos = cloneProperties(GAME_POS);
 	gamePos.x += DIRECTION.x;
 	gamePos.y += DIRECTION.y;
 	return this.get(gamePos.x, gamePos.y);
