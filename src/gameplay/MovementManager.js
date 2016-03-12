@@ -20,19 +20,17 @@ MovementManager.prototype.moveAll = function() {
  * Called on GameObject
  */
 function updateGameObjectDirection(TILES_MANAGER) {
-	if (!emptyDirection(this.direction)) {
+	if (!emptyDirection(this.direction))
 		if (!canMove(this.gamePos,
-			this.direction, TILES_MANAGER)) {
+				this.direction, TILES_MANAGER)) {
 			opposite = movementDirectionOpposite(this.direction);
 			if (canMove(this.gamePos,
-				opposite, TILES_MANAGER)) {
+					opposite, TILES_MANAGER))
 				this.setDirection(opposite);
-			} else {
-				// blocked
+			else
+			// blocked
 				resetDirection(this.direction);
-			}
 		}
-	}
 };
 
 /**
@@ -41,13 +39,22 @@ function updateGameObjectDirection(TILES_MANAGER) {
 function moveGameObject(GAME, movementManager) {
 	if (!emptyDirection(this.direction)) {
 		var oldPos = cloneProperties(this.gamePos);
-		var nextPos = gamePosAdd(this.gamePos, this.direction);
+		console.log(this.speed);
+
+		var direction = cloneProperties(this.direction);
+		direction.x *= this.speed;
+		direction.y *= this.speed;
+		var nextPos = gamePosAdd(this.gamePos, direction);
 		var nextScreenPos = gamePosToScreenPos(nextPos);
 		var speed = gameplayConstants.OBJECT_SPEED;
 		var tween = GAME.add.tween(this.sprite).to({
 			x: nextScreenPos.x,
 			y: nextScreenPos.y
 		}, speed, Phaser.Easing.Linear.In, true, 0, 0, 0);
+
+		if (this.speed === 2)
+			this.startScaleAnimation(GAME, 2);
+
 		movementManager.counters.movingObjects++;
 		tween.onComplete.add(movementFinished, movementManager, 0, {
 			gameObj: this,

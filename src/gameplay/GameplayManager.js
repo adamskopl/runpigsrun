@@ -4,7 +4,7 @@ function GameplayManager(game) {
 	this.gameObjectsManager = new GameObjectsManager(game, this.tilesManager);
 	this.movementManager = new MovementManager(game, this.gameObjectsManager,
 		this.tilesManager, this);
-	this.collisionsHandler = new CollisionsHandler(
+	this.collisionsHandler = new CollisionsHandler(this.game,
 		this.gameObjectsManager, this.tilesManager);
 	this.toolsManager = new ToolsManager(this.tilesManager,
 		this.gameObjectsManager);

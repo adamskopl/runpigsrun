@@ -1,4 +1,5 @@
-function CollisionsHandler(gameObjectsManager, tilesManager) {
+function CollisionsHandler(game, gameObjectsManager, tilesManager) {
+	this.game = game;
 	this.gameObjectsManager = gameObjectsManager;
 	this.tilesManager = tilesManager;
 	this.tilesToHandle = [];
@@ -15,7 +16,7 @@ CollisionsHandler.prototype.removeLivingObjectsOutsideLevel = function() {
 	this.tilesManager.callAll(
 		function(objectsOutside) {
 			if (objectsContainMainType(
-				[this], GameObjectMainType.LIVING)) {
+					[this], GameObjectMainType.LIVING)) {
 				if (!posInLevel(this.gamePos)) {
 					objectsOutside.push(this);
 				}
@@ -54,6 +55,12 @@ CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
 	switch (RESULT.operation) {
 		case COLLISION_OPERATION.REMOVE:
 			this.gameObjectsManager.remove(RESULT.object);
+			break;
+		case COLLISION_OPERATION.SPEED_CHANGE:
+			RESULT.object.setSpeed(RESULT.arg);
+			break;
+		case COLLISION_OPERATION.SCALE_ANIMATION:
+			RESULT.object.startScaleAnimation(this.game, RESULT.arg);
 			break;
 	}
 }

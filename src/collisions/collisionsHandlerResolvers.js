@@ -1,6 +1,5 @@
 function handleCollisionPair(OBJ_A, OBJ_B) {
 	var fname = getCollisionFunctionName(OBJ_A, OBJ_B);
-	console.log("FNAME " + fname);
 	if (OBJ_A.type < OBJ_B.type)
 		return window[fname](OBJ_A, OBJ_B);
 	else
@@ -22,7 +21,10 @@ function collisionbridgehero(BRIDGE, HERO) {
 };
 
 function collisionherowater(HERO, WATER) {
-	return [new CollisionResult(HERO, COLLISION_OPERATION.REMOVE)];
+	return [
+		new CollisionResult(HERO, COLLISION_OPERATION.REMOVE),
+		new CollisionResult(WATER, COLLISION_OPERATION.SCALE_ANIMATION, 2)
+	];
 };
 
 function collisionherohero(HERO, HERO) {
@@ -30,7 +32,7 @@ function collisionherohero(HERO, HERO) {
 };
 
 function collisionheroroad(HERO, ROAD) {
-	return [];
+	return [new CollisionResult(HERO, COLLISION_OPERATION.SPEED_CHANGE, 1)];
 };
 
 function collisionroadt_bouncer(ROAD, T_BOUNCER) {
@@ -38,5 +40,5 @@ function collisionroadt_bouncer(ROAD, T_BOUNCER) {
 }
 
 function collisionherot_bouncer(HERO, TOOL_BOUNCER) {
-	return [];
+	return [new CollisionResult(HERO, COLLISION_OPERATION.SPEED_CHANGE, 2)];
 };

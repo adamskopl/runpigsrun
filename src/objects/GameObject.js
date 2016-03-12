@@ -12,6 +12,9 @@ function GameObject(group, GAME_OBJECT_PARAMS) {
 	this.properties = GAME_OBJECT_PARAMS.properties;
 	this.type = GAME_OBJECT_PARAMS.type;
 
+	// how many tiles in one iteration
+	this.speed = 1;
+
 	var objectData = GOC[GAME_OBJECT_PARAMS.type];
 	if (objectData === undefined) {
 		if (GAME_OBJECT_PARAMS.type === "") {
@@ -47,6 +50,11 @@ GameObject.prototype.setDirection = function(dir) {
 	this.direction = dir;
 };
 
+GameObject.prototype.setSpeed = function(speed) {
+	console.log("speed " + this.type + " " + speed);
+	this.speed = speed;
+};
+
 /**
  * Update sprite's screen position. After this. object should be properly
  * placed on the screen.
@@ -63,4 +71,20 @@ GameObject.prototype.updateScreenPos = function() {
  */
 GameObject.prototype.getScreenPos = function() {
 	return gamePosToScreenPos(this.gamePos);
+};
+
+GameObject.prototype.startScaleAnimation = function(
+	GAME, MULTIPLY, MULTIPLY_SPEED) {
+	var multiplySpeed = MULTIPLY;
+	if (multiplySpeed === undefined) multiplySpeed = 1;
+	var speed = gameplayConstants.OBJECT_SPEED;
+	var tween = GAME.add.tween(this.sprite.scale).to({
+		x: scaleConstants.MAIN_SCALE * MULTIPLY,
+		y: scaleConstants.MAIN_SCALE * MULTIPLY
+	}, speed / 2 / multiplySpeed, Phaser.Easing.Linear.In, true, 0, 0, 0);
+	var tween2 = GAME.add.tween(this.sprite.scale).to({
+		x: scaleConstants.MAIN_SCALE,
+		y: scaleConstants.MAIN_SCALE
+	}, speed / 2 / multiplySpeed, Phaser.Easing.Linear.In, false, 0, 0, 0);
+	tween.chain(tween2);
 };
