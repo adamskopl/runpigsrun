@@ -151,6 +151,22 @@
                  "width":16,
                  "x":160,
                  "y":112
+                }, 
+                {
+                 "gid":68,
+                 "height":16,
+                 "id":224,
+                 "name":"sign",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":176,
+                 "y":112
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -171,7 +187,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":223,
+ "nextobjectid":225,
  "orientation":"orthogonal",
  "properties":
     {
@@ -181,7 +197,6 @@
  "tileheight":16,
  "tilesets":[
         {
-         "columns":8,
          "firstgid":1,
          "image":"..\/..\/assets\/tileset\/basictiles_2.png",
          "imageheight":240,
@@ -198,7 +213,6 @@
          "tilewidth":16
         }, 
         {
-         "columns":12,
          "firstgid":121,
          "image":"..\/..\/assets\/tileset\/characters_1.png",
          "imageheight":128,
@@ -215,7 +229,6 @@
          "tilewidth":16
         }, 
         {
-         "columns":12,
          "firstgid":217,
          "image":"..\/..\/assets\/tileset\/things_0.png",
          "imageheight":128,
