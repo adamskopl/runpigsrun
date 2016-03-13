@@ -3,7 +3,7 @@ function LevelsManager(game, gameObjectsManager) {
 	this.gameObjectsManager = gameObjectsManager;
 	this.groupLevels = this.game.add.group();
 	this.level = undefined;
-	this.levelId = 1;
+	this.levelId = 0;
 	this.levelIdMax = 1; // I'm soooooo lazy.
 	this.loadLevel(this.levelId);
 };

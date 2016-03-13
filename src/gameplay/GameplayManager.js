@@ -6,6 +6,7 @@ function GameplayManager(game) {
 		this.tilesManager, this);
 	this.collisionsHandler = new CollisionsHandler(this.game,
 		this.gameObjectsManager, this.tilesManager);
+	this.gameResultResolver = new GameResultResolver();
 	this.toolsManager = new ToolsManager(this.tilesManager,
 		this.gameObjectsManager);
 
@@ -22,12 +23,20 @@ function GameplayManager(game) {
 	this.movementRunning = false;
 };
 
-GameplayManager.prototype.setMembers = function(levelsManager, guiManager) {
-	this.levelsManager = levelsManager;
-	this.guiManager = guiManager;
+GameplayManager.prototype.connectSignals = function() {
 	this.guiManager.signals["startLevel"].add(this.slotButtonStartLevel, this);
 	this.guiManager.signals["levelPrev"].add(this.slotButtonLevelPrev, this);
 	this.guiManager.signals["levelNext"].add(this.slotButtonLevelNext, this);
+
+	this.collisionsHandler.signalObjectRescued.add(
+		this.gameResultResolver.slotObjectRescued,
+		this.gameResultResolver);
+};
+
+GameplayManager.prototype.setMembers = function(levelsManager, guiManager) {
+	this.levelsManager = levelsManager;
+	this.guiManager = guiManager;
+	this.connectSignals();
 };
 
 GameplayManager.prototype.iterGuardReset = function() {

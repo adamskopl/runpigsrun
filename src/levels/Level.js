@@ -48,7 +48,7 @@ Level.prototype.loadObjects = function() {
 		this.gameObjectsManager.create(
 			tileObjectToGameObjectParams(objectsLevel[i]));
 	}
-	this.addSurroundingRoads();
+	// this.addSurroundingRoads();
 	this.gameObjectsManager.onLevelLoaded();
 };
 

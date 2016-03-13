@@ -39,8 +39,6 @@ function updateGameObjectDirection(TILES_MANAGER) {
 function moveGameObject(GAME, movementManager) {
 	if (!emptyDirection(this.direction)) {
 		var oldPos = cloneProperties(this.gamePos);
-		console.log(this.speed);
-
 		var direction = cloneProperties(this.direction);
 		direction.x *= this.speed;
 		direction.y *= this.speed;

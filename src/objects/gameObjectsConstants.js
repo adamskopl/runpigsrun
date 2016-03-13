@@ -4,6 +4,7 @@ GameObjectType = Object.freeze({
 	ROAD: "road",
 	BRIDGE: "bridge",
 	WATER: "water",
+	SIGN: "sign",
 	TOOL_BOUNCER: "t_bouncer",
 	TOOL_DUMMY: "t_dummy"
 });
@@ -13,7 +14,8 @@ GOT = GameObjectType; // alias
 GameObjectMainType = Object.freeze({
 	PASSAGE: "PASSAGE", // objects are moving through it
 	LIVING: "LIVING", // object is moving
-	TOOL: "TOOL"
+	TOOL: "TOOL",
+	RESCUE: "RESCUE" // object is rescuing hero
 });
 
 function GameObjectDesc(spreadsheet, gid, mainType) {
@@ -41,6 +43,10 @@ GameObjectsConstants[GameObjectType.BRIDGE] =
 GameObjectsConstants[GameObjectType.WATER] =
 	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 13,
 		GameObjectMainType.PASSAGE);
+
+GameObjectsConstants[GameObjectType.SIGN] =
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 67,
+		GameObjectMainType.RESCUE);
 
 GameObjectsConstants[GameObjectType.TOOL_BOUNCER] =
 	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 27,

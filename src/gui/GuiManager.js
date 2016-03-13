@@ -30,7 +30,6 @@ function GuiManager(game, levelsManager, toolsManager) {
 	this.cursorSpritesManager.createCursorSprites();
 	this.createButtonsLevelModification();
 	this.tilesButtonsManager.createTilesButtons();
-	this.reload();
 };
 
 GuiManager.prototype.dispatch = function(signalName) {

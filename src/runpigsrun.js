@@ -47,7 +47,9 @@ function startGame() {
 			levelsManager,
 			gameplayManager.toolsManager);
 		gameplayManager.setMembers(levelsManager, guiManager);
+
 		game.world.bringToTop(gameplayManager.gameObjectsManager.groupGeneral);
+		guiManager.reload();
 	}
 
 	function update() {}

@@ -3,6 +3,9 @@ function CollisionsHandler(game, gameObjectsManager, tilesManager) {
 	this.gameObjectsManager = gameObjectsManager;
 	this.tilesManager = tilesManager;
 	this.tilesToHandle = [];
+
+	this.signalObjectRemoved = new Phaser.Signal();
+	this.signalObjectRescued = new Phaser.Signal();
 };
 
 CollisionsHandler.prototype.handleCollisions = function() {
@@ -55,6 +58,7 @@ CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
 	switch (RESULT.operation) {
 		case COLLISION_OPERATION.REMOVE:
 			this.gameObjectsManager.remove(RESULT.object);
+			this.signalObjectRemoved.dispatch("test");
 			break;
 		case COLLISION_OPERATION.SPEED_CHANGE:
 			RESULT.object.setSpeed(RESULT.arg);
@@ -62,6 +66,14 @@ CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
 		case COLLISION_OPERATION.SCALE_ANIMATION:
 			RESULT.object.startScaleAnimation(this.game, RESULT.arg);
 			break;
+		case COLLISION_OPERATION.RESCUE:
+			if (RESULT.object.type === GOT.HERO) {
+				this.gameObjectsManager.remove(RESULT.object);
+				this.signalObjectRemoved.dispatch("test");
+			}
+			break;
+		default:
+			console.error("not implemented: " + RESULT.operation);
 	}
 }
 

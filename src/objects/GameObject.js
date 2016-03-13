@@ -51,7 +51,6 @@ GameObject.prototype.setDirection = function(dir) {
 };
 
 GameObject.prototype.setSpeed = function(speed) {
-	console.log("speed " + this.type + " " + speed);
 	this.speed = speed;
 };
 
