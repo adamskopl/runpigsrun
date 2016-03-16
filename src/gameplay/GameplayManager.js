@@ -31,6 +31,9 @@ GameplayManager.prototype.connectSignals = function() {
 	this.collisionsHandler.signalObjectRescued.add(
 		this.gameResultResolver.slotObjectRescued,
 		this.gameResultResolver);
+	this.collisionsHandler.signalObjectRemoved.add(
+		this.gameResultResolver.slotObjectRemoved,
+		this.gameResultResolver);
 };
 
 GameplayManager.prototype.setMembers = function(levelsManager, guiManager) {

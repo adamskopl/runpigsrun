@@ -57,8 +57,8 @@ CollisionsHandler.prototype.handleTileCollisions = function(TILE) {
 CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
 	switch (RESULT.operation) {
 		case COLLISION_OPERATION.REMOVE:
+			this.signalObjectRemoved.dispatch(RESULT.object);
 			this.gameObjectsManager.remove(RESULT.object);
-			this.signalObjectRemoved.dispatch("test");
 			break;
 		case COLLISION_OPERATION.SPEED_CHANGE:
 			RESULT.object.setSpeed(RESULT.arg);

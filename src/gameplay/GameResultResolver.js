@@ -23,8 +23,9 @@ GameResultResolver.prototype.reload = function() {
 	this.resultObject.victory = this.resultObject.loss = false;
 };
 
-GameResultResolver.prototype.slotObjectRemoved = function(arg) {
-	console.log(arg);
+GameResultResolver.prototype.slotObjectRemoved = function(OBJECT) {
+	if (OBJECT.type === GOT.HERO)
+		this.resultObject.loss = true;
 };
 
 GameResultResolver.prototype.slotObjectRescued = function(OBJECT) {
