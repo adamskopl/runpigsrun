@@ -6,7 +6,7 @@ function GameplayManager(game) {
 		this.tilesManager, this);
 	this.collisionsHandler = new CollisionsHandler(this.game,
 		this.gameObjectsManager, this.tilesManager);
-	this.gameResultResolver = new GameResultResolver();
+	this.gameResultResolver = new GameResultResolver(this.gameObjectsManager);
 	this.toolsManager = new ToolsManager(this.tilesManager,
 		this.gameObjectsManager);
 
@@ -96,20 +96,20 @@ GameplayManager.prototype.onMovementIterLast = function() {
 	this.iterGuard.movementFinished = true;
 };
 
-GameplayManager.prototype.checkVictory = function() {
-	if (this.gameObjectsManager.count(GOT.HERO) == 0)
-		return true;
-	return false;
+GameplayManager.prototype.checkLevelEnd = function() {
+	return this.gameResultResolver.isVictory() ||
+		this.gameResultResolver.isLoss();
 };
 
-GameplayManager.prototype.onVictory = function() {
-	console.log("victory");
+GameplayManager.prototype.onLevelEnd = function() {
+	console.log("level end");
 	this.reloadAll();
 };
 
 GameplayManager.prototype.reloadAll = function() {
 	this.levelsManager.reloadLevel();
 	this.guiManager.reload();
+	this.gameResultResolver.reload();
 	this.movementRunning = false;
 };
 
@@ -119,8 +119,8 @@ function onIterFinished() {
 		return;
 	}
 	this.collisionsHandler.handleCollisions();
-	if (this.checkVictory()) {
-		this.onVictory();
+	if (this.checkLevelEnd()) {
+		this.onLevelEnd();
 	} else {
 		this.iterGuardReset();
 		this.startMovementIter();

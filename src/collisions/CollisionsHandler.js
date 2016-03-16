@@ -19,7 +19,7 @@ CollisionsHandler.prototype.removeLivingObjectsOutsideLevel = function() {
 	this.tilesManager.callAll(
 		function(objectsOutside) {
 			if (objectsContainMainType(
-					[this], GameObjectMainType.LIVING)) {
+				[this], GameObjectMainType.LIVING)) {
 				if (!posInLevel(this.gamePos)) {
 					objectsOutside.push(this);
 				}
@@ -68,8 +68,8 @@ CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
 			break;
 		case COLLISION_OPERATION.RESCUE:
 			if (RESULT.object.type === GOT.HERO) {
+				this.signalObjectRescued.dispatch(RESULT.object);
 				this.gameObjectsManager.remove(RESULT.object);
-				this.signalObjectRemoved.dispatch("test");
 			}
 			break;
 		default:

@@ -69,6 +69,16 @@ GameObjectsManager.prototype.count = function(GAME_OBJECT_TYPE) {
 	return count;
 };
 
+/**
+ * Count object of a given type, which wait to be created (e.g. heroes waiting
+ * in huts)
+ */
+GameObjectsManager.prototype.countWaiting = function(GAME_OBJECT_TYPE) {
+	if (GAME_OBJECT_TYPE === GOT.HERO)
+		return this.managers[GOT.HUT].countHeroes();
+	return 0;
+};
+
 GameObjectsManager.prototype.check = function() {
 	var num1 = this.count();
 	var num2 = this.tilesManager.count();

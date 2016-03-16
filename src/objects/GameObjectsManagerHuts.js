@@ -35,3 +35,10 @@ GameObjectsManagerHuts.prototype.onIter = function(
 		HUT.pause = true;
 	}
 };
+
+GameObjectsManagerHuts.prototype.countHeroes = function() {
+	var cnt = 0;
+	for (var i in this.objects)
+		cnt += parseInt(this.objects[i].properties.capacity);
+	return cnt;
+};
