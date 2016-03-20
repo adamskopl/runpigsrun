@@ -4,8 +4,10 @@ function CollisionsHandler(game, gameObjectsManager, tilesManager) {
 	this.tilesManager = tilesManager;
 	this.tilesToHandle = [];
 
-	this.signalObjectRemoved = new Phaser.Signal();
-	this.signalObjectRescued = new Phaser.Signal();
+	this.signals = {
+		"objectRemoved": new Phaser.Signal(),
+		"objectRescued": new Phaser.Signal()
+	};
 };
 
 CollisionsHandler.prototype.handleCollisions = function() {
@@ -14,20 +16,26 @@ CollisionsHandler.prototype.handleCollisions = function() {
 	this.tilesToHandle = [];
 };
 
+/**
+ * Every remove should go through here to ensure signal dispatch.
+ */
+CollisionsHandler.prototype.handleRemove = function(GAME_OBJECT, SIGNAL) {
+	// dispatch signal BEFORE removing object
+	this.signals[SIGNAL].dispatch(GAME_OBJECT);
+	this.gameObjectsManager.remove(GAME_OBJECT);
+};
+
 CollisionsHandler.prototype.removeMovingObjectsOutsideLevel = function() {
 	var objectsOutside = [];
 	this.tilesManager.callAll(
 		function(objectsOutside) {
 			if (objectsContainGameplayType(
-				[this], GameObjectGameplayType.MOVING)) {
-				if (!posInLevel(this.gamePos)) {
+				[this], GameObjectGameplayType.MOVING))
+				if (!posInLevel(this.gamePos))
 					objectsOutside.push(this);
-				}
-			}
 		}, [objectsOutside]);
-	for (var OBJ in objectsOutside) {
-		this.gameObjectsManager.remove(objectsOutside[OBJ]);
-	}
+	for (var OBJ in objectsOutside)
+		this.handleRemove(objectsOutside[OBJ], "objectRemoved")
 };
 
 CollisionsHandler.prototype.handleEveryVsEvery = function() {
@@ -57,8 +65,7 @@ CollisionsHandler.prototype.handleTileCollisions = function(TILE) {
 CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
 	switch (RESULT.operation) {
 		case COLLISION_OPERATION.REMOVE:
-			this.signalObjectRemoved.dispatch(RESULT.object);
-			this.gameObjectsManager.remove(RESULT.object);
+			this.handleRemove(RESULT.object, "objectRemoved");
 		case COLLISION_OPERATION.SPEED_CHANGE:
 			RESULT.object.setSpeed(RESULT.arg);
 			break;
@@ -66,15 +73,13 @@ CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
 			RESULT.object.startScaleAnimation(this.game, RESULT.arg);
 			break;
 		case COLLISION_OPERATION.RESCUE:
-			if (RESULT.object.type === GOT.HERO) {
-				this.signalObjectRescued.dispatch(RESULT.object);
-				this.gameObjectsManager.remove(RESULT.object);
-			}
+			if (RESULT.object.type === GOT.HERO)
+				this.handleRemove(RESULT.object, "objectRescued");
 			break;
 		default:
 			console.error("not implemented: " + RESULT.operation);
 	}
-}
+};
 
 /**
  * @param  {Object} GAME_OBJECT Object which has changed its position.

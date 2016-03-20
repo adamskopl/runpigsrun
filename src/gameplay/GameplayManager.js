@@ -29,11 +29,11 @@ GameplayManager.prototype.connectSignals = function() {
 	this.guiManager.signals["levelNext"].add(this.slotButtonLevelNext, this);
 	this.guiManager.signals["levelEndOk"].add(this.slotButtonLevelEndOk, this);
 
-	this.collisionsHandler.signalObjectRescued.add(
-		this.gameResultResolver.slotObjectRescued,
-		this.gameResultResolver);
-	this.collisionsHandler.signalObjectRemoved.add(
+	this.collisionsHandler.signals["objectRemoved"].add(
 		this.gameResultResolver.slotObjectRemoved,
+		this.gameResultResolver);
+	this.collisionsHandler.signals["objectRescued"].add(
+		this.gameResultResolver.slotObjectRescued,
 		this.gameResultResolver);
 };
 
