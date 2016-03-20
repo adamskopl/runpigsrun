@@ -27,6 +27,7 @@ GameplayManager.prototype.connectSignals = function() {
 	this.guiManager.signals["startLevel"].add(this.slotButtonStartLevel, this);
 	this.guiManager.signals["levelPrev"].add(this.slotButtonLevelPrev, this);
 	this.guiManager.signals["levelNext"].add(this.slotButtonLevelNext, this);
+	this.guiManager.signals["levelEndOk"].add(this.slotButtonLevelEndOk, this);
 
 	this.collisionsHandler.signalObjectRescued.add(
 		this.gameResultResolver.slotObjectRescued,
@@ -84,6 +85,11 @@ GameplayManager.prototype.slotButtonLevelNext = function() {
 	this.reloadAll();
 };
 
+GameplayManager.prototype.slotButtonLevelEndOk = function() {
+	this.guiManager.hidePanelLevelEnd();
+	this.reloadAll();
+};
+
 /**
  * Invoked by MovementManager. An object has reached its destiny.
  */
@@ -105,8 +111,8 @@ GameplayManager.prototype.checkLevelEnd = function() {
 };
 
 GameplayManager.prototype.onLevelEnd = function() {
-	console.log("level end");
-	this.reloadAll();
+	this.guiManager.showPanelLevelEnd(
+		this.gameResultResolver.isVictory() ? true : false);
 };
 
 GameplayManager.prototype.reloadAll = function() {

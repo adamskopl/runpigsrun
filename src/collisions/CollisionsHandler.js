@@ -59,7 +59,6 @@ CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
 		case COLLISION_OPERATION.REMOVE:
 			this.signalObjectRemoved.dispatch(RESULT.object);
 			this.gameObjectsManager.remove(RESULT.object);
-			break;
 		case COLLISION_OPERATION.SPEED_CHANGE:
 			RESULT.object.setSpeed(RESULT.arg);
 			break;

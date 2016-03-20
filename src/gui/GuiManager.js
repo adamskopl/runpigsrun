@@ -15,6 +15,15 @@ function GuiManager(game, levelsManager, toolsManager) {
 	this.cursorSpritesManager = new CursorSpritesManager(game, this.groupGui);
 
 	this.graphics = game.add.graphics(0, 0);
+	this.graphicsParameters = {
+		fill: 0x39469E,
+		lineStyle: {
+			width: 1,
+			color: 0x000000,
+			alpha: 1
+		}
+	};
+	this.panelLevelEnd = undefined;
 
 	this.buttonsToolsLevel = [];
 	this.buttonStartLevel = {};
@@ -23,7 +32,8 @@ function GuiManager(game, levelsManager, toolsManager) {
 	this.signals = {
 		"startLevel": new Phaser.Signal(),
 		"levelPrev": new Phaser.Signal(),
-		"levelNext": new Phaser.Signal()
+		"levelNext": new Phaser.Signal(),
+		"levelEndOk": new Phaser.Signal()
 	};
 
 	this.createToolbar();
@@ -45,11 +55,31 @@ GuiManager.prototype.reload = function() {
 };
 
 GuiManager.prototype.createToolbar = function() {
-	this.graphics.beginFill(0x39469E);
-	this.graphics.lineStyle(1, 0x000000, 1);
+	this.graphics.beginFill(this.graphicsParameters.fill);
+	this.graphics.lineStyle(this.graphicsParameters.lineStyle.width,
+		this.graphicsParameters.lineStyle.color,
+		this.graphicsParameters.lineStyle.alpha);
 	this.graphics.drawRect(0, 0,
 		scaleConstants.GAME_W,
 		scaleConstants.TILE_SIZE_SCALED);
+};
+
+/**
+ * Show panel ending level.
+ * @param  {Bool} GAME_RESULT true: win, false: lose
+ */
+GuiManager.prototype.showPanelLevelEnd = function(GAME_RESULT) {
+	if (this.panelLevelEnd === undefined) {
+		this.panelLevelEnd = new PanelLevelEnd(this.game, this.groupGui,
+			this.graphicsParameters);
+		this.panelLevelEnd.signals["buttonOk"].add(
+			this.slotButtonPanelLevelEndOk, this);
+	}
+	this.panelLevelEnd.showPanel(GAME_RESULT);
+};
+
+GuiManager.prototype.hidePanelLevelEnd = function() {
+	this.panelLevelEnd.hidePanel();
 };
 
 GuiManager.prototype.createButtonsToolsLevel = function() {
@@ -102,4 +132,8 @@ GuiManager.prototype.slotButtonTile = function(gamePos) {
 
 GuiManager.prototype.slotButtonTileOver = function(gamePos) {
 	this.cursorSpritesManager.onButtonTileOver(gamePos);
+};
+
+GuiManager.prototype.slotButtonPanelLevelEndOk = function() {
+	this.dispatch("levelEndOk");
 };
