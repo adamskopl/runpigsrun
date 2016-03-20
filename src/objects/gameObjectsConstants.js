@@ -11,55 +11,51 @@ GameObjectType = Object.freeze({
 GOT = GameObjectType; // alias
 
 // TODO: change 'main type' on something else
-GameObjectMainType = Object.freeze({
+GameObjectGameplayType = Object.freeze({
 	PASSAGE: "PASSAGE", // objects are moving through it
-	LIVING: "LIVING", // object is moving
+	MOVING: "MOVING", // object is moving
 	TOOL: "TOOL",
-	RESCUE: "RESCUE" // object is rescuing hero
+	RESCUE: "RESCUE", // object is rescuing hero
+	SPEED_CHANGE: "SPEED_CHANGE" // object is moving other objects
 });
 
-function GameObjectDesc(spreadsheet, gid, mainType) {
+GOGT = GameObjectGameplayType;
+
+function GameObjectDesc(spreadsheet, gid, gameplayTypes) {
 	return {
 		spreadsheet: spreadsheet,
 		gid: gid,
-		mainType: mainType
+		gameplayTypes: gameplayTypes
 	};
 };
 
 GameObjectsConstants = [];
 GOC = GameObjectsConstants; // alias
 GameObjectsConstants[GameObjectType.HUT] =
-	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 48,
-		GameObjectMainType.LIVING);
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 48, [GameObjectGameplayType.MOVING]);
 GameObjectsConstants[GameObjectType.HERO] =
-	new GameObjectDesc(assetsConstants.SPREADSHEET_CHARACTERS, 49,
-		GameObjectMainType.LIVING);
+	new GameObjectDesc(assetsConstants.SPREADSHEET_CHARACTERS, 49, [GameObjectGameplayType.MOVING]);
 GameObjectsConstants[GameObjectType.ROAD] =
-	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 10,
-		GameObjectMainType.PASSAGE);
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 10, [GameObjectGameplayType.PASSAGE]);
 GameObjectsConstants[GameObjectType.BRIDGE] =
-	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 88,
-		GameObjectMainType.PASSAGE);
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 88, [GameObjectGameplayType.PASSAGE]);
 GameObjectsConstants[GameObjectType.WATER] =
-	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 13,
-		GameObjectMainType.PASSAGE);
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 13, [GameObjectGameplayType.PASSAGE]);
 
 GameObjectsConstants[GameObjectType.SIGN] =
-	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 67,
-		GameObjectMainType.RESCUE);
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 67, [GameObjectGameplayType.RESCUE]);
 
 GameObjectsConstants[GameObjectType.TOOL_BOUNCER] =
-	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 27,
-		GameObjectMainType.TOOL);
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 27, [GameObjectGameplayType.TOOL, GameObjectGameplayType.SPEED_CHANGE]);
 GameObjectsConstants[GameObjectType.TOOL_DUMMY] =
-	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 28,
-		GameObjectMainType.TOOL);
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 28, [GameObjectGameplayType.TOOL]);
 
-
-
-function objectsContainMainType(OBJECTS, mainType) {
-	for (i = 0; i < OBJECTS.length; i++)
-		if (GOC[OBJECTS[i].type].mainType == mainType)
-			return true;
+function objectsContainGameplayType(OBJECTS, GAMEPLAY_TYPE) {
+	for (var O in OBJECTS) {
+		var TYPES = GOC[OBJECTS[O].type].gameplayTypes;
+		for (var GT in TYPES)
+			if (TYPES[GT] === GAMEPLAY_TYPE)
+				return true;
+	}
 	return false;
 };

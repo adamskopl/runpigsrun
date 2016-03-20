@@ -30,7 +30,8 @@ function canMove(GAME_POS, DIRECTION, TILES_MANAGER) {
 	var ADJACENT_OBJECTS = TILES_MANAGER.getAdjacent(
 		GAME_POS, DIRECTION);
 	if (ADJACENT_OBJECTS !== undefined)
-		if (objectsContainMainType(ADJACENT_OBJECTS, GameObjectMainType.PASSAGE))
+		if (objectsContainGameplayType(ADJACENT_OBJECTS,
+			GameObjectGameplayType.PASSAGE))
 			return true;
 	return false;
 };

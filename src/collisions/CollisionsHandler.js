@@ -9,17 +9,17 @@ function CollisionsHandler(game, gameObjectsManager, tilesManager) {
 };
 
 CollisionsHandler.prototype.handleCollisions = function() {
-	this.removeLivingObjectsOutsideLevel();
+	this.removeMovingObjectsOutsideLevel();
 	this.handleEveryVsEvery();
 	this.tilesToHandle = [];
 };
 
-CollisionsHandler.prototype.removeLivingObjectsOutsideLevel = function() {
+CollisionsHandler.prototype.removeMovingObjectsOutsideLevel = function() {
 	var objectsOutside = [];
 	this.tilesManager.callAll(
 		function(objectsOutside) {
-			if (objectsContainMainType(
-				[this], GameObjectMainType.LIVING)) {
+			if (objectsContainGameplayType(
+				[this], GameObjectGameplayType.MOVING)) {
 				if (!posInLevel(this.gamePos)) {
 					objectsOutside.push(this);
 				}

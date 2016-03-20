@@ -59,12 +59,14 @@ TilesManager.prototype.get = function(POS_X, POS_Y) {
 	return this.tiles[POS_X][POS_Y];
 };
 
-TilesManager.prototype.contains = function(TILE, OBJECT) {
-	for (var O in TILE) {
-		if (t[O] === OBJECT) return O;
+TilesManager.prototype.tileContainsGameplayType = function(GAME_POS, G_TYPE) {
+	var TILE = this.get(GAME_POS.x, GAME_POS.y);
+	if (TILE === undefined) {
+		console.error("no tile " + GAME_POS.x + ", " + GAME_POS.y);
+		return false;
 	}
-	return -1;
-}
+	return objectsContainGameplayType(TILE, G_TYPE);
+};
 
 /**
  * TODO: static function

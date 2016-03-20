@@ -20,12 +20,18 @@ MovementManager.prototype.moveAll = function() {
  * Called on GameObject
  */
 function updateGameObjectDirection(TILES_MANAGER) {
+	if (!objectsContainGameplayType([this], GOGT.MOVING))
+		return;
+	// check if common object is allowing to pass many tiles
+	// probably will need changes (not only bouncer will change speed)
+	if (TILES_MANAGER.tileContainsGameplayType(this.gamePos, GOGT.SPEED_CHANGE))
+		return;
 	if (!emptyDirection(this.direction))
 		if (!canMove(this.gamePos,
-				this.direction, TILES_MANAGER)) {
+			this.direction, TILES_MANAGER)) {
 			opposite = movementDirectionOpposite(this.direction);
 			if (canMove(this.gamePos,
-					opposite, TILES_MANAGER))
+				opposite, TILES_MANAGER))
 				this.setDirection(opposite);
 			else
 			// blocked
