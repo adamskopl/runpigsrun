@@ -26,6 +26,13 @@ function collisionherohero(HERO, HERO) {
 	return [];
 };
 
+/**
+ * Hero land on the hut (e.g. through bouncer)
+ */
+function collisionherohut(HERO, HUT) {
+	return [new CollisionResult(HERO, COLLISION_OPERATION.REMOVE)];
+};
+
 function collisionheroroad(HERO, ROAD) {
 	return [new CollisionResult(HERO, COLLISION_OPERATION.SPEED_CHANGE, 1)];
 };
