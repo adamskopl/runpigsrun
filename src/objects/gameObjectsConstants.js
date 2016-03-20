@@ -1,4 +1,5 @@
 GameObjectType = Object.freeze({
+	VOID: "void", // for empty fields
 	HUT: "hut",
 	HERO: "hero",
 	ROAD: "road",
@@ -31,6 +32,10 @@ function GameObjectDesc(spreadsheet, gid, gameplayTypes) {
 
 GameObjectsConstants = [];
 GOC = GameObjectsConstants; // alias
+
+GameObjectsConstants[GameObjectType.VOID] =
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 102, [GameObjectGameplayType.PASSAGE]);
+
 GameObjectsConstants[GameObjectType.HUT] =
 	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 48, [GameObjectGameplayType.MOVING]);
 GameObjectsConstants[GameObjectType.HERO] =

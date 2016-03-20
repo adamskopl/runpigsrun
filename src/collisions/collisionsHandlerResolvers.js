@@ -42,7 +42,17 @@ function collisionherosign(HERO, SIGN) {
 };
 
 function collisionherot_bouncer(HERO, TOOL_BOUNCER) {
-	return [new CollisionResult(HERO, COLLISION_OPERATION.SPEED_CHANGE, 2)];
+	return [
+		new CollisionResult(HERO, COLLISION_OPERATION.SPEED_CHANGE, 2),
+		new CollisionResult(TOOL_BOUNCER, COLLISION_OPERATION.SCALE_ANIMATION, 1.5)
+	];
+};
+
+function collisionherovoid(HERO, VOID) {
+	return [
+		new CollisionResult(HERO, COLLISION_OPERATION.REMOVE),
+		new CollisionResult(VOID, COLLISION_OPERATION.SCALE_ANIMATION, 3)
+	];
 };
 
 function collisionherowater(HERO, WATER) {

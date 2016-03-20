@@ -34,6 +34,26 @@ GameObjectsManager.prototype.create = function(gameObjectParams) {
 };
 
 /**
+ * Wherever field is empty, create 'VOID' type object.
+ */
+GameObjectsManager.prototype.createEmptyObjects = function() {
+	var inhabitet = 0;
+	for (var i = 0; i < SC.MAP_TILES_X; i++) {
+		for (var j = 0; j < SC.MAP_TILES_Y; j++) {
+			if (this.tilesManager.get(i, j) === undefined)
+				this.create(new GameObjectParams(
+					GOT.VOID, {
+						x: i,
+						y: j
+					}, {
+						x: 0,
+						y: 0
+					}, 0, {}));
+		}
+	}
+};
+
+/**
  * Remove object from collecion, remove from TilesManager.
  */
 GameObjectsManager.prototype.remove = function(GAME_OBJECT) {

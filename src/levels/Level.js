@@ -44,11 +44,11 @@ Level.prototype.loadMap = function() {
 
 Level.prototype.loadObjects = function() {
 	var objectsLevel = this.map.objects.objectsLevel;
-	for (var i = 0; i < objectsLevel.length; i++) {
+	for (var i = 0; i < objectsLevel.length; i++)
 		this.gameObjectsManager.create(
 			tileObjectToGameObjectParams(objectsLevel[i]));
-	}
 	// this.addSurroundingRoads();
+	this.gameObjectsManager.createEmptyObjects();
 	this.gameObjectsManager.onLevelLoaded();
 };
 

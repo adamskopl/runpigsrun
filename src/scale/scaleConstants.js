@@ -13,6 +13,8 @@ scaleConstants = {
 	GAME_OFFSET_Y: 1
 };
 
+SC = scaleConstants;
+
 scaleConstants.TILE_SIZE_SCALED =
 	scaleConstants.TILE_SIZE * scaleConstants.MAIN_SCALE;
 scaleConstants.GAME_W =
