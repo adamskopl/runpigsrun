@@ -51,8 +51,14 @@ LevelsManager.prototype.getDescription = function(id) {
 
 LevelsDescriptions = Object.freeze([{
 	id: '00',
-	tools: [GOT.TOOL_BOUNCER]
+	tools: [
+		[GOT.TOOL_BOUNCER, 2],
+		[GOT.TOOL_DUMMY, 1]
+	]
 }, {
 	id: '01',
-	tools: [GOT.TOOL_BOUNCER, GOT.TOOL_DUMMY]
+	tools: [
+		[GOT.TOOL_BOUNCER, 1],
+		[GOT.TOOL_DUMMY, 1]
+	]
 }]);

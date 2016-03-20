@@ -51,6 +51,8 @@ GuiManager.prototype.reload = function() {
 		this.buttonsToolsLevel[i].destroy();
 	this.buttonsToolsLevel.length = 0;
 	this.createButtonsToolsLevel();
+	this.toolsManager.reload(
+		this.levelsManager.getCurrentLevel().description.tools);
 	this.game.world.bringToTop(this.groupGui);
 };
 
@@ -85,10 +87,9 @@ GuiManager.prototype.hidePanelLevelEnd = function() {
 GuiManager.prototype.createButtonsToolsLevel = function() {
 	var currentTools =
 		this.levelsManager.getCurrentLevel().description.tools;
-	for (var i in currentTools) {
+	for (var i in currentTools)
 		this.buttonsToolsLevel.push(
-			new ButtonTool(currentTools[i], i, this.game, this));
-	}
+			new ButtonTool(currentTools[i][0], i, this.game, this));
 };
 
 GuiManager.prototype.createButtonsLevelModification = function() {
@@ -127,7 +128,7 @@ GuiManager.prototype.onButtonTool = function(type) {
  * Tile (tile's button) clicked.
  */
 GuiManager.prototype.slotButtonTile = function(gamePos) {
-	this.toolsManager.onToolChoice(gamePos);
+	this.toolsManager.onTileChoice(gamePos);
 };
 
 GuiManager.prototype.slotButtonTileOver = function(gamePos) {
