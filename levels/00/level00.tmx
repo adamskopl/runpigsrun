@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" nextobjectid="379">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" nextobjectid="396">
  <tileset firstgid="1" name="basictiles" tilewidth="16" tileheight="16" tilecount="120" columns="8">
   <image source="../../assets/tileset/basictiles_2.png" width="128" height="240"/>
  </tileset>
@@ -54,8 +54,18 @@
   <object id="367" name="road" gid="11" x="80" y="144" width="16" height="16"/>
   <object id="368" name="road" gid="11" x="112" y="144" width="16" height="16"/>
   <object id="369" name="road" gid="11" x="144" y="144" width="16" height="16"/>
-  <object id="370" name="sign" gid="68" x="112" y="144" width="16" height="16"/>
+  <object id="370" name="sign" gid="68" x="144" y="144" width="16" height="16"/>
   <object id="372" name="road" gid="11" x="128" y="144" width="16" height="16"/>
+  <object id="386" name="road" gid="11" x="96" y="48" width="16" height="16"/>
+  <object id="387" name="road" gid="11" x="112" y="48" width="16" height="16"/>
+  <object id="388" name="road" gid="11" x="96" y="64" width="16" height="16"/>
+  <object id="389" name="road" gid="11" x="112" y="64" width="16" height="16"/>
+  <object id="390" name="road" gid="11" x="96" y="32" width="16" height="16"/>
+  <object id="391" name="road" gid="11" x="112" y="32" width="16" height="16"/>
+  <object id="392" name="road" gid="11" x="128" y="32" width="16" height="16"/>
+  <object id="393" name="road" gid="11" x="128" y="48" width="16" height="16"/>
+  <object id="394" name="road" gid="11" x="128" y="64" width="16" height="16"/>
+  <object id="395" name="road" gid="11" x="64" y="144" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="objectsCharacters"/>
 </map>
