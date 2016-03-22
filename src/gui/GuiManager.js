@@ -11,6 +11,7 @@ function GuiManager(game, levelsManager, toolsManager) {
 	this.tilesButtonsManager = new TilesButtonsManager(game, this.groupGui);
 	this.tilesButtonsManager.signalButtonTile.add(this.slotButtonTile, this);
 	this.tilesButtonsManager.signalButtonTileOver.add(this.slotButtonTileOver, this);
+	this.toolsManager.signalToolNumberModified.add(this.slotToolNumberModified, this);
 
 	this.cursorSpritesManager = new CursorSpritesManager(game, this.groupGui);
 
@@ -137,4 +138,12 @@ GuiManager.prototype.slotButtonTileOver = function(gamePos) {
 
 GuiManager.prototype.slotButtonPanelLevelEndOk = function() {
 	this.dispatch("levelEndOk");
+};
+
+GuiManager.prototype.slotToolNumberModified = function(TOOL_TYPE, CURRENT_NUMBER) {
+	for (var B in this.buttonsToolsLevel) {
+		var button = this.buttonsToolsLevel[B];
+		if (button.type === TOOL_TYPE)
+			button.setEnabled(CURRENT_NUMBER !== 0 ? true : false);
+	}
 };

@@ -3,6 +3,7 @@ function ToolsManager(tilesManager, gameObjectsManager) {
 	this.gameObjectsManager = gameObjectsManager;
 	this.currentTool = undefined;
 	this.availableTools = undefined;
+	this.signalToolNumberModified = new Phaser.Signal();
 };
 
 ToolsManager.prototype.reload = function(LEVEL_TOOLS) {
@@ -26,6 +27,23 @@ ToolsManager.prototype.onCurrentToolChange = function(TOOL_TYPE) {
 
 ToolsManager.prototype.onTileChoice = function(GAME_POS) {
 	if (this.currentTool === undefined) return;
+
+	var TILE_TOOLS = this.tilesManager.getObjectsGameplayType(GAME_POS, GOGT.TOOL);
+	if (TILE_TOOLS.length > 0) {
+		if (TILE_TOOLS.length > 1)
+			console.error("more than one tool");
+		var TOOL = TILE_TOOLS[0];
+		var TOOL_ARRAY = this.getToolArray(TOOL.type);
+		if (TOOL_ARRAY === undefined) {
+			console.error("no array for " + TOOL.type);
+			return;
+		}
+		removeArrayObject(TOOL_ARRAY[3], TOOL);
+		this.modifyToolCurrentNumber(TOOL.type, 1);
+		this.gameObjectsManager.remove(TOOL);
+		return;
+	}
+
 	if (this.posAcceptsTool(GAME_POS, this.currentTool)) {
 		var NEW_TOOL = this.gameObjectsManager.create(new GameObjectParams(
 			this.currentTool, {
@@ -36,6 +54,7 @@ ToolsManager.prototype.onTileChoice = function(GAME_POS) {
 		var TOOL_ARRAY = this.getToolArray(this.currentTool);
 		TOOL_ARRAY[3].push(NEW_TOOL);
 		if (this.getToolCurrentNumber(this.currentTool) === 0) {
+			// remove previously created tool (tools queue shift)
 			var FIRST_TOOL = TOOL_ARRAY[3].shift();
 			this.gameObjectsManager.remove(FIRST_TOOL);
 		} else {
@@ -62,7 +81,8 @@ ToolsManager.prototype.getToolArray = function(TOOL_TYPE) {
 	for (var T in this.availableTools)
 		if (this.availableTools[T][0] === TOOL_TYPE)
 			return this.availableTools[T];
-	console.error("no tool for " + TOOL_TYPE);
+	console.error("no array for " + TOOL_TYPE);
+	return [];
 };
 
 /**
@@ -86,5 +106,6 @@ ToolsManager.prototype.modifyToolCurrentNumber = function(TOOL_TYPE, NUMBER) {
 	var ARR = this.getToolArray(TOOL_TYPE);
 	ARR[2] += NUMBER;
 	if (ARR[2] < 0)
-		console.error("negative number of tools")
+		console.error("negative number of tools");
+	this.signalToolNumberModified.dispatch(TOOL_TYPE, ARR[2]);
 };

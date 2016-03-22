@@ -59,6 +59,20 @@ TilesManager.prototype.get = function(POS_X, POS_Y) {
 	return this.tiles[POS_X][POS_Y];
 };
 
+/**
+ * Get objects of a given type on a given position.
+ * @return {Array} Array with objects of a given type. If length = 0, than
+ *                 no objects on a given position.
+ */
+TilesManager.prototype.getObjectsGameplayType = function(GAME_POS, G_TYPE) {
+	var TILE = this.get(GAME_POS.x, GAME_POS.y);
+	if (TILE === undefined) {
+		console.error("no tile " + GAME_POS.x + ", " + GAME_POS.y);
+		return [];
+	}
+	return filterObjectsGameplayType(TILE, G_TYPE);
+}
+
 TilesManager.prototype.tileContainsGameplayType = function(GAME_POS, G_TYPE) {
 	var TILE = this.get(GAME_POS.x, GAME_POS.y);
 	if (TILE === undefined) {

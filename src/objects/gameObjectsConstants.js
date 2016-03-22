@@ -64,3 +64,14 @@ function objectsContainGameplayType(OBJECTS, GAMEPLAY_TYPE) {
 	}
 	return false;
 };
+
+function filterObjectsGameplayType(OBJECTS, GAMEPLAY_TYPE) {
+	var FILTERED = [];
+	for (var O in OBJECTS) {
+		var TYPES = GOC[OBJECTS[O].type].gameplayTypes;
+		for (var GT in TYPES)
+			if (TYPES[GT] === GAMEPLAY_TYPE)
+				FILTERED.push(OBJECTS[O]);
+	}
+	return FILTERED;
+};

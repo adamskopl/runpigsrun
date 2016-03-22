@@ -12,12 +12,20 @@ function prepareArray(array, X, Y) {
 		array[X][Y] = [];
 };
 
+function removeArrayObject(array, object) {
+	var index = array.indexOf(object);
+	if (index !== -1)
+		array.splice(index, 1);
+	else
+		console.error("index === -1");
+}
+
 function startGame() {
 	// CANVAS chosen, so 'debug' functions likde debug.body(sprite) can work...
 	// change later maybe on Phaser.AUTO
 	var game = new Phaser.Game(
-		scaleConstants.GAME_W,
-		scaleConstants.GAME_H,
+		SC.GAME_W,
+		SC.GAME_H,
 		Phaser.CANVAS,
 		'game', {
 			preload: preload,
