@@ -37,7 +37,7 @@ function collisionheroroad(HERO, ROAD) {
 	return [new CollisionResult(HERO, COLLISION_OPERATION.SPEED_CHANGE, 1)];
 };
 
-function collisionherosign(HERO, SIGN) {
+function collisionexithero(EXIT, HERO) {
 	return [new CollisionResult(HERO, COLLISION_OPERATION.RESCUE)];
 };
 
@@ -62,7 +62,7 @@ function collisionherowater(HERO, WATER) {
 	];
 };
 
-function collisionroadsign(ROAD, SIGN) {
+function collisionexitroad(EXIT, ROAD) {
 	return [];
 };
 

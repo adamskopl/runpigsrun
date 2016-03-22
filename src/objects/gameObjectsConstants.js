@@ -5,7 +5,7 @@ GameObjectType = Object.freeze({
 	ROAD: "road",
 	BRIDGE: "bridge",
 	WATER: "water",
-	SIGN: "sign",
+	EXIT: "exit",
 	TOOL_BOUNCER: "t_bouncer",
 	TOOL_DUMMY: "t_dummy"
 });
@@ -47,7 +47,7 @@ GameObjectsConstants[GameObjectType.BRIDGE] =
 GameObjectsConstants[GameObjectType.WATER] =
 	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 13, [GameObjectGameplayType.PASSAGE]);
 
-GameObjectsConstants[GameObjectType.SIGN] =
+GameObjectsConstants[GameObjectType.EXIT] =
 	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 67, [GameObjectGameplayType.RESCUE]);
 
 GameObjectsConstants[GameObjectType.TOOL_BOUNCER] =
