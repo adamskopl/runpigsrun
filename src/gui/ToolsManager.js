@@ -16,7 +16,7 @@ ToolsManager.prototype.reload = function(LEVEL_TOOLS) {
 	for (var T in this.availableTools) {
 		// third: number of unused tools:
 		this.availableTools[T].push(this.availableTools[T][1]);
-		// fourth: queue of chosen positions
+		// fourth: queue of chosen tools (which are on the map)
 		this.availableTools[T].push([]);
 	}
 };
@@ -28,16 +28,27 @@ ToolsManager.prototype.onCurrentToolChange = function(TOOL_TYPE) {
 ToolsManager.prototype.onTileChoice = function(GAME_POS) {
 	if (this.currentTool === undefined) return;
 
+	// get objects of a 'tool' type from a given pos
 	var TILE_TOOLS = this.tilesManager.getObjectsGameplayType(GAME_POS, GOGT.TOOL);
 	if (TILE_TOOLS.length > 0) {
+		// chosen field already has a tool on it
 		if (TILE_TOOLS.length > 1)
-			console.error("more than one tool");
+			console.error("more than one tool"); // more than one tool on a tile
 		var TOOL = TILE_TOOLS[0];
+
+		// 2 options: remove tool OR shift its state
+		if (TOOL.type === this.currentTool) {
+			TOOL.stateShift();
+			if (!TOOL.stateIsFirst())
+				return; // first state shifted or no states management
+		}
+
 		var TOOL_ARRAY = this.getToolArray(TOOL.type);
 		if (TOOL_ARRAY === undefined) {
 			console.error("no array for " + TOOL.type);
 			return;
 		}
+		// remove object from tools already chosen
 		removeArrayObject(TOOL_ARRAY[3], TOOL);
 		this.modifyToolCurrentNumber(TOOL.type, 1);
 		this.gameObjectsManager.remove(TOOL);
@@ -75,7 +86,7 @@ ToolsManager.prototype.posAcceptsTool = function(GAME_POS, TOOL_TYPE) {
 };
 
 /**
- * Get array describing tool of a given type.
+ * Get array describing available tool of a given type.
  */
 ToolsManager.prototype.getToolArray = function(TOOL_TYPE) {
 	for (var T in this.availableTools)

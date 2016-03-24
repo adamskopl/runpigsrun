@@ -6,6 +6,7 @@ GameObjectType = Object.freeze({
 	BRIDGE: "bridge",
 	WATER: "water",
 	EXIT: "exit",
+	SIGNPOST: "signpost",
 	TOOL_BOUNCER: "t_bouncer",
 	TOOL_DUMMY: "t_dummy"
 });
@@ -48,7 +49,9 @@ GameObjectsConstants[GameObjectType.WATER] =
 	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 13, [GameObjectGameplayType.PASSAGE]);
 
 GameObjectsConstants[GameObjectType.EXIT] =
-	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 67, [GameObjectGameplayType.RESCUE]);
+	new GameObjectDesc(assetsConstants.SPREADSHEET_THINGS, 93, [GameObjectGameplayType.RESCUE]);
+GameObjectsConstants[GameObjectType.SIGNPOST] =
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 67, [GameObjectGameplayType.TOOL]);
 
 GameObjectsConstants[GameObjectType.TOOL_BOUNCER] =
 	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 27, [GameObjectGameplayType.TOOL, GameObjectGameplayType.SPEED_CHANGE]);

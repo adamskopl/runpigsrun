@@ -26,12 +26,19 @@ function updateGameObjectDirection(TILES_MANAGER) {
 	// probably will need changes (not only bouncer will change speed)
 	if (TILES_MANAGER.tileContainsGameplayType(this.gamePos, GOGT.SPEED_CHANGE))
 		return;
+
+	// if (TILES_MANAGER.tileContainsGameplayType()) {
+
+
+
+	// }
+
 	if (!emptyDirection(this.direction))
 		if (!canMove(this.gamePos,
-			this.direction, TILES_MANAGER)) {
+				this.direction, TILES_MANAGER)) {
 			opposite = movementDirectionOpposite(this.direction);
 			if (canMove(this.gamePos,
-				opposite, TILES_MANAGER))
+					opposite, TILES_MANAGER))
 				this.setDirection(opposite);
 			else
 			// blocked

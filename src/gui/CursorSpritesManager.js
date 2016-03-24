@@ -6,7 +6,12 @@ function CursorSpritesManager(game, groupGui) {
 };
 
 CursorSpritesManager.prototype.createCursorSprites = function() {
-	var tools = [GOT.TOOL_BOUNCER, GOT.TOOL_DUMMY];
+	var tools = [];
+	for (var o in GOC)
+		for (var gt in GOC[o].gameplayTypes)
+			if (GOC[o].gameplayTypes[gt] === GOGT.TOOL)
+				tools.push(o);
+
 	var sName = assetsConstants.SPREADSHEET_BASIC;
 	for (var i in tools) {
 		var type = tools[i];

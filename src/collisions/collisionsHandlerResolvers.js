@@ -22,6 +22,10 @@ function collisionbridgehero(BRIDGE, HERO) {
 	return [];
 };
 
+function collisionexitroad(EXIT, ROAD) {
+	return [];
+};
+
 function collisionherohero(HERO, HERO) {
 	return [];
 };
@@ -36,6 +40,10 @@ function collisionherohut(HERO, HUT) {
 function collisionheroroad(HERO, ROAD) {
 	return [new CollisionResult(HERO, COLLISION_OPERATION.SPEED_CHANGE, 1)];
 };
+
+function collisionherosignpost(HERO, SIGNPOST) {
+	return [];
+}
 
 function collisionexithero(EXIT, HERO) {
 	return [new CollisionResult(HERO, COLLISION_OPERATION.RESCUE)];
@@ -62,10 +70,10 @@ function collisionherowater(HERO, WATER) {
 	];
 };
 
-function collisionexitroad(EXIT, ROAD) {
+function collisionroadt_bouncer(ROAD, T_BOUNCER) {
 	return [];
 };
 
-function collisionroadt_bouncer(ROAD, T_BOUNCER) {
+function collisionroadsignpost(ROAD, SIGNPOST) {
 	return [];
 };

@@ -5,12 +5,15 @@
  * @param {Array} gameObjectParams.gamePos
  * @param {number} gameObjectParams.angle
  */
-function GameObject(group, GAME_OBJECT_PARAMS) {
+function GameObject(group, GAME_OBJECT_PARAMS, statesMgr) {
 	this.gamePos = cloneProperties(GAME_OBJECT_PARAMS.gamePos);
 	this.direction = cloneProperties(GAME_OBJECT_PARAMS.direction);
 	this.angle = GAME_OBJECT_PARAMS.angle; // could be replaced by direction?
 	this.properties = GAME_OBJECT_PARAMS.properties;
 	this.type = GAME_OBJECT_PARAMS.type;
+
+	this.statesMgr = statesMgr;
+	this.stateNumber = 0; // managed by GOStatesMgr
 
 	// how many tiles in one iteration
 	this.speed = 1;

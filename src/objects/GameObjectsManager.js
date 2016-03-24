@@ -1,6 +1,7 @@
 function GameObjectsManager(game, tilesManager) {
 	this.game = game;
 	this.tilesManager = tilesManager;
+	this.statesMgr = new GOStatesMgr();
 	this.objects = {};
 	this.groupGeneral = this.game.add.group();
 	this.managers = {}; // concrete managers
@@ -25,7 +26,7 @@ GameObjectsManager.prototype.clear = function() {
 
 GameObjectsManager.prototype.create = function(gameObjectParams) {
 	gameObject = new GameObject(this.groupGeneral,
-		gameObjectParams);
+		gameObjectParams, this.statesMgr);
 	this.push(gameObject);
 	this.tilesManager.put(gameObject, gameObjectParams.gamePos.x,
 		gameObjectParams.gamePos.y);
