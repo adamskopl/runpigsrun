@@ -182,12 +182,28 @@
                  "visible":true,
                  "width":16,
                  "x":96,
-                 "y":176
+                 "y":192
+                }, 
+                {
+                 "gid":310,
+                 "height":16,
+                 "id":396,
+                 "name":"exit",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":192
                 }, 
                 {
                  "gid":11,
                  "height":16,
-                 "id":388,
+                 "id":397,
                  "name":"road",
                  "properties":
                     {
@@ -198,23 +214,7 @@
                  "visible":true,
                  "width":16,
                  "x":96,
-                 "y":192
-                }, 
-                {
-                 "gid":68,
-                 "height":16,
-                 "id":394,
-                 "name":"sign",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":96,
-                 "y":192
+                 "y":176
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -235,7 +235,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":395,
+ "nextobjectid":398,
  "orientation":"orthogonal",
  "properties":
     {
