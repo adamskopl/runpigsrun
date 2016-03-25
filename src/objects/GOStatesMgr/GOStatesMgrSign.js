@@ -1,12 +1,14 @@
+/*
+	As this is a first states array... use any values
+	which speed up the states appliance.
+ */
 GOStates_signpost = Object.freeze([
-	"W", "N", "E", "S"
+	0, 90, 180, -90
 ]);
 
-function GOStatesMgrSign() {
-
-};
+function GOStatesMgrSign() {};
 
 GOStatesMgrSign.prototype.applyState = function(GAME_OBJECT) {
 	var ARR = getStateArray(GAME_OBJECT);
-	console.log("APPLY " + ARR[GAME_OBJECT.stateNumber]);
+	GAME_OBJECT.sprite.angle = ARR[GAME_OBJECT.stateNumber];
 };

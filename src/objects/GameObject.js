@@ -8,7 +8,6 @@
 function GameObject(group, GAME_OBJECT_PARAMS, statesMgr) {
 	this.gamePos = cloneProperties(GAME_OBJECT_PARAMS.gamePos);
 	this.direction = cloneProperties(GAME_OBJECT_PARAMS.direction);
-	this.angle = GAME_OBJECT_PARAMS.angle; // could be replaced by direction?
 	this.properties = GAME_OBJECT_PARAMS.properties;
 	this.type = GAME_OBJECT_PARAMS.type;
 
@@ -38,7 +37,6 @@ GameObject.prototype.destroy = function() {
 	this.sprite.destroy();
 	this.gamePos = {};
 	this.direction = {};
-	this.angle = {};
 	this.properties = {};
 	this.type = {};
 	this.sprite = {};
