@@ -5,6 +5,7 @@ function CollisionResult(OBJECT, OPERATION, ARG) {
 };
 
 COLLISION_OPERATION = Object.freeze({
+	DIR_CHANGE: "dir_change",
 	REMOVE: "remove",
 	RESCUE: "rescue", // rescue object (hero)
 	SCALE_ANIMATION: "scaleAnim", // temporary firework

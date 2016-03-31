@@ -30,7 +30,7 @@ CollisionsHandler.prototype.removeMovingObjectsOutsideLevel = function() {
 	this.tilesManager.callAll(
 		function(objectsOutside) {
 			if (objectsContainGameplayType(
-				[this], GameObjectGameplayType.MOVING))
+					[this], GameObjectGameplayType.MOVING))
 				if (!posInLevel(this.gamePos))
 					objectsOutside.push(this);
 		}, [objectsOutside]);
@@ -63,9 +63,17 @@ CollisionsHandler.prototype.handleTileCollisions = function(TILE) {
 };
 
 CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
+	if (RESULT.operation === undefined) {
+		console.error("RESULT.operation undefined")
+		return;
+	}
 	switch (RESULT.operation) {
+		case COLLISION_OPERATION.DIR_CHANGE:
+			RESULT.object.setDirectionForced(RESULT.arg);
+			break;
 		case COLLISION_OPERATION.REMOVE:
 			this.handleRemove(RESULT.object, "objectRemoved");
+			break;
 		case COLLISION_OPERATION.SPEED_CHANGE:
 			RESULT.object.setSpeed(RESULT.arg);
 			break;

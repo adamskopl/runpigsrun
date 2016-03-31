@@ -22,29 +22,43 @@ MovementManager.prototype.moveAll = function() {
 function updateGameObjectDirection(TILES_MANAGER) {
 	if (!objectsContainGameplayType([this], GOGT.MOVING))
 		return;
-	// check if common object is allowing to pass many tiles
+	// check if common object is allowing to move between distant tiles
 	// probably will need changes (not only bouncer will change speed)
 	if (TILES_MANAGER.tileContainsGameplayType(this.gamePos, GOGT.SPEED_CHANGE))
 		return;
 
-	// if (TILES_MANAGER.tileContainsGameplayType()) {
+	if (!emptyDirection(this.directionForced)) {
+		if (!canMove(this.gamePos,
+				this.directionForced, TILES_MANAGER)) {
 
+		} else {
 
-
-	// }
+		}
+	}
 
 	if (!emptyDirection(this.direction))
 		if (!canMove(this.gamePos,
 				this.direction, TILES_MANAGER)) {
-			opposite = movementDirectionOpposite(this.direction);
+			var opposite = movementDirectionOpposite(this.direction);
 			if (canMove(this.gamePos,
 					opposite, TILES_MANAGER))
 				this.setDirection(opposite);
 			else
-			// blocked
-				resetDirection(this.direction);
+				resetDirection(this.direction); // blocked
 		}
 };
+
+/**
+ * Tries to apply given non-empty direction or its opposite for given GameObject
+ * with setDirection().
+ * @return {boolean} True if direction was applied, false otherwise.
+ */
+function tryApplyDirection(GAME_POS, DIRECTION, TILESMANAGER) {
+	if (canMove(GAME_POS, DIRECTION, TILESMANAGER)) {
+
+		return true;
+	}
+}
 
 /**
  * Called on GameObject
