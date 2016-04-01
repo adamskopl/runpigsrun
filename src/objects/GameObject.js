@@ -8,6 +8,12 @@
 function GameObject(group, GAME_OBJECT_PARAMS, statesMgr) {
 	this.gamePos = cloneProperties(GAME_OBJECT_PARAMS.gamePos);
 	this.direction = cloneProperties(GAME_OBJECT_PARAMS.direction);
+	/* Direction forced by e.g signpost: needed along with a normal direction*/
+	this.directionForced = {
+		x: 0,
+		y: 0
+	};
+	this.angle = GAME_OBJECT_PARAMS.angle;
 	this.properties = GAME_OBJECT_PARAMS.properties;
 	this.type = GAME_OBJECT_PARAMS.type;
 
@@ -37,6 +43,8 @@ GameObject.prototype.destroy = function() {
 	this.sprite.destroy();
 	this.gamePos = {};
 	this.direction = {};
+	this.directionForced = {};
+	this.angle = {};
 	this.properties = {};
 	this.type = {};
 	this.sprite = {};
@@ -48,7 +56,11 @@ GameObjectParams.prototype.print = function() {
 };
 
 GameObject.prototype.setDirection = function(dir) {
-	this.direction = dir;
+	this.direction = cloneProperties(dir);
+};
+
+GameObject.prototype.setDirectionForced = function(dir) {
+	this.directionForced = cloneProperties(dir);
 };
 
 GameObject.prototype.setSpeed = function(speed) {
