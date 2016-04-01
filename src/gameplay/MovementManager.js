@@ -27,26 +27,35 @@ function updateGameObjectDirection(TILES_MANAGER) {
 	if (TILES_MANAGER.tileContainsGameplayType(this.gamePos, GOGT.SPEED_CHANGE))
 		return;
 
-	if (!emptyDirection(this.directionForced)) {
-		if (!canMove(this.gamePos,
-				this.directionForced, TILES_MANAGER)) {
-
-		} else {
-
-		}
-	}
-
-	if (!emptyDirection(this.direction))
-		if (!canMove(this.gamePos,
-				this.direction, TILES_MANAGER)) {
-			var opposite = movementDirectionOpposite(this.direction);
-			if (canMove(this.gamePos,
-					opposite, TILES_MANAGER))
-				this.setDirection(opposite);
-			else
-				resetDirection(this.direction); // blocked
-		}
+	var directionForForced = getResultDirectionForDirection(
+		this.gamePos, this.directionForced, TILES_MANAGER);
+	if (emptyDirection(directionForForced)) {
+		var directionNormal = getResultDirectionForDirection(
+			this.gamePos, this.direction, TILES_MANAGER);
+		this.setDirection(directionNormal);
+	} else
+		this.setDirection(directionForForced);
 };
+
+/**
+ * Get direction, which would be a result of a movement of an
+ * object with a given direction, on a given position.
+ * @param  {Object} GAME_POS     {x, y} position of a theoretical object
+ * @param  {Object} DIRECTION    {x, y} direction of theoretical object
+ * @param  {Object} TILESMANAGER TilesManager object.
+ * @return {Object}              Direction which would be a next direction of an 
+ *                               object with given position and direction.
+ */
+function getResultDirectionForDirection(GAME_POS, DIRECTION, TILESMANAGER) {
+	var direction = cloneProperties(DIRECTION);
+	if (!emptyDirection(direction))
+		if (!canMove(GAME_POS, direction, TILESMANAGER)) {
+			var OPPOSITE = movementDirectionOpposite(direction);
+			if (!canMove(GAME_POS, OPPOSITE, TILESMANAGER))
+				resetDirection(direction);
+		}
+	return direction;
+}
 
 /**
  * Tries to apply given non-empty direction or its opposite for given GameObject

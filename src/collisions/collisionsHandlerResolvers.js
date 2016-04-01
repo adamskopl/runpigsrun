@@ -48,16 +48,16 @@ function collisionherosignpost(HERO, SIGNPOST) {
 	};
 	switch (SIGNPOST.sprite.angle) {
 		case 0:
-			dir.y = 1;
-			break;
-		case 90:
-			dir.x = 1;
-			break;
-		case 180:
 			dir.y = -1;
 			break;
 		case -90:
 			dir.x = -1;
+			break;
+		case -180:
+			dir.y = 1;
+			break;
+		case 90:
+			dir.x = 1;
 			break;
 	}
 	return [new CollisionResult(HERO, COLLISION_OPERATION.DIR_CHANGE, dir)];
