@@ -24,6 +24,8 @@ function GameplayManager(game) {
 };
 
 GameplayManager.prototype.connectSignals = function() {
+	this.levelsManager.signals["levelLoaded"].add(this.slotLevelLoaded, this);
+
 	this.guiManager.signals["startLevel"].add(this.slotButtonStartLevel, this);
 	this.guiManager.signals["levelPrev"].add(this.slotButtonLevelPrev, this);
 	this.guiManager.signals["levelNext"].add(this.slotButtonLevelNext, this);
@@ -60,34 +62,6 @@ GameplayManager.prototype.startMovementIter = function() {
 		count: scaleConstants.TILE_SIZE_SCALED
 	}, gameplayConstants.OBJECT_SPEED, Phaser.Easing.Linear.In, true, 0, 0, 0).
 	onComplete.add(onIterFinished, this);
-};
-
-GameplayManager.prototype.slotButtonStartLevel = function() {
-	if (!this.movementRunning) {
-		this.movementRunning = true;
-		this.iterGuardReset();
-	} else {
-		console.log("can't start");
-		return;
-	}
-	this.startMovementIter();
-};
-
-GameplayManager.prototype.slotButtonLevelPrev = function() {
-	if (this.movementRunning) return;
-	this.levelsManager.setLevelPrev();
-	this.reloadAll();
-};
-
-GameplayManager.prototype.slotButtonLevelNext = function() {
-	if (this.movementRunning) return;
-	this.levelsManager.setLevelNext();
-	this.reloadAll();
-};
-
-GameplayManager.prototype.slotButtonLevelEndOk = function() {
-	this.guiManager.hidePanelLevelEnd();
-	this.reloadAll();
 };
 
 /**

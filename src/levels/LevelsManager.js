@@ -5,7 +5,10 @@ function LevelsManager(game, gameObjectsManager) {
 	this.level = undefined;
 	this.levelId = 0;
 	this.levelIdMax = 1; // I'm soooooo lazy.
-	this.loadLevel(this.levelId);
+
+	this.signals = {
+		"levelLoaded": new Phaser.Signal()
+	};
 };
 
 LevelsManager.prototype.reloadLevel = function() {
@@ -37,6 +40,7 @@ LevelsManager.prototype.loadLevel = function(levelId) {
 		this.groupLevels,
 		this.gameObjectsManager,
 		this.getDescription(levelIdString));
+	this.signals["levelLoaded"].dispatch();
 };
 
 LevelsManager.prototype.getCurrentLevel = function() {
@@ -53,6 +57,7 @@ LevelsDescriptions = Object.freeze([{
 	id: '00',
 	tools: [
 		[GOT.SIGNPOST, 3],
+		[GOT.TOOL_BOUNCER, 4],
 		[GOT.TOOL_DUMMY, 1]
 	]
 }, {

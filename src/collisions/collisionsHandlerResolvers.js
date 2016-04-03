@@ -22,6 +22,25 @@ function collisionbridgehero(BRIDGE, HERO) {
 	return [];
 };
 
+function collisionenemyhero(ENEMY, HERO) {
+	return [];
+}
+
+function collisionenemyhut(ENEMY, HUT) {
+	return [];
+};
+
+function collisionenemyroad(ENEMY, ROAD) {
+	return [];
+};
+
+function collisionenemyvoid(ENEMY, VOID) {
+	return [
+		new CollisionResult(ENEMY, COLLISION_OPERATION.REMOVE),
+		new CollisionResult(VOID, COLLISION_OPERATION.SCALE_ANIMATION, 3)
+	];
+};
+
 function collisionexitroad(EXIT, ROAD) {
 	return [];
 };

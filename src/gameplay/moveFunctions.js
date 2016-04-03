@@ -1,3 +1,17 @@
+Directions = Object.freeze([{
+	x: 0,
+	y: -1
+}, {
+	x: 1,
+	y: 0
+}, {
+	x: 0,
+	y: 1
+}, {
+	x: -1,
+	y: 0
+}]);
+
 function resetDirection(direction) {
 	direction.x = direction.y = 0;
 };
@@ -31,7 +45,21 @@ function canMove(GAME_POS, DIRECTION, TILES_MANAGER) {
 		GAME_POS, DIRECTION);
 	if (ADJACENT_OBJECTS !== undefined)
 		if (objectsContainGameplayType(ADJACENT_OBJECTS,
-			GameObjectGameplayType.PASSAGE))
+				GameObjectGameplayType.PASSAGE))
 			return true;
 	return false;
 };
+
+function canMoveSafe(GAME_POS, DIRECTION, TILES_MANAGER) {
+	var ADJACENT_OBJECTS = TILES_MANAGER.getAdjacent(
+		GAME_POS, DIRECTION);
+	if (ADJACENT_OBJECTS !== undefined)
+		if (
+			objectsContainGameplayType(
+				ADJACENT_OBJECTS, GameObjectGameplayType.PASSAGE) &&
+			!objectsContainGameplayType(
+				ADJACENT_OBJECTS, GameObjectGameplayType.DEADLY)
+		)
+			return true;
+	return false;
+}

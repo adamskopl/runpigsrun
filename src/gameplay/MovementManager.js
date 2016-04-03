@@ -8,12 +8,34 @@ function MovementManager(game, gameObjectsManager, tilesManager, gameplayManager
 	};
 };
 
+/**
+ * Set starting directions for moving objects. If moving object does not have
+ * direction set: try to set possible direction, which will not kill given
+ * object.
+ * Assumption: all level objects are loaded.
+ */
+MovementManager.prototype.setStartingDirections = function() {
+	this.tilesManager.callAll(setGameObjectStartDirection, [this.tilesManager]);
+};
+
 MovementManager.prototype.updateDirections = function() {
 	this.tilesManager.callAll(updateGameObjectDirection, [this.tilesManager]);
 };
 
 MovementManager.prototype.moveAll = function() {
 	this.tilesManager.callAll(moveGameObject, [this.game, this]);
+};
+
+/**
+ * Called on GameObject
+ */
+function setGameObjectStartDirection(TILES_MANAGER) {
+	if (!objectsContainGameplayType([this], GOGT.MOVING))
+		return;
+	for (var dir in Directions) {
+		if (canMoveSafe(this.gamePos, Directions[dir], TILES_MANAGER))
+			this.setDirection(Directions[dir]);
+	}
 };
 
 /**
@@ -55,18 +77,6 @@ function getResultDirectionForDirection(GAME_POS, DIRECTION, TILESMANAGER) {
 				resetDirection(direction);
 		}
 	return direction;
-}
-
-/**
- * Tries to apply given non-empty direction or its opposite for given GameObject
- * with setDirection().
- * @return {boolean} True if direction was applied, false otherwise.
- */
-function tryApplyDirection(GAME_POS, DIRECTION, TILESMANAGER) {
-	if (canMove(GAME_POS, DIRECTION, TILESMANAGER)) {
-
-		return true;
-	}
 }
 
 /**

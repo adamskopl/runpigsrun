@@ -57,6 +57,7 @@ function startGame() {
 		gameplayManager.setMembers(levelsManager, guiManager);
 
 		game.world.bringToTop(gameplayManager.gameObjectsManager.groupGeneral);
+		levelsManager.reloadLevel();
 		guiManager.reload();
 	}
 
