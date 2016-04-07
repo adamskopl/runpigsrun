@@ -22,8 +22,14 @@ function collisionbridgehero(BRIDGE, HERO) {
 	return [];
 };
 
-function collisionenemyhero(ENEMY, HERO) {
+function collisionenemyenemy(ENEMY, ENEMY) {
 	return [];
+}
+
+function collisionenemyhero(ENEMY, HERO) {
+	return [
+		new CollisionResult(HERO, COLLISION_OPERATION.REMOVE)
+	];
 }
 
 function collisionenemyhut(ENEMY, HUT) {
@@ -31,8 +37,15 @@ function collisionenemyhut(ENEMY, HUT) {
 };
 
 function collisionenemyroad(ENEMY, ROAD) {
-	return [];
+	return [new CollisionResult(ROAD, COLLISION_OPERATION.SPEED_CHANGE, 1)];
 };
+
+function collisionenemyt_bouncer(ENEMY, TOOL_BOUNCER) {
+	return [
+		new CollisionResult(ENEMY, COLLISION_OPERATION.SPEED_CHANGE, 2),
+		new CollisionResult(TOOL_BOUNCER, COLLISION_OPERATION.SCALE_ANIMATION, 1.5)
+	];
+}
 
 function collisionenemyvoid(ENEMY, VOID) {
 	return [

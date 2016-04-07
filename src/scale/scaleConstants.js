@@ -2,7 +2,7 @@
  * Constants used to maniupulate game's resolution based on tiles properties.
  */
 scaleConstants = {
-	MAIN_SCALE: 3, // scales resolution
+	MAIN_SCALE: 2, // scales resolution
 	TILE_SIZE: 16,
 	TILE_SIZE_SCALED: 0,
 	MAP_TILES_X: 12, // tiles number horizontally

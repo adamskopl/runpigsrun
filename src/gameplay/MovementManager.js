@@ -6,6 +6,8 @@ function MovementManager(game, gameObjectsManager, tilesManager, gameplayManager
 	this.counters = {
 		movingObjects: 0
 	};
+	this.checkedColl = [];
+	this.toHandle = [];
 };
 
 /**
@@ -23,8 +25,42 @@ MovementManager.prototype.updateDirections = function() {
 };
 
 MovementManager.prototype.moveAll = function() {
+	this.checkedColl = [];
+	console.log("-------------------");
 	this.tilesManager.callAll(moveGameObject, [this.game, this]);
 };
+
+MovementManager.prototype.update = function() {
+	if (this.counters.movingObjects !== 0) {
+		var collObjects = this.gameObjectsManager.getAll([GOT.ROAD, GOT.VOID]);
+		if (collObjects.length < 2) return;
+		for (var i = 0; i < collObjects.length; i++)
+			for (var j = i + 1; j < collObjects.length; j++) {
+				this.game.physics.arcade.overlap(
+					collObjects[i].sprite,
+					collObjects[j].sprite,
+					this.onCollision, null, this);
+			}
+	}
+	if (this.toHandle.length > 0)
+		console.log("len " + this.toHandle.length);
+	this.toHandle = [];
+};
+
+MovementManager.prototype.onCollision = function(sprite1, sprite2) {
+	if (sprite1.id === sprite2.id)
+		console.error("equal id");
+	var a = sprite1.id;
+	var b = sprite2.id;
+	if (sprite2.id < sprite1.id) {
+		a = sprite2.id;
+		b = sprite1.id;
+	}
+	if (prepareArray(this.checkedColl, a, b)) {
+		// console.log("COL " + sprite1.id + ", " + sprite2.id);
+		this.toHandle.push(1);
+	}
+}
 
 /**
  * Called on GameObject
@@ -80,7 +116,7 @@ function getResultDirectionForDirection(GAME_POS, DIRECTION, TILESMANAGER) {
 }
 
 /**
- * Called on GameObject
+ * Called on GameObject. 
  */
 function moveGameObject(GAME, movementManager) {
 	if (!emptyDirection(this.direction)) {

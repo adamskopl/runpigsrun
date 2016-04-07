@@ -23,6 +23,17 @@ function GameplayManager(game) {
 	this.movementRunning = false;
 };
 
+GameplayManager.prototype.update = function() {
+	this.movementManager.update();
+};
+
+GameplayManager.prototype.render = function() {
+	this.gameObjectsManager.getGroup().forEach(function(item) {
+		if (item !== undefined)
+			this.game.debug.body(item);
+	}, this);
+};
+
 GameplayManager.prototype.connectSignals = function() {
 	this.levelsManager.signals["levelLoaded"].add(this.slotLevelLoaded, this);
 

@@ -6,6 +6,7 @@ function GameObjectsManager(game, tilesManager) {
 	this.groupGeneral = this.game.add.group();
 	this.managers = {}; // concrete managers
 	this.initManagers();
+	this.ids = new IdGenerator()
 };
 
 GameObjectsManager.prototype.initManagers = function() {
@@ -14,24 +15,52 @@ GameObjectsManager.prototype.initManagers = function() {
 		this.objects[GOT.HUT]);
 };
 
+GameObjectsManager.prototype.getGroup = function() {
+	return this.groupGeneral;
+}
+
 GameObjectsManager.prototype.clear = function() {
 	for (var i in this.objects)
 		for (var j in this.objects[i])
 			this.objects[i][j].destroy();
 	for (var i in this.objects)
-		this.objects[i].length = 0; // warning: reference in concrete managers
+		this.objects[i].length = 0; // warning: *array reference* in concrete managers
 	this.tilesManager.clear();
 	this.groupGeneral.removeAll();
+	this.ids.reset();
 };
 
 GameObjectsManager.prototype.create = function(gameObjectParams) {
 	gameObject = new GameObject(this.groupGeneral,
-		gameObjectParams, this.statesMgr);
+		gameObjectParams, this.statesMgr, this.ids.gen());
+
+	if (!objectsContainGameplayType([gameObject], GOGT.PASSAGE))
+		gameObject.initArcade(this.game);
 	this.push(gameObject);
 	this.tilesManager.put(gameObject, gameObjectParams.gamePos.x,
 		gameObjectParams.gamePos.y);
 	this.check();
 	return gameObject;
+};
+
+/**
+ * Get an array of all the objects.
+ * @param  {Array} EXCLUDE_ARRAY Array of object types to exclude (they'll not
+ *                 be in an array).
+ * @return {Array} Array of filtered objects.
+ */
+GameObjectsManager.prototype.getAll = function(EXCLUDE_ARRAY) {
+	var excludeArray = EXCLUDE_ARRAY;
+	if (excludeArray === undefined)
+		excludeArray = [];
+	var allObjects = [];
+
+	for (var O in this.objects) {
+		var index = excludeArray.indexOf(O);
+		if (index !== -1) continue;
+		allObjects = allObjects.concat(this.objects[O]);
+	}
+	return allObjects;
 };
 
 /**

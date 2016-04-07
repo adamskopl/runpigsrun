@@ -5,7 +5,7 @@
  * @param {Array} gameObjectParams.gamePos
  * @param {number} gameObjectParams.angle
  */
-function GameObject(group, GAME_OBJECT_PARAMS, statesMgr) {
+function GameObject(group, GAME_OBJECT_PARAMS, statesMgr, ID) {
 	this.gamePos = cloneProperties(GAME_OBJECT_PARAMS.gamePos);
 	this.direction = cloneProperties(GAME_OBJECT_PARAMS.direction);
 	/* Direction forced by e.g signpost: needed along with a normal direction*/
@@ -33,10 +33,19 @@ function GameObject(group, GAME_OBJECT_PARAMS, statesMgr) {
 	}
 	this.sprite = group.create(0, 0,
 		objectData.spreadsheet, objectData.gid);
+	this.sprite.id = ID;
 	this.sprite.angle = GAME_OBJECT_PARAMS.angle;
 	this.sprite.anchor.x = this.sprite.anchor.y = 0.5;
 	this.sprite.scale.x = this.sprite.scale.y = scaleConstants.MAIN_SCALE;
+
 	this.updateScreenPos();
+};
+
+GameObject.prototype.initArcade = function(game) {
+	game.physics.arcade.enable(this.sprite, Phaser.Physics.ARCADE);
+	this.sprite.body.immovable = true;
+	var bodySize = scaleConstants.TILE_SIZE / 3;
+	this.sprite.body.setSize(bodySize, bodySize);
 };
 
 GameObject.prototype.destroy = function() {

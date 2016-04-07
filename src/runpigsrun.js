@@ -2,24 +2,6 @@ function cloneProperties(TO_CLONE) {
 	return JSON.parse(JSON.stringify(TO_CLONE));
 };
 
-/**
- * Prepare indexes for two dimensional array.
- */
-function prepareArray(array, X, Y) {
-	if (array[X] === undefined)
-		array[X] = [];
-	if (array[X][Y] === undefined)
-		array[X][Y] = [];
-};
-
-function removeArrayObject(array, object) {
-	var index = array.indexOf(object);
-	if (index !== -1)
-		array.splice(index, 1);
-	else
-		console.error("index === -1");
-}
-
 function startGame() {
 	// CANVAS chosen, so 'debug' functions likde debug.body(sprite) can work...
 	// change later maybe on Phaser.AUTO
@@ -61,7 +43,11 @@ function startGame() {
 		guiManager.reload();
 	}
 
-	function update() {}
+	function update() {
+		gameplayManager.update();
+	}
 
-	function render() {}
+	function render() {
+		gameplayManager.render();
+	}
 };
