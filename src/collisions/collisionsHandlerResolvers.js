@@ -40,6 +40,10 @@ function collisionenemyroad(ENEMY, ROAD) {
 	return [new CollisionResult(ROAD, COLLISION_OPERATION.SPEED_CHANGE, 1)];
 };
 
+function collisionenemysignpost(ENEMY, SIGNPOST) {
+	return [];
+}
+
 function collisionenemyt_bouncer(ENEMY, TOOL_BOUNCER) {
 	return [
 		new CollisionResult(ENEMY, COLLISION_OPERATION.SPEED_CHANGE, 2),

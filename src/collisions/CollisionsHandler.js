@@ -31,7 +31,7 @@ CollisionsHandler.prototype.removeMovingObjectsOutsideLevel = function() {
 		function(objectsOutside) {
 			if (objectsContainGameplayType(
 					[this], GameObjectGameplayType.MOVING))
-				if (!posInLevel(this.gamePos))
+				if (!posInLevel(this.mov().gamePosTo))
 					objectsOutside.push(this);
 		}, [objectsOutside]);
 	for (var OBJ in objectsOutside)
@@ -49,17 +49,19 @@ CollisionsHandler.prototype.handleEveryVsEvery = function() {
 };
 
 CollisionsHandler.prototype.handleTileCollisions = function(TILE) {
+	var resultsToHandle = [];
 	for (var I = 0; I < TILE.length; I++)
 		for (var J = I + 1; J < TILE.length; J++) {
 			// unique pair (no two objects compared more than once)
-			RESULTS = handleCollisionPair(TILE[I], TILE[J]);
+			var RESULTS = handleCollisionPair(TILE[I], TILE[J]);
 			if (RESULTS === undefined) {
 				console.error("RESULTS === undefined");
 				continue;
 			}
-			for (var R in RESULTS)
-				this.handleCollisionResult(RESULTS[R]);
+			resultsToHandle = resultsToHandle.concat(RESULTS);
 		}
+	for (var R in resultsToHandle)
+		this.handleCollisionResult(resultsToHandle[R]);
 };
 
 CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
@@ -75,7 +77,7 @@ CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
 			this.handleRemove(RESULT.object, "objectRemoved");
 			break;
 		case COLLISION_OPERATION.SPEED_CHANGE:
-			RESULT.object.setSpeed(RESULT.arg);
+			RESULT.object.mov().setSpeed(RESULT.arg);
 			break;
 		case COLLISION_OPERATION.SCALE_ANIMATION:
 			RESULT.object.startScaleAnimation(this.game, RESULT.arg);
@@ -94,7 +96,7 @@ CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
  */
 CollisionsHandler.prototype.positionChanged = function(
 	GAME_OBJECT) {
-	var GAME_POS = GAME_OBJECT.gamePos;
+	var GAME_POS = GAME_OBJECT.mov().gamePosTo;
 
 	prepareArray(this.tilesToHandle, GAME_POS.x,
 		GAME_POS.y);

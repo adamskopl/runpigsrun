@@ -11,37 +11,6 @@ TilesManager.prototype.clear = function() {
 	this.tiles = [];
 };
 
-TilesManager.prototype.print = function() {
-	for (var i in this.tiles)
-		for (var j in this.tiles[i]) {
-			var TILE = this.tiles[i][j];
-			for (var o in TILE) {
-				var pos = TILE[o].gamePos;
-				if (!posInLevel(pos) || TILE[o].type != GOT.HERO) continue;
-				var obj = TILE[o];
-				console.log(obj.type + " " +
-					i + ", " + j);
-			}
-		}
-};
-
-TilesManager.prototype.printTile = function(ARGS) {
-	var t = undefined;
-	var output = undefined;
-	if (ARGS['x'] && ARGS['y']) {
-		t = this.get(ARGS.x, ARGS.y);
-		output = "<TILE " + ARGS.x + ", " + ARGS.y + "> ";
-	} else if (ARGS['tile']) {
-		t = ARGS.tile;
-		output = "<TILE>";
-	} else return;
-	if (t === undefined) return;
-	for (var o in t) {
-		output += t[o].type + " ";
-	}
-	console.log(output + "</TILE>");
-};
-
 TilesManager.prototype.preparePos = function(posX, posY) {
 	if (this.tiles[posX] === undefined)
 		this.tiles[posX] = [];

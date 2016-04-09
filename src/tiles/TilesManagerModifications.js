@@ -4,7 +4,9 @@ TilesManager.prototype.put = function(gameObject, posX, posY) {
 };
 
 TilesManager.prototype.remove = function(GAME_OBJECT) {
-	var tile = this.get(GAME_OBJECT.gamePos.x, GAME_OBJECT.gamePos.y);
+	var tile = this.get(
+		GAME_OBJECT.mov().gamePosTo.x,
+		GAME_OBJECT.mov().gamePosTo.y);
 	if (tile === undefined) {
 		console.error("remove TILE === undefined");
 	}
@@ -21,9 +23,14 @@ TilesManager.prototype.remove = function(GAME_OBJECT) {
 	}
 };
 
+/**
+ * Position of a given object had changed. Refresh tiles array.
+ */
 TilesManager.prototype.positionChanged = function(
-	GAME_OBJ, GAME_POS_OLD) {
-	var oldT = this.get(GAME_POS_OLD.x, GAME_POS_OLD.y);
+	GAME_OBJ) {
+	var oldT = this.get(
+		GAME_OBJ.mov().gamePosFrom.x,
+		GAME_OBJ.mov().gamePosFrom.y);
 	if (oldT === undefined) {
 		console.error("positionChanged() oldT === undefined")
 		return;
@@ -34,7 +41,9 @@ TilesManager.prototype.positionChanged = function(
 			objFound = true;
 			// remove the object from an old tile
 			oldT.splice(o, 1);
-			this.put(GAME_OBJ, GAME_OBJ.gamePos.x, GAME_OBJ.gamePos.y);
+			this.put(GAME_OBJ,
+				GAME_OBJ.mov().gamePosTo.x,
+				GAME_OBJ.mov().gamePosTo.y);
 			break;
 		}
 	}

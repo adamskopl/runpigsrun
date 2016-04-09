@@ -21,7 +21,7 @@ GameObjectsManagerHuts.prototype.onIter = function(
 			HUT.pause = false;
 			continue;
 		}
-		var GAME_POS = HUT.gamePos;
+		var GAME_POS = HUT.mov().gamePosTo;
 		var DIRECTION = angleToDirection(HUT.angle);
 		GAME_OBJECTS_MANAGER.create(
 			new GameObjectParams(GOT.HERO, {

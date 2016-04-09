@@ -6,13 +6,10 @@
  * @param {number} gameObjectParams.angle
  */
 function GameObject(group, GAME_OBJECT_PARAMS, statesMgr, ID) {
-	this.gamePos = cloneProperties(GAME_OBJECT_PARAMS.gamePos);
-	this.direction = cloneProperties(GAME_OBJECT_PARAMS.direction);
-	/* Direction forced by e.g signpost: needed along with a normal direction*/
-	this.directionForced = {
-		x: 0,
-		y: 0
-	};
+	this.movementParams = new GameObjectMovementParams(
+		GAME_OBJECT_PARAMS.gamePos,
+		GAME_OBJECT_PARAMS.direction
+	);
 	this.angle = GAME_OBJECT_PARAMS.angle;
 	this.properties = GAME_OBJECT_PARAMS.properties;
 	this.type = GAME_OBJECT_PARAMS.type;
@@ -21,7 +18,7 @@ function GameObject(group, GAME_OBJECT_PARAMS, statesMgr, ID) {
 	this.stateNumber = 0; // managed by GOStatesMgr
 
 	// how many tiles in one iteration
-	this.speed = 1;
+	//	this.speed = 1;
 
 	var objectData = GOC[GAME_OBJECT_PARAMS.type];
 	if (objectData === undefined) {
@@ -41,6 +38,10 @@ function GameObject(group, GAME_OBJECT_PARAMS, statesMgr, ID) {
 	this.updateScreenPos();
 };
 
+GameObject.prototype.mov = function() {
+	return this.movementParams;
+};
+
 GameObject.prototype.initArcade = function(game) {
 	game.physics.arcade.enable(this.sprite, Phaser.Physics.ARCADE);
 	this.sprite.body.immovable = true;
@@ -49,31 +50,19 @@ GameObject.prototype.initArcade = function(game) {
 };
 
 GameObject.prototype.destroy = function() {
+	var tween = this.sprite.tween;
+	this.sprite.tween = undefined;
 	this.sprite.destroy();
-	this.gamePos = {};
-	this.direction = {};
-	this.directionForced = {};
+	this.sprite = {};
+	this.movementParams.destroy();
 	this.angle = {};
 	this.properties = {};
 	this.type = {};
-	this.sprite = {};
-};
 
-GameObjectParams.prototype.print = function() {
-	console.log(this.type + " [" + this.gamePos.x + "," +
-		this.gamePos.y + "] " + this.angle);
-};
+	this.destroyed = true;
 
-GameObject.prototype.setDirection = function(dir) {
-	this.direction = cloneProperties(dir);
-};
-
-GameObject.prototype.setDirectionForced = function(dir) {
-	this.directionForced = cloneProperties(dir);
-};
-
-GameObject.prototype.setSpeed = function(speed) {
-	this.speed = speed;
+	if (tween !== undefined)
+		tween.stop(true)
 };
 
 /**
@@ -91,7 +80,7 @@ GameObject.prototype.updateScreenPos = function() {
  * @return {[type]} [description]
  */
 GameObject.prototype.getScreenPos = function() {
-	return gamePosToScreenPos(this.gamePos);
+	return gamePosToScreenPos(this.mov().gamePosTo);
 };
 
 GameObject.prototype.startScaleAnimation = function(

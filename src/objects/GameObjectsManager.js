@@ -37,8 +37,10 @@ GameObjectsManager.prototype.create = function(gameObjectParams) {
 	if (!objectsContainGameplayType([gameObject], GOGT.PASSAGE))
 		gameObject.initArcade(this.game);
 	this.push(gameObject);
-	this.tilesManager.put(gameObject, gameObjectParams.gamePos.x,
-		gameObjectParams.gamePos.y);
+	this.tilesManager.put(
+		gameObject,
+		gameObject.mov().gamePosTo.x,
+		gameObject.mov().gamePosTo.y);
 	this.check();
 	return gameObject;
 };
@@ -49,7 +51,7 @@ GameObjectsManager.prototype.create = function(gameObjectParams) {
  *                 be in an array).
  * @return {Array} Array of filtered objects.
  */
-GameObjectsManager.prototype.getAll = function(EXCLUDE_ARRAY) {
+GameObjectsManager.prototype.getAllWithout = function(EXCLUDE_ARRAY) {
 	var excludeArray = EXCLUDE_ARRAY;
 	if (excludeArray === undefined)
 		excludeArray = [];

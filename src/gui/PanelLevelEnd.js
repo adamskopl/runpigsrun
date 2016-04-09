@@ -9,7 +9,7 @@ function PanelLevelEnd(game, groupGui, graphicsParameters) {
 		lineStyle: graphicsParameters.lineStyle
 	};
 
-	var dim = 200;
+	var dim = 50 * scaleConstants.MAIN_SCALE;
 	this.panelParameters = {
 		dim: dim,
 		x: scaleConstants.GAME_W / 2 - dim / 2,

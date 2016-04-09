@@ -78,9 +78,19 @@ GameplayManager.prototype.startMovementIter = function() {
 /**
  * Invoked by MovementManager. An object has reached its destiny.
  */
-GameplayManager.prototype.onMovementIter = function(GAME_OBJECT, GAME_POS_PREV) {
-	this.tilesManager.positionChanged(GAME_OBJECT, GAME_POS_PREV);
+GameplayManager.prototype.onMovementIter = function(GAME_OBJECT) {
 	this.collisionsHandler.positionChanged(GAME_OBJECT);
+};
+
+/**
+ * Invoked by MovementManager. If there are collisions, which will not be 
+ * handled on movement iter finish, they have to be handled before movement
+ * iter finish.
+ * @param  {Array} OBJECTS Array of objects to handle. This will be handled like
+ * a tile with objects.
+ */
+GameplayManager.prototype.onCollisionToHandle = function(OBJECTS) {
+	this.collisionsHandler.handleTileCollisions(OBJECTS);
 };
 
 /**
@@ -114,7 +124,9 @@ function onIterFinished() {
 	}
 	this.collisionsHandler.handleCollisions();
 	if (this.checkLevelEnd()) {
-		this.onLevelEnd();
+		// this.onLevelEnd();
+		this.iterGuardReset();
+		this.startMovementIter();
 	} else {
 		this.iterGuardReset();
 		this.startMovementIter();
