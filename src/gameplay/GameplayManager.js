@@ -28,6 +28,7 @@ GameplayManager.prototype.update = function() {
 };
 
 GameplayManager.prototype.render = function() {
+	return;
 	this.gameObjectsManager.getGroup().forEach(function(item) {
 		if (item !== undefined)
 			this.game.debug.body(item);
@@ -123,11 +124,9 @@ function onIterFinished() {
 		return;
 	}
 	this.collisionsHandler.handleCollisions();
-	if (this.checkLevelEnd()) {
-		// this.onLevelEnd();
-		this.iterGuardReset();
-		this.startMovementIter();
-	} else {
+	if (this.checkLevelEnd())
+		this.onLevelEnd();
+	else {
 		this.iterGuardReset();
 		this.startMovementIter();
 	}

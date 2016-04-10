@@ -95,7 +95,9 @@ function getResultDirectionForDirection(GAME_POS, DIRECTION, TILESMANAGER) {
 	if (!emptyDirection(direction))
 		if (!canMove(GAME_POS, direction, TILESMANAGER)) {
 			var OPPOSITE = movementDirectionOpposite(direction);
-			if (!canMove(GAME_POS, OPPOSITE, TILESMANAGER))
+			if (canMove(GAME_POS, OPPOSITE, TILESMANAGER))
+				direction = OPPOSITE;
+			else
 				resetDirection(direction);
 		}
 	return direction;
@@ -118,7 +120,7 @@ function moveGameObject(GAME, movementManager) {
 			y: nextScreenPos.y
 		}, speed, Phaser.Easing.Linear.In, true, 0, 0, 0);
 
-		if (this.speed === 2)
+		if (this.mov().speed === 2)
 			this.startScaleAnimation(GAME, 2);
 
 		movementManager.counters.movingObjects++;

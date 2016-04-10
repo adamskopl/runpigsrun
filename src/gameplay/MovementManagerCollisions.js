@@ -1,4 +1,5 @@
 MovementManager.prototype.onUpdateCollisions = function() {
+	// array of colliding pairs
 	var collidingObjects = [];
 	if (this.counters.movingObjects !== 0) {
 		var collObjects = this.gameObjectsManager.getAllWithout([GOT.ROAD, GOT.VOID]);
@@ -15,8 +16,11 @@ MovementManager.prototype.onUpdateCollisions = function() {
 				this.collisionOnUpdate = false;
 			}
 	}
-	if (collidingObjects.length > 0)
+
+	if (collidingObjects.length > 0) {
+		console.log(collidingObjects.length);
 		this.gameplayManager.onCollisionToHandle(collidingObjects);
+	}
 };
 
 MovementManager.prototype.onCollision = function(sprite1, sprite2) {
@@ -30,11 +34,12 @@ MovementManager.prototype.onCollision = function(sprite1, sprite2) {
 	}
 	// mark collision as handled
 	if (prepareArray(this.checkedColl, a, b)) {
+		var tween = sprite1.tween !== undefined ? sprite1.tween : sprite2.tween;
+		if (tween === undefined) return;
 		this.collisionOnUpdate = true; // collision occured
 		// if diff between  start-end pos is small, it means that collision 
 		// will be handled at the end of movement
-		var diff = Phaser.Math.difference(sprite1.x,
-			sprite1.tween.properties.x);
+		var diff = Phaser.Math.difference(sprite1.x, tween.properties.x);
 		if (diff < sprite1.body.width)
 			this.collisionOnUpdate = false;
 	}

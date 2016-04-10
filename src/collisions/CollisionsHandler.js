@@ -71,7 +71,7 @@ CollisionsHandler.prototype.handleCollisionResult = function(RESULT) {
 	}
 	switch (RESULT.operation) {
 		case COLLISION_OPERATION.DIR_CHANGE:
-			RESULT.object.setDirectionForced(RESULT.arg);
+			RESULT.object.mov().setDirectionForced(RESULT.arg);
 			break;
 		case COLLISION_OPERATION.REMOVE:
 			this.handleRemove(RESULT.object, "objectRemoved");

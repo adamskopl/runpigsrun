@@ -33,11 +33,11 @@ function collisionenemyhero(ENEMY, HERO) {
 }
 
 function collisionenemyhut(ENEMY, HUT) {
-	return [];
+	return collisionenemyroad(ENEMY, HUT);
 };
 
 function collisionenemyroad(ENEMY, ROAD) {
-	return [new CollisionResult(ROAD, COLLISION_OPERATION.SPEED_CHANGE, 1)];
+	return [new CollisionResult(ENEMY, COLLISION_OPERATION.SPEED_CHANGE, 1)];
 };
 
 function collisionenemysignpost(ENEMY, SIGNPOST) {
@@ -70,7 +70,7 @@ function collisionherohero(HERO, HERO) {
  * Hero land on the hut (e.g. through bouncer)
  */
 function collisionherohut(HERO, HUT) {
-	return [new CollisionResult(HERO, COLLISION_OPERATION.REMOVE)];
+	return collisionheroroad(HERO);
 };
 
 function collisionheroroad(HERO, ROAD) {

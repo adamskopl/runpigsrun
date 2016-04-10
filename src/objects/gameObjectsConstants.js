@@ -37,7 +37,7 @@ GameObjectsConstants = [];
 GOC = GameObjectsConstants; // alias
 
 GameObjectsConstants[GameObjectType.VOID] =
-	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 102, [GameObjectGameplayType.PASSAGE, GameObjectGameplayType.DEADLY]);
+	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 102, [GameObjectGameplayType.DEADLY]);
 
 GameObjectsConstants[GameObjectType.HUT] =
 	new GameObjectDesc(assetsConstants.SPREADSHEET_BASIC, 48, []);
