@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" nextobjectid="517">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" nextobjectid="589">
  <tileset firstgid="1" name="basictiles" tilewidth="16" tileheight="16" tilecount="120" columns="8">
   <image source="../../assets/tileset/basictiles_2.png" width="128" height="240"/>
  </tileset>
@@ -43,18 +43,43 @@
  </layer>
  <objectgroup name="objectsPlayerTools"/>
  <objectgroup name="objectsLevel">
-  <object id="437" name="road" gid="11" x="64" y="96" width="16" height="16"/>
-  <object id="501" name="road" gid="11" x="64" y="160" width="16" height="16"/>
-  <object id="502" name="road" gid="11" x="80" y="160" width="16" height="16"/>
-  <object id="503" name="road" gid="11" x="112" y="160" width="16" height="16"/>
-  <object id="504" name="road" gid="11" x="96" y="160" width="16" height="16"/>
-  <object id="505" name="road" gid="11" x="128" y="160" width="16" height="16"/>
-  <object id="506" name="road" gid="11" x="32" y="160" width="16" height="16"/>
-  <object id="507" name="road" gid="11" x="48" y="160" width="16" height="16"/>
-  <object id="508" name="hero" gid="169" x="32" y="160" width="16" height="16"/>
-  <object id="509" name="road" gid="11" x="80" y="96" width="16" height="16"/>
-  <object id="513" name="enemy" gid="176" x="64" y="96" width="16" height="16"/>
-  <object id="514" name="hero" gid="169" x="80" y="96" width="16" height="16"/>
+  <object id="437" name="road" gid="11" x="128" y="48" width="16" height="16"/>
+  <object id="509" name="road" gid="11" x="144" y="48" width="16" height="16"/>
+  <object id="517" name="road" gid="11" x="160" y="48" width="16" height="16"/>
+  <object id="518" name="road" gid="11" x="80" y="48" width="16" height="16"/>
+  <object id="524" name="road" gid="11" x="48" y="96" width="16" height="16"/>
+  <object id="525" name="road" gid="11" x="48" y="112" width="16" height="16"/>
+  <object id="526" name="road" gid="11" x="32" y="112" width="16" height="16"/>
+  <object id="528" name="road" gid="11" x="64" y="112" width="16" height="16"/>
+  <object id="529" name="road" gid="11" x="16" y="112" width="16" height="16"/>
+  <object id="530" name="road" gid="11" x="80" y="144" width="16" height="16"/>
+  <object id="531" name="road" gid="11" x="48" y="144" width="16" height="16"/>
+  <object id="532" name="road" gid="11" x="32" y="144" width="16" height="16"/>
+  <object id="534" name="road" gid="11" x="64" y="160" width="16" height="16"/>
+  <object id="538" name="road" gid="11" x="96" y="144" width="16" height="16"/>
+  <object id="539" name="road" gid="11" x="112" y="144" width="16" height="16"/>
+  <object id="542" name="road" gid="11" x="64" y="144" width="16" height="16"/>
+  <object id="548" name="road" gid="11" x="128" y="144" width="16" height="16"/>
+  <object id="550" name="road" gid="11" x="64" y="176" width="16" height="16"/>
+  <object id="552" name="road" gid="11" x="48" y="80" width="16" height="16"/>
+  <object id="553" name="exit" gid="51" x="48" y="80" width="16" height="16"/>
+  <object id="557" name="road" gid="11" x="96" y="48" width="16" height="16"/>
+  <object id="558" name="road" gid="11" x="112" y="48" width="16" height="16"/>
+  <object id="567" name="road" gid="11" x="16" y="16" width="16" height="16"/>
+  <object id="568" name="exit" gid="51" x="16" y="16" width="16" height="16"/>
+  <object id="570" name="road" gid="11" x="16" y="48" width="16" height="16"/>
+  <object id="573" name="road" gid="11" x="64" y="192" width="16" height="16"/>
+  <object id="574" name="exit" gid="51" x="64" y="192" width="16" height="16"/>
+  <object id="575" name="road" gid="11" x="16" y="32" width="16" height="16"/>
+  <object id="580" name="road" gid="11" x="32" y="48" width="16" height="16"/>
+  <object id="581" name="road" gid="11" x="48" y="48" width="16" height="16"/>
+  <object id="582" name="hero" gid="169" x="16" y="112" width="16" height="16"/>
+  <object id="583" name="enemy" gid="175" x="160" y="48" width="16" height="16"/>
+  <object id="584" name="road" gid="11" x="80" y="112" width="16" height="16"/>
+  <object id="585" name="road" gid="11" x="80" y="128" width="16" height="16"/>
+  <object id="586" name="enemy" gid="175" x="128" y="144" width="16" height="16"/>
+  <object id="587" name="hero" gid="169" x="32" y="144" width="16" height="16"/>
+  <object id="588" name="hero" gid="169" x="112" y="48" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="objectsCharacters"/>
 </map>

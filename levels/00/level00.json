@@ -52,136 +52,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":64,
-                 "y":96
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":501,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":64,
-                 "y":160
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":502,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":80,
-                 "y":160
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":503,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":112,
-                 "y":160
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":504,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":96,
-                 "y":160
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":505,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
                  "x":128,
-                 "y":160
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":506,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":32,
-                 "y":160
-                }, 
-                {
-                 "gid":11,
-                 "height":16,
-                 "id":507,
-                 "name":"road",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":48,
-                 "y":160
-                }, 
-                {
-                 "gid":169,
-                 "height":16,
-                 "id":508,
-                 "name":"hero",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":32,
-                 "y":160
+                 "y":48
                 }, 
                 {
                  "gid":11,
@@ -196,14 +68,94 @@
                  "type":"",
                  "visible":true,
                  "width":16,
+                 "x":144,
+                 "y":48
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":517,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":160,
+                 "y":48
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":518,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
                  "x":80,
+                 "y":48
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":524,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
                  "y":96
                 }, 
                 {
-                 "gid":176,
+                 "gid":11,
                  "height":16,
-                 "id":513,
-                 "name":"enemy",
+                 "id":525,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":112
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":526,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":112
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":528,
+                 "name":"road",
                  "properties":
                     {
 
@@ -213,12 +165,396 @@
                  "visible":true,
                  "width":16,
                  "x":64,
-                 "y":96
+                 "y":112
                 }, 
                 {
                  "gid":11,
                  "height":16,
-                 "id":515,
+                 "id":529,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":112
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":530,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":80,
+                 "y":144
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":531,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":144
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":532,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":144
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":534,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":160
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":538,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":144
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":539,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":144
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":542,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":144
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":548,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":144
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":550,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":176
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":552,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":80
+                }, 
+                {
+                 "gid":51,
+                 "height":16,
+                 "id":553,
+                 "name":"exit",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":80
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":557,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":48
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":558,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":48
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":567,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":16
+                }, 
+                {
+                 "gid":51,
+                 "height":16,
+                 "id":568,
+                 "name":"exit",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":16
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":570,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":48
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":573,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":192
+                }, 
+                {
+                 "gid":51,
+                 "height":16,
+                 "id":574,
+                 "name":"exit",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":192
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":575,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":32
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":580,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":48
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":581,
+                 "name":"road",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":48,
+                 "y":48
+                }, 
+                {
+                 "gid":169,
+                 "height":16,
+                 "id":582,
+                 "name":"hero",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":112
+                }, 
+                {
+                 "gid":175,
+                 "height":16,
+                 "id":583,
+                 "name":"enemy",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":160,
+                 "y":48
+                }, 
+                {
+                 "gid":11,
+                 "height":16,
+                 "id":584,
                  "name":"road",
                  "properties":
                     {
@@ -232,10 +568,10 @@
                  "y":112
                 }, 
                 {
-                 "gid":169,
+                 "gid":11,
                  "height":16,
-                 "id":516,
-                 "name":"hero",
+                 "id":585,
+                 "name":"road",
                  "properties":
                     {
 
@@ -245,7 +581,55 @@
                  "visible":true,
                  "width":16,
                  "x":80,
-                 "y":112
+                 "y":128
+                }, 
+                {
+                 "gid":175,
+                 "height":16,
+                 "id":586,
+                 "name":"enemy",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":144
+                }, 
+                {
+                 "gid":169,
+                 "height":16,
+                 "id":587,
+                 "name":"hero",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":144
+                }, 
+                {
+                 "gid":169,
+                 "height":16,
+                 "id":588,
+                 "name":"hero",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":112,
+                 "y":48
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -266,7 +650,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":517,
+ "nextobjectid":589,
  "orientation":"orthogonal",
  "properties":
     {
