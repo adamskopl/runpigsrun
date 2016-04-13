@@ -79,6 +79,10 @@ function updateGameObjectDirection(TILES_MANAGER) {
 		this.mov().setDirection(directionNormal);
 	} else
 		this.mov().setDirection(directionForForced);
+	this.mov().setDirectionForced({
+		x: 0,
+		y: 0
+	});
 };
 
 /**
