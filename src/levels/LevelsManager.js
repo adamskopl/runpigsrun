@@ -57,8 +57,7 @@ LevelsDescriptions = Object.freeze([{
 	id: '00',
 	tools: [
 		[GOT.SIGNPOST, 3],
-		[GOT.TOOL_BOUNCER, 4],
-		[GOT.TOOL_DUMMY, 1]
+		[GOT.TOOL_BOUNCER, 1]
 	]
 }, {
 	id: '01',

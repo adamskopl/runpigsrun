@@ -1,6 +1,10 @@
 MovementManager.prototype.onUpdateCollisions = function() {
-	// array of colliding pairs
-	var collidingObjects = [];
+	// Array of arrays with objects colliding in one place (grouping objects
+	// by collision position). When collision occurs, colliding pair is put
+	// with other objects on the same position. So the array looks like
+	// [[A,B][C,D,E,F]]: grouped objects belong to the same collision point.
+	var collidingGroups = [];
+
 	if (this.counters.movingObjects !== 0) {
 		var collObjects = this.gameObjectsManager.getAllWithout([GOT.ROAD, GOT.VOID]);
 		if (collObjects.length < 2) return;
@@ -11,15 +15,19 @@ MovementManager.prototype.onUpdateCollisions = function() {
 					collObjects[j].sprite,
 					this.onCollision, null, this);
 				// right now collisionOnUpdate is refreshed by onCollision()
-				if (this.collisionOnUpdate)
-					collidingObjects.push(collObjects[i], collObjects[j]);
+				if (this.collisionOnUpdate) {
+					concatPairWithCoveringGroup(
+						collidingGroups, [collObjects[i], collObjects[j]]);
+				}
 				this.collisionOnUpdate = false;
 			}
 	}
 
-	if (collidingObjects.length > 0) {
-		console.log(collidingObjects.length);
-		this.gameplayManager.onCollisionToHandle(collidingObjects);
+	if (collidingGroups.length > 0) {
+		// elements of collidingGroups are groups of objects really colliding
+		for (var group in collidingGroups) {
+			this.gameplayManager.onCollisionToHandle(collidingGroups[group]);
+		}
 	}
 };
 
@@ -43,4 +51,26 @@ MovementManager.prototype.onCollision = function(sprite1, sprite2) {
 		if (diff < sprite1.body.width)
 			this.collisionOnUpdate = false;
 	}
+};
+
+/**
+ * Merge given pair with a matching group or create a new one.
+ * Matching group is a group containing objects from the same collision point.
+ * @param  {Array} collidingGroups Array of arrays of objects belonging to the
+ *                                 same collision point.
+ * @param  {Array} newCollisionPair Pair of objects which should be merged.
+ */
+function concatPairWithCoveringGroup(collidingGroups, newCollisionPair) {
+	if (newCollisionPair.length !== 2)
+		console.error("not a pair");
+	var groupFound = false;
+	for (var group in collidingGroups) {
+		var groupObject = collidingGroups[group][0];
+		var diff = Phaser.Math.difference(groupObject.x, newCollisionPair[0].x);
+		if (diff < groupObject.sprite.body.width) {
+			collidingGroups[group] = collidingGroups[group].concat(newCollisionPair);
+			return;
+		}
+	}
+	collidingGroups.push(newCollisionPair);
 };
